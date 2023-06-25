@@ -23,30 +23,67 @@
 	</div>
 	<div class="container">
 		<div class="card">
-		  <div class="card-header">ADMIN</div>
+		  <div class="card-header">userinfo</div>
 		  <div class="card-body">
+		  <h5>health</h5>
 		  	<table class="table table-bordered table-hover">
 		  		<tr>
-					<th>id</th>	  		
-					<th>name</th>	  		
-					<th>age</th>
-						  		
+					<th>번호</th>	 		
+					<th>최고혈압</th>	  		
+					<th>최저혈압</th>	  		
+					<th>혈당</th>	  		
+					<th>몸무게</th>
+					<th>키</th>
+					<th>BMI</th>
+					<th>입력날짜</th>	  		
 		  		</tr>
-		  		<c:forEach items="${userlist}" var="list" >
+		  		<c:forEach items="${result}" var="care" >
 		  		<tr>
-		  			<td>${list.id}</td>
-		  			<td>${list.user_name}</td>
-		  			<td>${list.age}</td>
-		  			<td><button class="btn btn-info" onclick="location.href='${cpath}/userInfo?id=${list.id}'">건강정보</button></td>
+		  			<td>${care.health_num}</td>
+		  			<td>${care.blood_pressure_high}</td>
+		  			<td>${care.blood_pressure_low}</td>
+		  			<td>${care.blood_sugar}</td>
+		  			<td>${care.weight}</td>
+		  			<td>${care.height}</td>
+		  			<td>${care.BMI}</td>
+		  			<td>${care.input_date}</td>
 		  		</tr>
 		  		</c:forEach>
 		  		
+		  		
+		  	</table>
+		  	
+		  	<h5>community</h5>
+		  	<table class="table table-bordered table-hover">
 		  		<tr>
+					<th>번호</th>	 		
+					<th>제목</th>	  		
+					<th>내용</th>	  		
+					<th>작성일</th>	  		
+					<th>카테고리</th>
+		  		</tr>
+		  		<c:forEach items="${comlist}" var="com" >
+		  		<tr>
+		  			<td>${com.comu_num}</td>
+		  			<td>${com.title}</td>
+		  			<td>${com.content}</td>
+		  			<td>${com.write_date}</td>
+		  			<td>${com.category}</td>
+		  		
+		  		</tr>
+		  		</c:forEach>
+		  		
+	
+	
+		  		
+		  		
+		  	</table>
+		  	<tr>
 			  		<td colspan = "5">
 			  			<button type="button" class="btn btn-outline-info btn-sm" onclick = "location.href='${cpath}/'">메인화면</button>
 			  		</td>
 		  		</tr>
-		  	</table>
+		  	
 		  </div>
 		  <div class="card-footer">관리자 페이지</div>
 		</div>

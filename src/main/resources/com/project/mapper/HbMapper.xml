@@ -7,7 +7,16 @@
 	</select>
 	
 	<select id="care" resultType="com.project.entity.Health">
-		select * from health where users_fk_id = #{id}
+      select * from health where users_fk_id = #{id}
+   </select>
+	
+	<select id="getUserList" resultType="com.project.entity.Users">
+		select * from users where id !='admin'
+	</select>
+	
+	<select id="userCom" resultType="com.project.entity.Community" 
+	parameterType="com.project.entity.Users">
+		select * from community where users_fk_id = #{id}
 	</select>
 	
 </mapper>
