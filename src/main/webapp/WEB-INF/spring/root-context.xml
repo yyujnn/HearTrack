@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- shared resources == DB -->
+	<!-- DB연결 설정을 기술하는 공간 -->
+	
+	<!-- MVN REPOSITORY -> hikariCP검색  -> 다운 후에 pom.xml에 작성 -->
+	<!-- Connection POOL 생성을 위한 API : HikariCP -->	
+	
+	<!-- 1) HikariConfig 생성 : 연결해야되는 DB 설정값을 잡아주는 곳-->
+	<!-- HikariConfig config = new HikariConfig();
+		   config.setxxxx(driverClassName);
+		   config.setxxxx(jdbcURL);
+		   config.setxxxx(username);
+		   config.setxxxx(password);랑 같음 ↓ ↓ ↓ ↓ ↓ 
+	-->
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/com"/>
+		<property name="username" value="com"/>
+		<property name="password" value="com01" />
+	</bean>
+	
+	
+	<!-- 2) HikariDataSource 생성 : CP를 만들어주는 곳-->
+	<bean id="hikariDataSource" class="com.zaxxer.hikari.HikariDataSource">
+		<constructor-arg ref="hikariConfig" />
+	</bean>
+	
+	<!-- 3) SqlSessionFactoryBean 생성하기 : mybatis-spring API 필요함 -->
+	<!-- library 내부에 있는 class 파일들을 열어서 구조를 확인해보기 -->
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="hikariDataSource" />
+	</bean>
+	
+	<!-- 4) interface를 구현할 수 있게 interface의 위치를 등록 -->
+	<!-- DAO가 들어있는 package 명칭만 잡아주기 -->
+	<mybatis-spring:scan base-package="com.project.mapper"/>
+	
+	
+	
+		
+</beans>
