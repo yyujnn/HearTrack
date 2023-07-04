@@ -18,12 +18,13 @@
 	<div class="jumbotron jumbotron-fluid">
 	  <div class="container">
 	    <h1>사용자 페이지</h1>
+	    
 	    <p>userpage - test.</p>
 	  </div>
 	</div>
 	<div class="container">
 		<div class="card">
-		  <div class="card-header">user01</div>
+		  <div class="card-header">${user_id }</div>
 		  <div class="card-body">
 		  	<table class="table table-bordered table-hover">
 		  		<tr>

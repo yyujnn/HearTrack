@@ -30,14 +30,16 @@
 					<th>id</th>	  		
 					<th>name</th>	  		
 					<th>age</th>
+					<th>gender</th>
 						  		
 		  		</tr>
 		  		<c:forEach items="${userlist}" var="list" >
 		  		<tr>
-		  			<td>${list.id}</td>
+		  			<td>${list.user_id}</td>
 		  			<td>${list.user_name}</td>
-		  			<td>${list.age}</td>
-		  			<td><button class="btn btn-info" onclick="location.href='${cpath}/userInfo?id=${list.id}'">건강정보</button></td>
+		  			<td>${list.user_age}</td>
+		  			<td>${list.user_gender}</td>
+		  			<td><button class="btn btn-info" onclick="location.href='${cpath}/userInfo?user_id=${list.user_id}'">건강정보</button></td>
 		  		</tr>
 		  		</c:forEach>
 		  		

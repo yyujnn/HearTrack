@@ -37,16 +37,16 @@
 					<th>BMI</th>
 					<th>입력날짜</th>	  		
 		  		</tr>
-		  		<c:forEach items="${result}" var="care" >
+		  		<c:forEach items="${result}" var="result" >
 		  		<tr>
-		  			<td>${care.health_num}</td>
-		  			<td>${care.blood_pressure_high}</td>
-		  			<td>${care.blood_pressure_low}</td>
-		  			<td>${care.blood_sugar}</td>
-		  			<td>${care.weight}</td>
-		  			<td>${care.height}</td>
-		  			<td>${care.BMI}</td>
-		  			<td>${care.input_date}</td>
+		  			<td>${result.h_num}</td>	  		
+					<td>${result.bp_high}</td>	  		
+					<td>${result.bp_row}</td>	  		
+					<td>${result.bs}</td>
+					<td>${result.weight}</td>
+					<td>${result.height}</td>
+					<td>${result.bmi}</td>
+					<td>${result.input_date}</td>
 		  		</tr>
 		  		</c:forEach>
 		  		
@@ -64,10 +64,10 @@
 		  		</tr>
 		  		<c:forEach items="${comlist}" var="com" >
 		  		<tr>
-		  			<td>${com.comu_num}</td>
+		  			<td>${com.p_num}</td>
 		  			<td>${com.title}</td>
 		  			<td>${com.content}</td>
-		  			<td>${com.write_date}</td>
+		  			<td>${com.input_date}</td>
 		  			<td>${com.category}</td>
 		  		
 		  		</tr>
