@@ -22,7 +22,7 @@
 	</beans:bean>
 	
 	<!-- FC(Front Controller)가 POJO를 찾을 수 있게 위치 등록 -->
-	<context:component-scan base-package="com.project.controller" />
+	<context:component-scan base-package="ht.project.controller" />
 	
 	
 	

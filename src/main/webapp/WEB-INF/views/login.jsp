@@ -14,12 +14,12 @@
 		<h2>SIGN IN</h2>
 		<form action="${cpath}/index" method="post">
 			<div class="form-group">
-				<label for="id">ID :</label> <input type="text" name="id"
-					class="form-control" id="id">
+				<label for="id">ID :</label> <input type="text" name="user_id"
+					class="form-control" id="user_id">
 			</div>
 			<div class="form-group">
-				<label for="pw">PW :</label> <input type="password" name="pw"
-					class="form-control" id="pw">
+				<label for="pw">PW :</label> <input type="password" name="user_pw"
+					class="form-control" id="user_pw">
 			</div>
 			<button type="submit" class="btn btn-primary">Sign in</button>
 		</form>

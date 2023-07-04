@@ -21,9 +21,9 @@
 	-->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/com"/>
-		<property name="username" value="com"/>
-		<property name="password" value="com01" />
+		<property name="jdbcUrl" value="jdbc:mysql://project-db-cgi.smhrd.com:3307/cgi_2_230701_3"/>
+		<property name="username" value="cgi_2_230701_3"/>
+		<property name="password" value="smhrd3" />
 	</bean>
 	
 	
@@ -40,7 +40,7 @@
 	
 	<!-- 4) interface를 구현할 수 있게 interface의 위치를 등록 -->
 	<!-- DAO가 들어있는 package 명칭만 잡아주기 -->
-	<mybatis-spring:scan base-package="com.project.mapper"/>
+	<mybatis-spring:scan base-package="ht.project.mapper"/>
 	
 	
 	

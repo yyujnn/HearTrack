@@ -23,7 +23,7 @@
 	</div>
 	<div class="container">
 		<div class="card">
-		  <div class="card-header">user01</div>
+		  <div class="card-header">${user_id}</div>
 		  <div class="card-body">
 		  	<table class="table table-bordered table-hover">
 		  		<tr>
@@ -31,20 +31,20 @@
 					<th>최고혈압</th>	  		
 					<th>최저혈압</th>	  		
 					<th>혈당</th>	  		
-					<th>몸무게</th>
-					<th>키</th>
+					<th>체중</th>
+					<th>신장</th>
 					<th>BMI</th>
 					<th>입력날짜</th>	  		
 		  		</tr>
 		  		<c:forEach var="result" items="${result}">
 			  		<tr>
-						<td>${result.health_num}</td>	  		
-						<td>${result.blood_pressure_high}</td>	  		
-						<td>${result.blood_pressure_low}</td>	  		
-						<td>${result.blood_sugar}</td>
+						<td>${result.h_num}</td>	  		
+						<td>${result.bp_high}</td>	  		
+						<td>${result.bp_row}</td>	  		
+						<td>${result.bs}</td>
 						<td>${result.weight}</td>
 						<td>${result.height}</td>
-						<td>${result.BMI}</td>
+						<td>${result.bmi}</td>
 						<td>${result.input_date}</td>
 			  		</tr>
 			  		

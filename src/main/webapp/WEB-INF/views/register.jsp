@@ -30,14 +30,26 @@
 					<th>id</th>	  		
 					<th>name</th>	  		
 					<th>age</th>
+<<<<<<< HEAD
+=======
+					<th>gender</th>
+>>>>>>> origin/yj_branch
 						  		
 		  		</tr>
 		  		<c:forEach items="${userlist}" var="list" >
 		  		<tr>
+<<<<<<< HEAD
 		  			<td>${list.id}</td>
 		  			<td>${list.user_name}</td>
 		  			<td>${list.age}</td>
 		  			<td><button class="btn btn-info" onclick="location.href='${cpath}/userInfo?id=${list.id}'">건강정보</button></td>
+=======
+		  			<td>${list.user_id}</td>
+		  			<td>${list.user_name}</td>
+		  			<td>${list.user_age}</td>
+		  			<td>${list.user_gender}</td>
+		  			<td><button class="btn btn-info" onclick="location.href='${cpath}/userInfo?user_id=${list.user_id}'">건강정보</button></td>
+>>>>>>> origin/yj_branch
 		  		</tr>
 		  		</c:forEach>
 		  		

@@ -37,6 +37,7 @@
 					<th>BMI</th>
 					<th>입력날짜</th>	  		
 		  		</tr>
+<<<<<<< HEAD
 		  		<c:forEach items="${result}" var="care" >
 		  		<tr>
 		  			<td>${care.health_num}</td>
@@ -47,6 +48,18 @@
 		  			<td>${care.height}</td>
 		  			<td>${care.BMI}</td>
 		  			<td>${care.input_date}</td>
+=======
+		  		<c:forEach items="${result}" var="result" >
+		  		<tr>
+		  			<td>${result.h_num}</td>	  		
+					<td>${result.bp_high}</td>	  		
+					<td>${result.bp_row}</td>	  		
+					<td>${result.bs}</td>
+					<td>${result.weight}</td>
+					<td>${result.height}</td>
+					<td>${result.bmi}</td>
+					<td>${result.input_date}</td>
+>>>>>>> origin/yj_branch
 		  		</tr>
 		  		</c:forEach>
 		  		
@@ -64,10 +77,17 @@
 		  		</tr>
 		  		<c:forEach items="${comlist}" var="com" >
 		  		<tr>
+<<<<<<< HEAD
 		  			<td>${com.comu_num}</td>
 		  			<td>${com.title}</td>
 		  			<td>${com.content}</td>
 		  			<td>${com.write_date}</td>
+=======
+		  			<td>${com.p_num}</td>
+		  			<td>${com.title}</td>
+		  			<td>${com.content}</td>
+		  			<td>${com.input_date}</td>
+>>>>>>> origin/yj_branch
 		  			<td>${com.category}</td>
 		  		
 		  		</tr>
