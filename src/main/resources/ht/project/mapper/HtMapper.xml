@@ -13,7 +13,7 @@
    </select>
 	
 	<select id="getUserList" resultType="ht.project.entity.User" >
-		select * from t_user where user_id !='admin1'
+		select * from t_user where user_type ='N'
 	</select>
 	
 	<select id="userCom" resultType="ht.project.entity.Community" 
