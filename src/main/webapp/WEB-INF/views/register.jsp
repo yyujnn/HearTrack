@@ -15,54 +15,44 @@
 </head>
 <body>
 
-	<div class="jumbotron jumbotron-fluid">
-	  <div class="container">
-	    <h1>관리자 페이지</h1>
-	    <p>information</p>
-	  </div>
-	</div>
-	<div class="container">
-		<div class="card">
-		  <div class="card-header">ADMIN</div>
-		  <div class="card-body">
-		  	<table class="table table-bordered table-hover">
-		  		<tr>
-					<th>id</th>	  		
-					<th>name</th>	  		
-					<th>age</th>
-<<<<<<< HEAD
-=======
-					<th>gender</th>
->>>>>>> origin/yj_branch
-						  		
-		  		</tr>
-		  		<c:forEach items="${userlist}" var="list" >
-		  		<tr>
-<<<<<<< HEAD
-		  			<td>${list.id}</td>
-		  			<td>${list.user_name}</td>
-		  			<td>${list.age}</td>
-		  			<td><button class="btn btn-info" onclick="location.href='${cpath}/userInfo?id=${list.id}'">건강정보</button></td>
-=======
-		  			<td>${list.user_id}</td>
-		  			<td>${list.user_name}</td>
-		  			<td>${list.user_age}</td>
-		  			<td>${list.user_gender}</td>
-		  			<td><button class="btn btn-info" onclick="location.href='${cpath}/userInfo?user_id=${list.user_id}'">건강정보</button></td>
->>>>>>> origin/yj_branch
-		  		</tr>
-		  		</c:forEach>
-		  		
-		  		<tr>
-			  		<td colspan = "5">
-			  			<button type="button" class="btn btn-outline-info btn-sm" onclick = "location.href='${cpath}/'">메인화면</button>
-			  		</td>
-		  		</tr>
-		  	</table>
-		  </div>
-		  <div class="card-footer">관리자 페이지</div>
-		</div>
-	</div>
+   <div class="jumbotron jumbotron-fluid">
+     <div class="container">
+       <h1>관리자 페이지</h1>
+       <p>information</p>
+     </div>
+   </div>
+   <div class="container">
+      <div class="card">
+        <div class="card-header">ADMIN</div>
+        <div class="card-body">
+           <table class="table table-bordered table-hover">
+              <tr>
+               <th>id</th>           
+               <th>name</th>           
+               <th>age</th>
+               <th>gender</th>
+                          
+              </tr>
+              <c:forEach items="${userlist}" var="list" >
+              <tr>
+                 <td>${list.user_id}</td>
+                 <td>${list.user_name}</td>
+                 <td>${list.user_age}</td>
+                 <td>${list.user_gender}</td>
+                 <td><button class="btn btn-info" onclick="location.href='${cpath}/userInfo?user_id=${list.user_id}'">건강정보</button></td>
+              </tr>
+              </c:forEach>
+              
+              <tr>
+                 <td colspan = "5">
+                    <button type="button" class="btn btn-outline-info btn-sm" onclick = "location.href='${cpath}/'">메인화면</button>
+                 </td>
+              </tr>
+           </table>
+        </div>
+        <div class="card-footer">관리자 페이지</div>
+      </div>
+   </div>
 
 </body>
 </html>
