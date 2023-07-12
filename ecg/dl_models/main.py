@@ -1,11 +1,28 @@
 from typing import Dict, Union
-
+import pickle
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
 
 import glob
+
+def load_ecg_pickle(ecg_path:str)->np.ndarray:
+    """
+    Load ECG from the given path
+        Args:
+            ecg_path: (str) path to the ECG file
+        Returns:
+            ecg: (np.ndarray) ECG data
+    """
+    with open(ecg_path, "rb") as f:
+        ecg = pickle.load(f)
+    # stack ecg data
+    out = []
+    for key in ['I', 'II', 'III', 'AVR', 'AVL', 'AVF', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6']:
+        out.append(ecg[key])
+    ecg = np.stack(out, axis=0)
+    return ecg
 
 class ResNet1d(nn.Module):
     def __init__(self, in_channels, num_classes, kernel_size=16, stride=1, padding=0, dilation=1, groups=1, bias=True):
@@ -44,26 +61,16 @@ class UNet(nn.Module):  # 내부 구조 아직 안 짰음
 
 class ECG_Infer_Module():
     def __init__(self, resnet_path, unet_path):
-        self.resnet = ResNet1d()
-        self.unet = UNet()
+        pass
+        # self.resnet = ResNet1d()
+        # self.unet = UNet()
         # self.load_model(resnet_path, unet_path)
 
-    def load_model(self, resnet_path, unet_path):  # need to set device
+    def load_model(self, resnet_path, unet_path):  # XXX need to set device
         self.resnet.load_state_dict(torch.load(resnet_path))
         self.unet.load_state_dict(torch.load(unet_path))
         self.resnet.eval()
         self.unet.eval()
-
-    def load_ecg(self, ecg_path:str)->np.ndarray:
-        """
-        Load ECG from the given path
-            Args:
-                ecg_path: (str) path to the ECG file
-            Returns:
-                ecg: (np.ndarray) ECG data
-        """
-
-        return
 
     def preprocess_ecg(self, ecg:np.ndarray)->np.ndarray:
         """
@@ -105,19 +112,18 @@ class ECG_Infer_Module():
         return
 
 
-    def infer(self, x:str)->Dict[str, Union[bool, str]]:
+    def infer(self, ecg:np.ndarray)->Dict[str, Union[bool, str]]:
         """
         Inference of the ECG
             Args:
-                x: (str) path to the ECG file  XXX xml 로 할 것인지 pickle 로 할 것인지
+                ecg: (np.ndarray) ECG lead value with shape (12, 5000)
             Returns:
                 out_dict: (dict) with
                     keys: (str) ["hr", "pr", "qrs", "qt", "qtc", "af", "sr", "sb", "gsvt"]
                     values: (bool) if True, then the corresponding class is detected in the ECG
         """
-        # get ecg path
-        # load ecg
-        # preprocess ecg -> make ecg as np.ndarray
+        # from ecg np.ndarray
+        # ecg = self.preprocess_ecg(ecg)
         # resnet_output = self.resnet(ecg)
         # unet_output = self.unet(ecg)
         # resnet_output = self.post_process_resnet(resnet_output)
@@ -132,7 +138,7 @@ class ECG_Infer_Module():
             "qt": 330,
             "qtc": 400,
             "af": False,
-            "sr": True,
+            "sr": True,  # True means this ECG is Sinus Rhythm
             "sb": False,
             "gsvt": False
         }
@@ -145,5 +151,8 @@ if __name__ == "__main__":
 
     ecg_infer_module = ECG_Infer_Module("", "")  # no module yet
 
-    for ecg in ecg_xml_list:
-        ecg_infer_module.infer(ecg)
+    for ecg in ecg_pkl_list:
+        ecg = load_ecg_pickle(ecg)  # 서버에서 ecg를 받아왔다고 가정, 정확히 어떤 형태로 받는지는 상관 없음, dictionary 든 array 든
+        # ecg: np.ndarray with shape (12, 5000)
+        out = ecg_infer_module.infer(ecg) # return dictionary
+        print(out)  # 이 값을 다시 서버에 보내야 함
