@@ -57,7 +57,4 @@ class ECGDataset(Dataset):
         # (Filtering) -> Standardization
 
         data = {'input': ecg, 'label': label}
-        if self.mode != 'train':
-            fname = self.filenames[idx]
-            data['fname'] = fname
         return data

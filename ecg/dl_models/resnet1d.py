@@ -16,12 +16,13 @@ class SimpleResNet1D(nn.Module):
         out = self.conv1(x)
         out = self.relu(out)
         out = self.conv2(out)
-        out = self.relu(out)
+        out += self.downsample(x)
+        out_relu = self.relu(out)
+        # out = self.relu(out)
 
         # Residual Connection
-        out += self.downsample(x)
 
-        out = torch.mean(out, dim=2)  # Global Average Pooling
-        out = self.fc(out)
+        out_relu = torch.mean(out_relu, dim=2)  # Global Average Pooling
+        out_relu = self.fc(out_relu)
 
-        return out
+        return out_relu
