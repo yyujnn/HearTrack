@@ -4,8 +4,12 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
+from collections import OrderedDict
 
 import glob
+
+from resnet1d import SimpleResNet1D
+from unet1d import SimpleUNet1D
 
 def load_ecg_pickle(ecg_path:str)->np.ndarray:
     """
@@ -13,7 +17,7 @@ def load_ecg_pickle(ecg_path:str)->np.ndarray:
         Args:
             ecg_path: (str) path to the ECG file
         Returns:
-            ecg: (np.ndarray) ECG data
+            ecg: (np.ndarray) ECG data with shape (num_leads, seq_len)
     """
     with open(ecg_path, "rb") as f:
         ecg = pickle.load(f)
@@ -24,82 +28,76 @@ def load_ecg_pickle(ecg_path:str)->np.ndarray:
     ecg = np.stack(out, axis=0)
     return ecg
 
-class ResNet1d(nn.Module):
-    def __init__(self, in_channels, num_classes, kernel_size=16, stride=1, padding=0, dilation=1, groups=1, bias=True):
-        super(ResNet1d, self).__init__()
-        self.conv1 = nn.Conv1d(in_channels, in_channels, kernel_size=kernel_size, stride=stride, padding=padding, dilation=dilation, groups=groups, bias=bias)
-        self.bn1 = nn.BatchNorm1d(in_channels)
-        self.relu = nn.ReLU(inplace=True)
-        self.conv2 = nn.Conv1d(in_channels, num_classes, kernel_size=kernel_size, stride=stride, padding=padding, dilation=dilation, groups=groups, bias=bias)
-        self.bn2 = nn.BatchNorm1d(num_classes)
-        self.downsample = nn.Sequential(
-            nn.Conv1d(in_channels, num_classes, kernel_size=1, stride=1, bias=False),
-            nn.BatchNorm1d(num_classes)
-        )
-        self.stride = stride
-
-    def forward(self, x):
-        residual = x
-        out = self.conv1(x)
-        out = self.bn1(out)
-        # out = self.relu(out)
-        out = F.relu(out)
-        out = self.conv2(out)
-        out = self.bn2(out)
-        out += self.downsample(residual)
-        # out = self.relu(out)
-        out = F.relu(out)
-        return out    # (batch_size, num_classes)
-
-class UNet(nn.Module):  # 내부 구조 아직 안 짰음
-    def __init__(self, in_channels, num_classes):
-        super(UNet, self).__init__()
-        self.seq_len = 2500  # 10s * 250Hz
-    def forward(self, x:np.ndarray):
-        return    # (batch_size, seq_len, num_classes)
-
 
 class ECG_Infer_Module():
-    def __init__(self, resnet_path, unet_path):
-        pass
-        # self.resnet = ResNet1d()
-        # self.unet = UNet()
-        # self.load_model(resnet_path, unet_path)
+    """
+    Consider input is one ECG data, not batch
+    """
+    def __init__(self, resnet_path, unet_path, num_leads=12, out_classes=["af", "sr", "sb", "gsvt"]):
+        self.num_leads = num_leads
+        self.out_classes = out_classes
+        self.num_classes = len(out_classes)
+        self.resnet = SimpleResNet1D(in_channels=num_leads, num_classes=self.num_classes)
+        self.unet = SimpleUNet1D(in_channels=num_leads, out_channels=self.num_classes)
+        self.load_model(resnet_path, unet_path)
 
-    def load_model(self, resnet_path, unet_path):  # XXX need to set device
-        self.resnet.load_state_dict(torch.load(resnet_path))
-        self.unet.load_state_dict(torch.load(unet_path))
+    def modify_checkpoint(self, checkpoint):
+        """
+        Modify the checkpoint for the model
+        """
+        temp_dict = OrderedDict()
+        for old_key in checkpoint:
+            new_key = old_key[7:]
+            temp_dict[new_key] = checkpoint[old_key]
+        return temp_dict
+
+
+    def load_model(self, resnet_path, unet_path, trained_from_gpu=True):  # XXX need to set device
+        """
+        Load the trained model using cpu
+        model 은 gpu에서 학습했다고 가정
+        """
+        device = torch.device('cpu')
+        if resnet_path:
+            checkpoint = torch.load(resnet_path, map_location=device )
+            if trained_from_gpu:
+                checkpoint = self.modify_checkpoint(checkpoint)
+            self.resnet.load_state_dict(checkpoint)
+        if unet_path:
+            checkpoint = torch.load(unet_path, map_location=device )
+            if trained_from_gpu:
+                checkpoint = self.modify_checkpoint(checkpoint)
+            self.unet.load_state_dict(torch.load(unet_path))
+        self.resnet.to('cpu')
         self.resnet.eval()
+        self.unet.to('cpu')
         self.unet.eval()
-
-    def preprocess_ecg(self, ecg:np.ndarray)->np.ndarray:
-        """
-        Preprocess the ECG
-            Args:
-                ecg: (np.ndarray) ECG data
-            Returns:
-                ecg: (np.ndarray) ECG data
-        """
-
-        return
 
 
     def post_process_resnet(self, resnet_output:np.ndarray)->Dict[str, bool]:
         """
         Post processing of the output of the ResNet model
             Args:
-                resnet_output: output of the ResNet model,
+                resnet_output: output of the ResNet model with shpae (num_classes,)
             Returns:
                 resnet_output: (dict) with
                     keys: (str)
                     values: (bool) if True, then the corresponding class is detected in the ECG
         """
-
-        return
+        # torch argmax
+        idx = torch.argmax(resnet_output)
+        out_dict = {}
+        for i, class_name in enumerate(self.out_classes):
+            if idx == i:
+                out_dict[class_name] = True
+            else:
+                out_dict[class_name] = False
+        return out_dict
 
 
     def post_process_unet(self, unet_ouput:np.ndarray)->Dict[str, float]:
         """
+        XXX not implemented
         Post processing of the output of the UNet model
             Args:
                 unet_output: (np.ndarray) output of the UNet model
@@ -108,8 +106,18 @@ class ECG_Infer_Module():
                     keys: (str) ["hr", "pr", "qrs", "qt", "qtc"]
                     values: (float) the corresponding value of the key in the ECG
         """
-
-        return
+        ### XXX randomly return the value
+        out_dict = {}
+        mean_dict = {
+            "hr": 89,
+            "pr": 140,
+            "qrs": 74,
+            "qt": 330,
+            "qtc": 400
+        }
+        for class_name in mean_dict:
+            out_dict[class_name] = np.random.normal(loc=mean_dict[class_name])
+        return out_dict
 
 
     def infer(self, ecg:np.ndarray)->Dict[str, Union[bool, str]]:
@@ -124,30 +132,20 @@ class ECG_Infer_Module():
         """
         # from ecg np.ndarray
         # ecg = self.preprocess_ecg(ecg)
-        # resnet_output = self.resnet(ecg)
+        ecg = torch.Tensor(ecg).unsqueeze(0)  # to torch.Tensor with shape (1, 12, 5000)
+        resnet_output = self.resnet(ecg)
         # unet_output = self.unet(ecg)
-        # resnet_output = self.post_process_resnet(resnet_output)
-        # unet_output = self.post_process_unet(unet_output)
-        # out_dict = {**resnet_output, **unet_output}
+        resnet_output = self.post_process_resnet(resnet_output)
+        unet_output = self.post_process_unet(None)
+        out_dict = {**resnet_output, **unet_output}
 
-        # fixed value
-        out_dict = {
-            "hr": 89,
-            "pr": 140,
-            "qrs": 74,
-            "qt": 330,
-            "qtc": 400,
-            "af": False,
-            "sr": True,  # True means this ECG is Sinus Rhythm
-            "sb": False,
-            "gsvt": False
-        }
         return out_dict
 
 
 if __name__ == "__main__":
-    ecg_pkl_list = glob.glob("data/ecg_pkl/*.pkl")
+    ecg_pkl_list = glob.glob("../data/ecg_pkl/*.pkl")  # sample ecg data
     ecg_pkl_list.sort()
+
 
     ecg_infer_module = ECG_Infer_Module("", "")  # no module yet
 
