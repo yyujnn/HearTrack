@@ -16,7 +16,7 @@ public class Likes {
     private int like_num;
 
     // 글번호 
-    private int p_num;
+    private Integer p_num;
 
     // 유저 아이디 
     private String user_id;

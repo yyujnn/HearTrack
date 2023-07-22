@@ -2,23 +2,164 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="ht.project.mapper.HtMapper">
 
+	<!-- 사용자 -->
 	<select id="login" resultType="ht.project.entity.User" 
 	parameterType="ht.project.entity.User">
 		select * from t_user where user_id = #{user_id} and user_pw = #{user_pw}
 	</select>
 	
-	<select id="care" resultType="ht.project.entity.Health" 
+	<update id="access" parameterType="ht.project.entity.User">
+      update t_user set user_accdate = now() where user_id = #{user_id}
+   </update>
+	
+	<insert id="join" parameterType="ht.project.entity.User">
+      insert into t_user(user_id, user_pw, user_name, user_age, user_gender)
+      values(#{user_id}, #{user_pw}, #{user_name}, #{user_age}, #{user_gender})
+   </insert>
+	
+
+	<!-- getUserInfo 매퍼 -->
+	<select id="getUserInfo" resultType="ht.project.entity.User"
 	parameterType="ht.project.entity.User">
-      select * from t_health where user_id = #{user_id}
+	    SELECT * FROM t_user WHERE user_id = #{user_id}
+	</select>
+	
+	<!-- getCommunityList 매퍼 -->
+	<select id="getCommunityList" resultType="ht.project.entity.Community">
+	    SELECT * FROM t_community
+	</select>
+	
+ 	<!-- updateLikes 구문 작성 -->
+    <update id="updateLikes" parameterType="ht.project.entity.Community">
+        UPDATE t_community SET likes = #{param2} WHERE p_num = #{param1}
+    </update>
+    
+
+	<!-- 좋아요 추가 -->
+	<insert id="insertLike" parameterType="ht.project.entity.Likes">
+	    INSERT INTO t_likes (p_num, user_id)
+	    VALUES (#{p_num}, #{user_id})
+	</insert>
+
+	<!-- 좋아요 삭제 -->
+	<delete id="deleteLike" parameterType="ht.project.entity.Likes">
+	    DELETE FROM t_likes
+	    WHERE p_num = #{p_num}
+	    AND user_id = #{user_id}
+	</delete>
+	
+	<select id="likeStatus" parameterType="ht.project.entity.Likes" resultType="ht.project.entity.Likes">
+		SELECT * FROM t_likes WHERE user_id = #{user_id} 
+	</select>
+
+	 <!-- 댓글 등록 -->
+   <insert id="commentReg" parameterType="ht.project.entity.Comment">
+      insert into t_comment (content, p_num, user_id)
+      values(#{content}, #{p_num}, #{user_id})
+   </insert>
+   <!-- 해야할것: user_id 연결 -->
+
+   <!-- 해당 게시글의 댓글 조회 + user_name 붙여서 보내기-->
+   <select id="commentShow" parameterType="ht.project.entity.Comment" resultType="ht.project.entity.Comment">
+      select c.*, u.user_name
+      from t_comment c
+      join t_user u ON c.user_id = u.user_id
+      where c.p_num = #{p_num};
    </select>
-	
-	<select id="getUserList" resultType="ht.project.entity.User" >
-		select * from t_user where user_type ='N'
+   
+   <!-- 전체게시글의 댓글조회 + user_name  -->
+   <select id="initialComm" parameterType="ht.project.entity.Comment" resultType="ht.project.entity.Comment">
+      select c.*, u.user_name
+      from t_comment c
+      join t_user u ON c.user_id = u.user_id
+      
+   </select>
+   
+   <!-- 가장 최근 Health 데이터 -->
+   <select id="getLatestHealt" parameterType="ht.project.entity.Health"
+   resultType="ht.project.entity.Health">
+   		SELECT * FROM t_health
+   		<where>
+   			user_id = #{user_id}
+   		</where>
+        ORDER BY input_date DESC
+        LIMIT 1;
+   </select>
+   
+   <!-- 혈압 등록 -->
+   <insert id="bpRegister" parameterType="ht.project.entity.Health">
+   		INSERT INTO t_health (user_id, bp_high, bp_low)
+        VALUES (#{user_id}, #{bp_high}, #{bp_low})
+   </insert>
+   
+   <!-- 혈당 등록 -->
+   <insert id="bsRegister" parameterType="ht.project.entity.Health">
+   		INSERT INTO t_health (user_id, bs_emp, bs_ful)
+        VALUES (#{user_id}, #{bs_emp}, #{bs_ful})
+   </insert>
+   
+   <!-- 가장 최근 ecg 데이터 -->
+   <select id="getLatestEcg" parameterType="ht.project.entity.Ecg" resultType="ht.project.entity.Ecg">
+	    SELECT *,
+	           CASE results
+	                WHEN 'sr' THEN '정상 동리듬'
+	                WHEN 'af' THEN '심방세동'
+	                WHEN 'sb' THEN '동성서맥'
+	                WHEN 'gsvt' THEN '알수없음'
+	                ELSE '결과없음'
+	           END AS resultsText
+	    FROM t_ecg
+	    WHERE user_id = #{user_id}
+	    ORDER BY input_date DESC
+	    LIMIT 1;
+	</select>
+
+	<!-- 가장 최근 bp 데이터 -->
+	<select id="getLatestBp" parameterType="ht.project.entity.Health"
+    resultType="ht.project.entity.Health">
+	    SELECT *
+	    FROM t_health
+	    WHERE user_id = #{user_id} AND bs_emp = 0
+	    ORDER BY input_date DESC
+	    LIMIT 1;
 	</select>
 	
-	<select id="userCom" resultType="ht.project.entity.Community" 
-	parameterType="ht.project.entity.User">
-		select * from t_community where user_id = #{user_id}
+	<!-- 가장 최근 bs 데이터 -->
+	<select id="getLatestBs" parameterType="ht.project.entity.Health"
+    resultType="ht.project.entity.Health">
+	    SELECT *
+	    FROM t_health
+	    WHERE user_id = #{user_id} AND bp_low = 0
+	    ORDER BY input_date DESC
+	    LIMIT 1;
 	</select>
+	
+	<!-- MyHealthList -->
+	<select id="getMyBpList"  parameterType="ht.project.entity.Health"
+    resultType="ht.project.entity.Health">
+    	select * from t_health where user_id =#{user_id} and bs_emp=0
+    	ORDER BY input_date DESC;
+    </select>
+	<select id="getMyBsList"  parameterType="ht.project.entity.Health"
+    resultType="ht.project.entity.Health">
+    	select * from t_health where user_id =#{user_id} and bp_high=0
+    	ORDER BY input_date DESC;
+    </select>
+    <select id="getMyEcgList" parameterType="ht.project.entity.Ecg" 
+    resultType="ht.project.entity.Ecg">
+    	select * from t_ecg where user_id = #{user_id}
+    	ORDER BY input_date DESC;
+    </select>
+    
+    
+    
+	    
+   
+   
+   
+
+
+	
+	
 	
 </mapper>

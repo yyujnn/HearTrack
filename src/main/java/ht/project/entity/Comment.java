@@ -25,5 +25,7 @@ public class Comment {
 
     // 작성날짜 
     private Date input_date;
+    
+    private String user_name;
 
 }

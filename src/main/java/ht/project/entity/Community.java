@@ -12,16 +12,13 @@ import lombok.NoArgsConstructor;
 public class Community {
 	
 	// 글번호 
-    private int p_num;
+    private Integer p_num;
 
-    // 유저 아이디 
+    // 유저 객체
     private String user_id;
 
     // 파일번호 
     private int f_num;
-
-    // 제목 
-    private String title;
 
     // 내용 
     private String content;
@@ -34,5 +31,8 @@ public class Community {
 
     // 좋아요수 
     private Integer likes;
+    
+    // 사용자 정보
+    private User user;
 
 }

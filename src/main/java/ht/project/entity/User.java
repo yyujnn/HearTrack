@@ -22,7 +22,7 @@ public class User {
     private String user_name;
 
     // 유저 나이 
-    private Integer user_age;
+    private int user_age;
 
     // 유저 성별 
     private String user_gender;
@@ -39,5 +39,8 @@ public class User {
 
     // 유저 가입일자 
     private Date user_joindate;
+    
+    // 유저 최근 접속
+    private Date user_accdate;
 
 }

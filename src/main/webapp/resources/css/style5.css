@@ -1,0 +1,71 @@
+.blood_sugar_container {
+    width: 1140px;
+}
+
+.table-responsive{
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
+}
+
+.blood_sugar_table {
+    border: 1px #a39485 solid;
+    font-size: 1.2em;
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
+}
+
+.col_th {
+    background-color: #1875FF;
+    color: white;
+}
+
+.blood_sugar_tabletable tr:nth-child(even) {
+    background-color: rgb(245, 245, 245);
+}
+
+.blood_sugar_table tr:nth-child(odd) {
+    background-color: rgb(255, 255, 255);
+}
+
+.blood_pre_table {
+    border: 1px #a39485 solid;
+    font-size: 1.2em;
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
+}
+
+
+.blood_pre_table tr:nth-child(even) {
+    background-color: rgb(245, 245, 245);
+}
+
+.blood_pre_table tr:nth-child(odd) {
+    background-color: rgb(255, 255, 255);
+}
+
+
+.noBorder {
+    border: none !important;
+}
+
+.col_th,
+.noBorder_td {
+    padding: 0.6em 2.2em;
+}
+
+.result_1 {
+    color: greenyellow;
+}
+
+.result_2 {
+    color: red;
+}
+
+.result_3 {
+    color: yellow;
+}

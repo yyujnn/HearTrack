@@ -1,0 +1,567 @@
+.ECG_TEST_IMG {
+    object-fit: cover;
+    width: 800px;
+    height: 250px;
+    box-shadow: 0 2px 9px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+}
+
+.ECG_TEST_IMG2 {
+    object-fit: cover;
+    width: 400px;
+    box-shadow: 0 2px 0.09px rgba(0, 0, 0, 0.15);
+}
+
+.ECG_TEST_IMG_BOX {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.container_ECG_IMG {
+    text-align: center;
+}
+
+.ECG_record {
+    width: 100%;
+    background-color: #FCFCFC;
+    height: 500px;
+    padding: 20px;
+    box-shadow: 0 2px 0.09px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+}
+
+.container_ECG_record {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between !important;
+}
+
+a.button_ECG {
+    display: block;
+    position: relative;
+    float: left;
+    width: 120px;
+    padding: 0;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 50px;
+    color: #FFF;
+    border-radius: 5px;
+    transition: all 0.2s;
+}
+
+.button_ECG {
+    background: #1875FF;
+}
+
+.button_ECG.btnPush_ECG {
+    box-shadow: 0px 5px 0px 0px #0055d5;
+}
+
+.button_ECG:hover {
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.button_ECG.btnPush_ECG:hover {
+    box-shadow: 0px 0px 0px 0px #0055d5;
+}
+
+.ECG_record_IMG {
+    width: 100%;
+    height: 400px;
+    box-shadow: 0 2px 0.09px rgba(0, 0, 0, 0.15);
+    border: 2px solid black;
+    border-radius: 3px;
+}
+
+.ECG_record_List {
+    margin-top: 50px;
+    width: 100%;
+    background-color: #FCFCFC;
+    height: 300px;
+    padding: 20px;
+    box-shadow: 0 2px 0.09px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+}
+
+.ECG_Result {
+    background-color: white;
+    box-shadow: 0 2px 0.09px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+    height: 400px;
+    padding: 20px;
+}
+
+.ECG_record_table {
+    border: 1px #a39485 solid;
+    font-size: .9em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.ECG_record_table thead {
+    font-weight: bold;
+    color: #fff;
+    background: gray;
+}
+
+.ECG_record_table td,
+th {
+    padding: 1em 2.2em;
+}
+
+.ECG_record_table td {
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    background: #fff;
+}
+
+.ECG_record_table th {
+    border-bottom: 1px solid #a39485;
+}
+
+.ECG_record_table td {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.user_card_1 {
+    width: 100%;
+    height: 240px;
+    padding: 20px;
+    background-color: #fff9f9;
+}
+
+.user_card_2 {
+    width: 100%;
+    height: 240px;
+    padding: 20px;
+    background-color: white;
+}
+
+.user_card_1_input {
+    width: 100%;
+    font-weight: 600;
+    font-size: 12pt;
+    padding-left: 20px;
+}
+
+.user_card_1_img {
+    position: absolute;
+    right: 1pc;
+    bottom: 0;
+    width: 200px;
+}
+
+.user_card_3_img {
+    position: absolute;
+    right: 2pc;
+    bottom: 5pc;
+    width: 120px;
+}
+
+.ECG_record_IMG_info {
+    padding: 10px;
+    height: 240px;
+}
+
+
+.user_card_title {
+    width: 100%;
+    font-weight: bold;
+    font-weight: 600;
+    font-size: 15pt;
+    margin-bottom: 30px;
+}
+
+
+/* Modal */
+
+.modal-content {
+    height: 700px;
+}
+
+.modal-title {
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.login_modal-header {
+    text-align: right;
+    padding: 20px;
+}
+
+.login_modal-body {
+    width: 400px;
+    margin: auto;
+    text-align: center;
+}
+
+.login_modal-header {
+    text-align: right;
+    margin: 10px;
+}
+
+.login_modal-body {
+    text-align: center;
+}
+
+.input__block {
+    margin: 20px auto;
+    display: block;
+    position: relative;
+}
+
+.input__block .first-input__block::before {
+    content: "";
+    position: absolute;
+    top: -15px;
+    left: 50px;
+    display: block;
+    width: 0;
+    height: 0;
+    background: transparent;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid rgba(15, 19, 42, 0.1);
+    transition: 0.2s linear;
+}
+
+.input__block .signup-input__block::before {
+    content: "";
+    position: absolute;
+    top: -15px;
+    left: 150px;
+    display: block;
+    width: 0;
+    height: 0;
+    background: transparent;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid rgba(15, 19, 42, 0.1);
+    transition: 0.2s linear;
+}
+
+.input__block input {
+    display: block;
+    width: 90%;
+    max-width: 680px;
+    height: 50px;
+    margin: 0 auto;
+    border-radius: 8px;
+    border: none;
+    background: rgba(15, 19, 42, 0.1);
+    color: rgba(15, 19, 42, 0.3);
+    padding: 0 0 0 15px;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.input__block input:focus,
+.input__block input:active {
+    outline: none;
+    border: none;
+    color: rgba(15, 19, 42, 1);
+}
+
+.input__block input .repeat__password {
+    opacity: 0;
+    display: none;
+    transition: 0.2s linear;
+}
+
+
+.login_form {
+    width: 100%;
+    max-width: 680px;
+    margin: 40px auto 10px;
+}
+
+.input {
+    background: rgb(247, 251, 255);
+    width: 90%;
+    max-width: 680px;
+    height: 50px;
+    border-radius: 8px;
+    margin: 0 auto;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    transition: .2s linear;
+    padding-left: 20px;
+}
+
+.signin__btn {
+    background: #5A7CE0;
+    color: white;
+    display: block;
+    width: 90%;
+    max-width: 680px;
+    height: 50px;
+    border-radius: 8px;
+    margin: 0 auto;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 0 15px 30px rgba(#e91e63, .36);
+    transition: .2s linear;
+}
+
+.separator {
+    display: block;
+    margin: 30px auto 10px;
+    text-align: center;
+    height: 40px;
+    position: relative;
+    background: transparent;
+    color: rgba(15, 19, 42, 0.4);
+    font-size: 13px;
+    width: 90%;
+    max-width: 680px;
+}
+
+.separator::before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 0;
+    background: rgba(15, 19, 42, 0.2);
+    height: 1px;
+    width: 45%;
+}
+
+.separator::after {
+    content: "";
+    position: absolute;
+    top: 8px;
+    right: 0;
+    background: rgba(15, 19, 42, 0.2);
+    height: 1px;
+    width: 45%;
+}
+
+
+.google__btn,
+.naver__btn {
+    display: block;
+    width: 90%;
+    max-width: 680px;
+    margin: 20px auto;
+    height: 50px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 8px;
+    border: none;
+    line-height: 40px;
+}
+
+.google__btn {
+    background: #909fbb;
+    color: white;
+    box-shadow: 0 15px 30px rgba(91, 144, 240, 0.36);
+    transition: .2s linear;
+}
+
+.naver__btn {
+    background: rgb(3, 199, 90);
+    color: white;
+    box-shadow: 0 15px 30px rgba(37, 40, 45, 0.36);
+    transition: .2s linear;
+}
+
+
+.check-wrap_line {
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    margin: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+.ECG_background_img {
+    background-image: url("../images/부정맥배경.png");
+    background-position: top right;
+    background-repeat: no-repeat;
+    opacity: 0.9;
+}
+
+.figcaption_top {
+    background-color: rgb(255, 249, 249);
+}
+
+
+.ECG_type_card {
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1), 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+
+/*form styles*/
+#msform {
+    width: 1000px;
+    margin: 50px auto;
+    text-align: center;
+    position: relative;
+}
+
+
+/*inputs*/
+
+/*progressbar*/
+#progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    /*CSS counters to number the steps*/
+    counter-reset: step;
+}
+
+#progressbar li {
+    list-style-type: none;
+    color: black;
+    text-transform: uppercase;
+    font-size: 18px;
+    width: 33.33%;
+    float: left;
+    position: relative;
+}
+
+#progressbar li:before {
+    content: counter(step);
+    counter-increment: step;
+    width: 30px;
+    line-height: 30px;
+    display: block;
+    font-size: 18px;
+    color: #333;
+    background: white;
+    border-radius: 3px;
+    border: 1px solid black;
+    margin: 0 auto 5px auto;
+    font-weight: bold;
+}
+
+/*progressbar connectors*/
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: gray;
+    position: absolute;
+    left: -50%;
+    top: 15px;
+    z-index: -1;
+    /*put it behind the numbers*/
+}
+
+#progressbar li:first-child:after {
+    /*connector not needed before the first step*/
+    content: none;
+}
+
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+#progressbar li.active:before,
+#progressbar li.active:after {
+    background: #1875FF;
+    color: white;
+    border: 0 !important;
+
+}
+
+.Blood_pressure_diff {
+    text-align: center;
+}
+
+.Blood_pressure_diff_img {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.02), 0 5px 10px 0 rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+
+.pressure_input {
+    background: rgba(253, 253, 253, 0);
+    outline: none;
+    border: none;
+    padding: 15px;
+    margin: 10px auto;
+    width: 80%;
+    display: block;
+    color: black;
+    font-weight: 400;
+}
+
+.pressure_input-block {
+    position: relative;
+}
+
+.pressure_input+label {
+    position: absolute;
+    left: 15%;
+    top: 37%;
+    pointer-events: none;
+    color: gray;
+}
+
+
+
+.pressure_input:focus+label,
+.pressure_input:valid+label {
+    transform: translateY(-190%) translateX(-20%) scale(0.9);
+    transition: all 0.4s;
+    color: #1875FF;
+}
+
+
+
+.pressure_input {
+    box-shadow: inset -1px -1px 6px 0px rgba(165, 163, 163, 0.315);
+}
+
+.iframebox {
+    margin-bottom: 400px;
+}
+
+.container_result {
+    text-align: left;
+}
+
+
+.bloodback {
+    position: absolute;
+    right: 20%;
+    bottom: 10%;
+    z-index: -1;
+    width: 300px;
+}
+
+.ecg_result_table {
+    border: 1px #a39485 solid;
+    font-size: .9em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+    text-align: center;
+
+}
+
+
+.ecg_result_table th {
+    text-align: center;
+}
+
+.ecg_result_table td {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: bold;
+}

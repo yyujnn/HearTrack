@@ -1,0 +1,58 @@
+.image-wrap {
+    width: 100%;
+    height: 50vw;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.image-wrap img {
+    width: 100%;
+    animation: move 40s ease;
+    /* Add infinite to loop. */
+
+    -ms-animation: move 40s ease;
+    -webkit-animation: move 40s ease;
+    animation: move 40s ease;
+    -moz-animation: move 40s ease;
+    position: absolute;
+    opacity: 0.5;
+}
+
+@-webkit-keyframes move {
+    0% {
+        -webkit-transform-origin: bottom bottom;
+        -moz-transform-origin: bottom bottom;
+        -ms-transform-origin: bottom bottom;
+        -o-transform-origin: bottom bottom;
+        transform-origin: bottom bottom;
+        transform: scale(1.0);
+        -ms-transform: scale(1.0);
+        /* IE 9 */
+
+        -webkit-transform: scale(1.0);
+        /* Safari and Chrome */
+
+        -o-transform: scale(1.0);
+        /* Opera */
+
+        -moz-transform: scale(1.0);
+        /* Firefox */
+    }
+
+    100% {
+        transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        /* IE 9 */
+
+        -webkit-transform: scale(1.2);
+        /* Safari and Chrome */
+
+        -o-transform: scale(1.2);
+        /* Opera */
+
+        -moz-transform: scale(1.2);
+        /* Firefox */
+    }
+}
+

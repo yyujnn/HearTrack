@@ -17,24 +17,23 @@ public class Health {
     // 유저 아이디 
     private String user_id;
 
-    // 최고혈압 
+    // 최고혈압 (수축기)
     private int bp_high;
 
-    // 최저혈압 
-    private int bp_row;
+    // 최저혈압 (확장기)
+    private int bp_low;
 
-    // 혈당 
-    private int bs;
-
-    // 체중 
-    private float weight;
-
-    // 신장 
-    private float height;
-
-    // BMI 
-    private float bmi;
+    // 공복 혈당 
+    private int bs_emp;
+    
+    // 식후 혈당
+    private int bs_ful;
 
     // 입력날짜 
     private Date input_date;
+
+    // bs, bp 구분 조건
+    private String condition;
+    
+    
 }

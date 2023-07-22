@@ -21,25 +21,29 @@ public class Ecg {
     private int f_num;
 
     // 심박수 
-    private float hr;
+    private int hr;
 
     // P파 
-    private float pr;
+    private int pr;
 
     // QRS 
-    private float qrs;
+    private int qrs;
 
     // QT 
-    private float qt;
+    private int qt;
 
     // QTc 
-    private float qtc;
+    private int qtc;
 
     // 검사결과 
     private String results;
 
     // 입력날짜 
     private Date input_date;
+    
+    // 결과 텍스트
+    private String resultsText;
+
 
 
 }
