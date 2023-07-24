@@ -43,6 +43,7 @@ function handleFileUpload() {
 
     const formData = new FormData();
     formData.append('file', selectedFile);
+    formData.append('fileName', selectedFile.name); // 파일 이름 추가
 
     for (var key of formData.keys()) {
     }
@@ -61,9 +62,38 @@ function send(formData) {
     data: formData,
     processData: false,
     contentType: false,
-    success: function(res) {
-      console.log('AJAX 요청 성공:', res);
-      // 추가로 필요한 작업 수행
+    success: function(response) {
+      console.log('AJAX 요청 성공:', response);
+      
+      const fileName = response.fileName;
+      const fileExtension = response.fileExtension;
+      const user_id = response.user_id;
+
+      // 추출한 파일 이름과 확장자 값을 확인합니다.
+      console.log('Flask 서버로부터 받은 파일 이름:', fileName);
+      console.log('Flask 서버로부터 받은 파일 확장자:', fileExtension);
+      console.log('Flask 서버로부터 받은 파일 유저아이디:', user_id);
+      
+	 $.ajax({
+	    type: 'POST',
+	    url: 'http://127.0.0.1:9000/upload', // Flask 서버의 주소와 엔드포인트로 변경해주세요
+	    data: {
+	      fileName: fileName,
+	      fileExtension: fileExtension,
+	      user_id : user_id
+	    },
+	    success: function(response) {
+	      console.log('Flask로부터 받은 응답:', response);
+		    if (response.status === 'success') {
+	          console.log('Flask 서버 처리 성공');
+	          window.location.href = 'ecgResult';
+	        }
+	    },
+	    error: function(xhr, status, error) {
+	      console.log('AJAX 요청 오류:', error);
+	    }
+	  });
+      
     },
     error: function(xhr, status, error) {
     }

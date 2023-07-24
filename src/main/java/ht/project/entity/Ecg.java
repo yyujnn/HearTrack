@@ -44,9 +44,10 @@ public class Ecg {
     // 결과 텍스트
     private String resultsText;
     
- // CSS 클래스 이름
+    // CSS 클래스 이름
     private String cssClass;
-
-
+    
+    // 이미지 이름
+    private String image_name;
 
 }
