@@ -171,7 +171,20 @@
                                                 <div class="progress-result">
                                                     <p class="progress-result__spot"><strong>${health.bs_emp}</strong> </p>
                                                     <br>
-                                                    <p class="progress-result__spot"><span class="result_1">● </span>정상 </p>
+													<c:choose>
+										                <c:when test="${health.bs_emp <= 70}">
+										                    <p class="progress-result__spot"><span class="result_3">●</span> 저혈당 </p>
+										                </c:when>
+										                <c:when test="${health.bs_emp < 100}">
+										                    <p class="progress-result__spot"><span class="result_1">●</span> 정상 </p>
+										                </c:when>
+										                <c:when test="${health.bs_emp < 125}">
+										                    <p class="progress-result__spot"><span class="result_4">●</span> 당뇨 전단계 </p>
+										                </c:when>
+										                <c:otherwise>
+										                    <p class="progress-result__spot"><span class="result_2">●</span> 당뇨병 </p>
+										                </c:otherwise>
+										            </c:choose>
                                                 </div>
                                                 <!-- //프로그래스바 중앙 텍스트  -->
 
@@ -219,12 +232,25 @@
                                         <!-- //오른쪽 그래프 실행 될 때 .progress-right-on 추가  -->
 
                                         <!-- 프로그래스바 중앙 텍스트  -->
-                                        <div class="progress-result">
-                                            <p class="progress-result__spot"><strong>${health.bs_ful}</strong> </p>
-                                            <br>
-                                            <p class="progress-result__spot"><span class="result_1">● </span>정상 </p>
-                                        </div>
-                                        <!-- //프로그래스바 중앙 텍스트  -->
+                                                <div class="progress-result">
+                                                    <p class="progress-result__spot"><strong>${health.bs_ful}</strong> </p>
+                                                    <br>
+													<c:choose>
+										                <c:when test="${health.bs_ful <= 90}">
+										                    <p class="progress-result__spot"><span class="result_3">●</span> 저혈당 </p>
+										                </c:when>
+										                <c:when test="${health.bs_ful < 140}">
+										                    <p class="progress-result__spot"><span class="result_1">●</span> 정상 </p>
+										                </c:when>
+										                <c:when test="${health.bs_ful < 199}">
+										                    <p class="progress-result__spot"><span class="result_4">●</span> 당뇨 전단계 </p>
+										                </c:when>
+										                <c:otherwise>
+										                    <p class="progress-result__spot"><span class="result_2">●</span> 당뇨병 </p>
+										                </c:otherwise>
+										            </c:choose>
+                                                </div>
+                                                <!-- //프로그래스바 중앙 텍스트  -->
 
                                         <!-- 왼쪽 프로그래스바 -->
                                         <div class="progress-left">

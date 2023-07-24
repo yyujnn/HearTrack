@@ -1,20 +1,21 @@
 package ht.project.controller;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import ht.project.entity.BpResults;
+import ht.project.entity.BsResults;
 import ht.project.entity.Community;
 import ht.project.entity.Ecg;
 import ht.project.entity.Health;
@@ -125,8 +126,11 @@ public class HtController {
 
 		return "community";
 	}
+	@RequestMapping("/register")
+	public String register() {
+		return "register";
+	}
 
-	// 건강 기록
 	@RequestMapping("/healthRecord")
 	public String healthRecord(HttpSession session, Model model) {
 		String user_id = (String) session.getAttribute("user_id");
@@ -135,24 +139,56 @@ public class HtController {
 			System.out.println("건강기록 userid : " + user_id);
 			User userInfo = mapper.getUserInfo(user_id);
 			model.addAttribute("userInfo", userInfo);
-			
+
 			Ecg LatestEcg = mapper.getLatestEcg(user_id);
 			Health LatestBp = mapper.getLatestBp(user_id);
 			Health LatestBs = mapper.getLatestBs(user_id);
 
+			// 결과에 따른 CSS 클래스를 설정하는 Map 생성
+			Map<String, String> cssClassMap = new HashMap<>();
+			cssClassMap.put("sr", "result_1");
+			cssClassMap.put("af", "result_2");
+			cssClassMap.put("sb", "result_2");
+			cssClassMap.put("gsvt", "result_3");
+
+			// LatestEcg 객체에 대해 조건에 따라 클래스를 동적으로 설정
+			if (LatestEcg != null) {
+				String result = LatestEcg.getResults();
+				String cssClass = cssClassMap.getOrDefault(result, "result_3");
+				LatestEcg.setCssClass(cssClass);
+			}
+
 			model.addAttribute("LatestEcg", LatestEcg);
 			model.addAttribute("LatestBp", LatestBp);
 			model.addAttribute("LatestBs", LatestBs);
-			
+
 			ArrayList<Health> MyBpList = mapper.getMyBpList(user_id);
 			ArrayList<Health> MyBsList = mapper.getMyBsList(user_id);
 			ArrayList<Ecg> MyEcgList = mapper.getMyEcgList(user_id);
-			
+
+			// MyEcgList 객체 리스트에 대해 조건에 따라 클래스를 동적으로 설정
+			for (Ecg ecg : MyEcgList) {
+				String result = ecg.getResults();
+				String cssClass = cssClassMap.getOrDefault(result, "result_3");
+				ecg.setCssClass(cssClass);
+			}
+
+			for (Health health : MyBpList) {
+				BpResults bpResult = health.determineBpResult();
+				health.setCssClass(bpResult.getCssClass());
+				health.setResultText(bpResult.getResultText());
+			}
+
+			for (Health health : MyBsList) {
+				BsResults bsResult = health.determineBsResult();
+				health.setCssClass(bsResult.getCssClass());
+				health.setResultText(bsResult.getResultText());
+			}
+
 			model.addAttribute("MyBpList", MyBpList);
 			model.addAttribute("MyBsList", MyBsList);
 			model.addAttribute("MyEcgList", MyEcgList);
-			
-			
+
 		} else {
 			// 로그인이 되어 있지 않은 경우
 			System.out.println("건강기록: 로그인되어 있지 않음");
@@ -185,10 +221,27 @@ public class HtController {
 			System.out.println("심전도 결과 userid : " + user_id);
 			User userInfo = mapper.getUserInfo(user_id);
 			model.addAttribute("userInfo", userInfo);
-			
+
 			Ecg LatestEcg = mapper.getLatestEcg(user_id);
 			model.addAttribute("LatestEcg", LatestEcg);
-			
+
+			System.out.println(LatestEcg.getResults() + LatestEcg.getResultsText());
+
+			// 조건에 따라 클래스를 동적으로 설정
+			String cssClass;
+			if (LatestEcg.getResults().equals("sr")) {
+				cssClass = "result_1";
+			} else if (LatestEcg.getResults().equals("af")) {
+				cssClass = "result_2";
+			} else if (LatestEcg.getResults().equals("sb")) {
+				cssClass = "result_2";
+			} else if (LatestEcg.getResults().equals("gsvt")) {
+				cssClass = "result_3";
+			} else {
+				cssClass = "result_3";
+			}
+			model.addAttribute("cssClass", cssClass);
+
 		} else {
 			// 로그인이 되어 있지 않은 경우
 			System.out.println("심전도 결과: 로그인되어 있지 않음");
@@ -222,17 +275,16 @@ public class HtController {
 			vo.setUser_id(user_id);
 			System.out.println(vo);
 			// 사용자가 입력한 혈압 데이터 가져오기
-			System.out.println("최고 혈압" + vo.getBp_high()+"최저 혈압" + vo.getBp_low());
-			
+			System.out.println("최고 혈압" + vo.getBp_high() + "최저 혈압" + vo.getBp_low());
+
 			// 등록
 			mapper.bpRegister(vo);
 
-			// select 
-			Health health =mapper.getLatestHealt(vo);
-			System.out.println("select임"+health);
+			// select
+			Health health = mapper.getLatestBp(user_id);
+			System.out.println("select임" + health);
 			// Model에 HealthInfo 데이터담 기
-            model.addAttribute("health", health);
-	
+			model.addAttribute("health", health);
 
 		} else {
 			// 로그인이 되어 있지 않은 경우
@@ -266,17 +318,18 @@ public class HtController {
 			vo.setUser_id(user_id);
 			System.out.println(vo);
 			// 사용자가 입력한 혈압 데이터 가져오기
-			System.out.println("공복 혈당" + vo.getBs_emp()+"식후 혈당" + vo.getBs_ful());
-			
+			System.out.println("공복 혈당" + vo.getBs_emp() + "식후 혈당" + vo.getBs_ful());
+
 			// 등록
 			mapper.bsRegister(vo);
 
-			// select 
-			Health health =mapper.getLatestHealt(vo);
-			System.out.println("혈당 select임"+health);
+			
+			// select
+			Health health = mapper.getLatestBs(user_id);
+			System.out.println("혈당 select임" + health);
+			
 			// Model에 HealthInfo 데이터담 기
-            model.addAttribute("health", health);
-	
+			model.addAttribute("health", health);
 
 		} else {
 			// 로그인이 되어 있지 않은 경우

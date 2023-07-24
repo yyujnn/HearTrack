@@ -50,7 +50,7 @@ public interface HtMapper {
 	ArrayList<Comment> commentShow(Comment comm);
 
 	// 가장 최근 Health 
-	Health getLatestHealt(Health vo);
+	Health getLatestHealth(Health vo);
 	
 	// 혈압 등록
 	void bpRegister(Health vo);
@@ -69,6 +69,8 @@ public interface HtMapper {
 	ArrayList<Health> getMyBpList(String user_id);
 	ArrayList<Health> getMyBsList(String user_id);
 	ArrayList<Ecg> getMyEcgList(String user_id);
+
+
 	
 	
 	

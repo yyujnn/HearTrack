@@ -31,9 +31,45 @@ public class Health {
 
     // 입력날짜 
     private Date input_date;
-
-    // bs, bp 구분 조건
-    private String condition;
     
+    // 결과에 따른 CSS 클래스
+    private String cssClass;
+
+    // 결과 텍스트
+    private String resultText;
+    
+    
+    // 건강 결과 페이지 혈압 결과 판단 메소드
+    public BpResults determineBpResult() {
+        boolean isLowBp = bp_high < 100 || bp_low < 60;
+        boolean isHighBp = bp_high >= 140 || bp_low >= 90;
+
+        if (isHighBp) {
+            return BpResults.HIGH_RISK;
+        } else if (isLowBp && isHighBp) {
+            return BpResults.LOW;
+        } else if (isLowBp) {
+            return BpResults.LOW_RISK;
+        } else {
+            return BpResults.NORMAL;
+        }
+    }
+
+    
+    // 건강 결과 페이지 혈당 결과 판단 메소드
+    public BsResults determineBsResult() {
+        if (bs_emp >= 126 || bs_ful >= 200) {
+            return BsResults.HIGH;
+        } else if (bs_emp >= 100 && bs_emp < 126 && bs_ful >= 140 && bs_ful < 200) {
+            return BsResults.HIGH_RISK;
+        } else if (bs_emp <= 70 || bs_ful <= 90) {
+            return BsResults.LOW;
+        } else {
+            return BsResults.NORMAL;
+        }
+    }
+
+    
+
     
 }
