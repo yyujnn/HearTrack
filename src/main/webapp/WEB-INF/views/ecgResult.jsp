@@ -166,8 +166,10 @@
                             <br>
                             <div class="ECG_record">
                                 <div class="col-sm-9">
-                                    <img class="ECG_record_IMG"
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkWXPK2vuqd2o3vqZBCRRmmNHrch6FKST7SA&usqp=CAU" />
+                                <!-- <img class="ECG_record_IMG"
+                                        src="resources/images/ecgGraph/${LatestEcg.image_name}.png" />  -->
+                                <img class="ECG_record_IMG"
+                                        src="http://localhost:8081/user_ecg/${LatestEcg.image_name}.png" />  
                                 </div>
                                 <div class="col-sm-3 ECG_Result">
                                     <table class="ecg_result_table">
