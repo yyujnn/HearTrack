@@ -209,7 +209,7 @@
                 <div class="col-md-4" style="width : 20%" !important>
                     <div class="sidebar">
                         
-                        <div class="author widget" style="background-color: #fff;border-radius: 10px;">
+                        <div class="author widget" style="background-color: #fff;border-radius: 10px; margin-bottom: 10px">
                             <img class="img-responsive" src="resources/images/profile_img.png.webp">
                             <div class="author-body text-center">
                                 <div class="author-img">
@@ -231,7 +231,12 @@
                             </div>
                         </div>
                     </div>
+                    
+                    	<a href="register" class="button_ECG btnPush_ECG">등록하기</a>
+                	
                 </div>
+                
+               
                 <div class="col-md-4" style="width : 50%;" !important>
                 
                 
@@ -348,27 +353,25 @@
                         
 
                     </div>
-                    <button class="add_btn" onclick="#myModal">
-                    <img src="resources/images/add.png" alt="">
-                    </button>
+                    
                     
           
             </div>
         </div>
     </section>
 
+    <!--
+                    ==================================================
+                    Footer Section Start
+                    ================================================== -->
     <footer id="footer">
         <div class="container">
             <div class="col-md-8">
-                <p class="copyright">Copyright: <span>
+                <p class="copyright">Copyright &copy; <span>
                         <script>document.write(new Date().getFullYear())</script>
-                    </span> Design and Developed by <a href="http://www.Themefisher.com"
-                        target="_blank">Themefisher</a>. <br>
-                    Get More
-                    <a href="https://themefisher.com/free-bootstrap-templates/" target="_blank">
-                        Free Bootstrap Templates
-                    </a>
+                    </span> HearTrack All Rights Reserved.
                 </p>
+                <p><a href="">개인정보 처리방침</a> | <a href="">이용약관</a></p>
             </div>
             <div class="col-md-4">
                 <!-- Social Media -->
@@ -396,7 +399,7 @@
                 </ul>
             </div>
         </div>
-    </footer> <!-- /#footer -->
+    </footer>
 
     <!-- Template Javascript Files
 	================================================== -->

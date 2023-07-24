@@ -205,12 +205,12 @@
 
                     <div class="clash-card__unit-stats clash-card__unit-stats--barbarian clearfix">
                         <div class="one-third">
-                            <div class="stat">${LatestBp.bp_high}</div>
+                            <div class="stat">${empty LatestBp.bp_high ? '-' : LatestBp.bp_high}</div>
                             <div class="stat-value">최고혈압</div>
                         </div>
 
                         <div class="one-third one-third_a">
-                            <div class="stat">${LatestBp.bp_low}</div>
+                            <div class="stat">${empty LatestBp.bp_low ? '-' : LatestBp.bp_low}</div>
                             <div class="stat-value">최저혈압</div>
                         </div>
 
@@ -227,7 +227,7 @@
                     <div class="clash-card__image clash-card__image--barbarian">
                         <img class="ecgmain_Card4" src="resources/images/char5.png" alt="barbarian" />
                     </div>
-                    <div class="clash-card__level clash-card__level--barbarian"><fmt:formatDate value="${LatestBs.input_date}" pattern="yy.MM.dd" />(최근 기록)</div>
+                    <div class="clash-card__level clash-card__level--barbarian"><fmt:formatDate value="${LatestEcg.input_date}" pattern="yy.MM.dd" />(최근 기록)</div>
                     <div class="clash-card__unit-name">혈당</div>
                     <div class="clash-card__unit-description">
                         <p class="subtitle-des_ef1"><span class="result_1">● </span>건강</p>
@@ -267,17 +267,18 @@
             <div class="container_ECG_record">
                 <span class="subtitle">나의 ECG</span>
                 <span>
-                    <a href="ecgCheck" class="button_ECG btnPush_ECG">다시 검사하기</a>
+                    <a href="" class="button_ECG btnPush_ECG">다시 검사하기</a>
                 </span>
             </div>
             <div class="ECG_record">
-                <h4 class="subtitle2">최근 ECG 그래프</h4>
+                <h4 class="subtitle2">최근 ECG 그래프 </h4>
                 <div class="col-sm-9">
                     <img class="ECG_record_IMG"
                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkWXPK2vuqd2o3vqZBCRRmmNHrch6FKST7SA&usqp=CAU" />
                 </div>
                 <div class="col-sm-3 ECG_Result">
-                    <p class="subtitle-des_ef1">${userInfo.user_name}님의 검사 기록</p>
+                    <pre
+                        class="subtitle-des_ef1 pre_desi">${userInfo.user_name}님          <span style="color: rgb(255, 118, 140);">♥</span> ${LatestEcg.hr }bpm</pre>
                     <table class="ecg_result_table">
                         <thead>
                             <tr>
@@ -287,26 +288,46 @@
                         </thead>
                         <tr>
                             <td>검사날짜</td>
-                            
-                            <td><fmt:formatDate value="${LatestEcg.input_date}" pattern="yy-MM-dd" /></td>
+                            <td><fmt:formatDate value="${LatestEcg.input_date}" pattern="yyyy-MM-dd"/> </td>
                         </tr>
                         <tr>
                             <td>검사결과</td>
-                            <td><span class="result_1">● </span> 정상</td>
+                            <td><span class="${LatestEcg.cssClass}">● </span> ${LatestEcg.resultsText}</td>
                         </tr>
                         <tr>
-                            <td>P파</td>
-                            <td>0.45</td>
+                             <td></td>
+                             <td><span> </span></td>
+                         </tr>
+                        <tr>
+                            <td>PR interval</td>
+                            <td><span>${LatestEcg.pr} </span>ms</td>
                         </tr>
                         <tr>
-                            <td>QRS파</td>
-                            <td>0.68</td>
+                            <td>QRS duration</td>
+                            <td><span>${LatestEcg.qrs} </span>ms</td>
+                        </tr>
+                        <tr>
+                            <td>QT interval</td>
+                            <td><span>${LatestEcg.qt} </span>ms</td>
+                        </tr>
+                        <tr>
+                            <td>QTc interval</td>
+                            <td><span>${LatestEcg.qtc} </span>ms</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><span> </span></td>
                         </tr>
                     </table>
                 </div>
             </div>
             <div class="ECG_record_List">
-                <h4 class="subtitle2">최근 검사 기록</h4>
+                <div class="container_ECG_record">
+                    <h4 class="subtitle2">최근 검사 기록</h4>
+                    <div class="btn_Test">
+                        <h4 class="subtitle2"><a href="">+ 더 보기</a></h4>
+                    </div>
+                </div>
                 <div class="ECG_record_table_box">
                     <table class="ECG_record_table">
                         <thead>
@@ -317,28 +338,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                        	<c:forEach items="${MyEcgList}" var= "ecgList" >
+                            <c:forEach items="${MyEcgList}" var= "ecgList" >
                         	<tr>
-                                <td>yy-mm-dd${ecgList.input_date}</td>
-                                <td>정상</td>
+                                <td><fmt:formatDate value="${ecgList.input_date}" pattern="yy-mm-dd" /></td>
+                                <td><span class="${ecgList.cssClass}">● </span>  ${ecgList.resultsText}</td>
                                 <td><a href="">다시 보기</a></td>
                             </tr>	
                         	</c:forEach>
-                            <tr>
-                                <td>yy-mm-dd</td>
-                                <td>정상</td>
-                                <td><a href="">다시 보기</a></td>
-                            </tr>
-                            <tr>
-                                <td>yy-mm-dd</td>
-                                <td>정상</td>
-                                <td><a href="">다시 보기</a></td>
-                            </tr>
-                            <tr>
-                                <td>yy-mm-dd</td>
-                                <td>정상</td>
-                                <td><a href="">다시 보기</a></td>
-                            </tr>
+                           
                         </tbody>
                     </table>
                 </div>
@@ -374,69 +381,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                    
-                    
-						<c:set var="previousDate" value="" />
-						<c:set var="count" value="1" />
-						
+
 						<c:forEach items="${MyBpList}" var="item">
-						    <c:set var="formattedDate" value="${fn:substring(item.input_date, 0, 8)}" />
-						    <c:if test="${previousDate != formattedDate}">
-						        <c:set var="count" value="1" />
-						    </c:if>
 						    <tr>
-						        <td class="noBorder noBorder_td"><fmt:formatDate value="${item.input_date}" pattern="MM.dd HH:mm" /></td>
+						        <td class="noBorder noBorder_td"><fmt:formatDate value="${item.input_date}" pattern="MM.dd  HH:mm" /></td>
 						        <td class="noBorder noBorder_td">${item.bp_high}</td>
 						        <td class="noBorder noBorder_td">${item.bp_low}</td>
-						        <td class="noBorder noBorder_td"></td>
+						        <td class="noBorder noBorder_td">
+						            <c:set var="bpResult" value="${item.determineBpResult()}" />
+						            <span class="${bpResult.cssClass}">●</span> ${bpResult.resultText}
+						        </td>
 						    </tr>
-						    <c:set var="previousDate" value="${formattedDate}" />
-						    <c:set var="count" value="${count + 1}" />
 						</c:forEach>
 
-
-
-
-
-
-
-
-                        <tr>
-                            <td class="noBorder noBorder_td">ㅎㅇ</td>
-                            <td class="noBorder noBorder_td">60</td>
-                            <td class="noBorder noBorder_td">80</td>
-                            <td class="noBorder noBorder_td"><span class="result_1">●</span> 건강</td>
-                        </tr>
-                        <tr>
-                            <td class="noBorder noBorder_td">23.07.18_2</td>
-                            <td class="noBorder noBorder_td">160</td>
-                            <td class="noBorder noBorder_td">180</td>
-                            <td class="noBorder noBorder_td"><span class="result_2">●</span> 고혈압 의심</td>
-                        </tr>
-                        <tr>
-                            <td class="noBorder noBorder_td">23.07.18_3</td>
-                            <td class="noBorder noBorder_td">60</td>
-                            <td class="noBorder noBorder_td">80</td>
-                            <td class="noBorder noBorder_td"><span class="result_1">●</span> 건강</td>
-                        </tr>
-                        <tr>
-                            <td class="noBorder noBorder_td">23.07.18_4</td>
-                            <td class="noBorder noBorder_td">6</td>
-                            <td class="noBorder noBorder_td">8</td>
-                            <td class="noBorder noBorder_td"><span class="result_3">●</span> 저혈압</td>
-                        </tr>
-                        <tr>
-                            <td class="noBorder noBorder_td">23.07.17_1</td>
-                            <td class="noBorder noBorder_td">60</td>
-                            <td class="noBorder noBorder_td">80</td>
-                            <td class="noBorder noBorder_td"><span class="result_1">●</span> 건강</td>
-                        </tr>
-                        <tr>
-                            <td class="noBorder noBorder_td">23.07.17_2</td>
-                            <td class="noBorder noBorder_td">60</td>
-                            <td class="noBorder noBorder_td">80</td>
-                            <td class="noBorder noBorder_td"><span class="result_1">●</span> 건강</td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -470,61 +427,22 @@
                     </thead>
                     
                     <tbody>
-                   		<c:set var="previousDate" value="" />
-						<c:set var="count" value="1" />
+          
 						
 						<c:forEach items="${MyBsList}" var="item">
-						    <c:set var="formattedDate" value="${fn:substring(item.input_date, 0, 8)}" />
-						    <c:if test="${previousDate != formattedDate}">
-						        <c:set var="count" value="1" />
-						    </c:if>
+						    
 						    <tr>
-						        <td class="noBorder noBorder_td"><fmt:formatDate value="${item.input_date}" pattern="yy.MM.dd" />_${count}</td>
+						        <td class="noBorder noBorder_td"><fmt:formatDate value="${item.input_date}" pattern="MM.dd  HH:mm" /></td>
 						        <td class="noBorder noBorder_td">${item.bs_emp}</td>
 						        <td class="noBorder noBorder_td">${item.bs_ful}</td>
-						        <td class="noBorder noBorder_td"></td>
+						         <td class="noBorder noBorder_td">
+						            <c:set var="bsResult" value="${item.determineBsResult()}" />
+						            <span class="${bsResult.cssClass}">●</span> ${bsResult.resultText}
+						        </td>
 						    </tr>
-						    <c:set var="previousDate" value="${formattedDate}" />
-						    <c:set var="count" value="${count + 1}" />
+						
 						</c:forEach>
-                   		
-                    
-                        <tr>
-                            <td class="noBorder noBorder_td">23.07.18_1</td>
-                            <td class="noBorder noBorder_td">60</td>
-                            <td class="noBorder noBorder_td">80</td>
-                            <td class="noBorder noBorder_td"><span class="result_1">●</span> 건강</td>
-                        </tr>
-                        <tr>
-                            <td class="noBorder noBorder_td">23.07.18_2</td>
-                            <td class="noBorder noBorder_td">160</td>
-                            <td class="noBorder noBorder_td">180</td>
-                            <td class="noBorder noBorder_td"><span class="result_2">●</span> 당뇨 의심</td>
-                        </tr>
-                        <tr>
-                            <td class="noBorder noBorder_td">23.07.18_3</td>
-                            <td class="noBorder noBorder_td">60</td>
-                            <td class="noBorder noBorder_td">80</td>
-                            <td class="noBorder noBorder_td"><span class="result_1">●</span> 건강</td>
-                        </tr>
-                        <tr>
-                            <td class="noBorder noBorder_td">23.07.18_4</td>
-                            <td class="noBorder noBorder_td">6</td>
-                            <td class="noBorder noBorder_td">8</td>
-                            <td class="noBorder noBorder_td"><span class="result_3">●</span> 저혈당</td>
-                        </tr>
-                        <tr>
-                            <td class="noBorder noBorder_td">23.07.17_1</td>
-                            <td class="noBorder noBorder_td">60</td>
-                            <td class="noBorder noBorder_td">80</td>
-                            <td class="noBorder noBorder_td"><span class="result_1">●</span> 건강</td>
-                        </tr>
-                        <tr>
-                            <td class="noBorder noBorder_td">23.07.17_2</td>
-                            <td class="noBorder noBorder_td">60</td>
-                            <td class="noBorder noBorder_td">80</td>
-                            <td class="noBorder noBorder_td"><span class="result_1">●</span> 건강</td>
-                        </tr>
+					
                     </tbody>
                 </table>
             </div>

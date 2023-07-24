@@ -105,7 +105,7 @@
 	                WHEN 'sr' THEN '정상 동리듬'
 	                WHEN 'af' THEN '심방세동'
 	                WHEN 'sb' THEN '동성서맥'
-	                WHEN 'gsvt' THEN '알수없음'
+	                WHEN 'gsvt' THEN '판독불가'
 	                ELSE '결과없음'
 	           END AS resultsText
 	    FROM t_ecg
@@ -147,7 +147,15 @@
     </select>
     <select id="getMyEcgList" parameterType="ht.project.entity.Ecg" 
     resultType="ht.project.entity.Ecg">
-    	select * from t_ecg where user_id = #{user_id}
+    	select * ,
+    			CASE results
+	                WHEN 'sr' THEN '정상 동리듬'
+	                WHEN 'af' THEN '심방세동'
+	                WHEN 'sb' THEN '동성서맥'
+	                WHEN 'gsvt' THEN '판독불가'
+	                ELSE '결과없음'
+	           END AS resultsText
+    	from t_ecg where user_id = #{user_id}
     	ORDER BY input_date DESC;
     </select>
     

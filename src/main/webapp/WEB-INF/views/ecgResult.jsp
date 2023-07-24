@@ -167,8 +167,13 @@
                                             <td><fmt:formatDate value="${LatestEcg.input_date}" pattern="yyyy-MM-dd"/> </td>
                                         </tr>
                                         <tr>
-                                            <td>검사결과</td>
-                                            <td><span class="result_1">● </span> ${LatestEcg.resultsText}</td>
+	                                        <td>검사결과</td>
+	                                         <td><span class="${cssClass}">● </span> ${LatestEcg.resultsText}</td>
+                                        <tr>
+                                            <td></td>
+                                            <td><span> </span></td>
+                                        </tr>
+                                      
                                         </tr>
                                         <tr>
                                             <td>PR interval</td>
