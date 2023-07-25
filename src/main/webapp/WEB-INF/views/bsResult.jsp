@@ -42,6 +42,7 @@
     <link rel="stylesheet" href="resources/css/style2.css">
     <link rel="stylesheet" href="resources/css/style4.css">
     <link rel="stylesheet" href="resources/css/style5.css">
+    <link rel="stylesheet" href="resources/css/circle.css">
 	
 	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-straight/css/uicons-solid-straight.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
@@ -149,8 +150,7 @@
                                 <h2 class="ECG-title"><img src="resources/images/checkmark.png" alt=""> 혈당 검사 결과 확인하기 </h2>
                                 <p class="subtitle-des">보름에 한번 식전, 매 식후 2시간 측정을 하여 확인하는 것을 권장해 드립니다.</p>
                                 <div class="Blood_pressure_input">
-                                    <span class="subtitle-des_ef">측정일시 : <fmt:formatDate value="${health.input_date}" pattern="yyyy.MM.dd HH:mm" />
-									</span>
+                                    <span class="subtitle-des_ef">측정일시 : <fmt:formatDate value="${health.input_date}" pattern="yyyy.MM.dd HH:mm" /></span>
                                 </div>
                             </div>
                             <div class="container_chart">
@@ -160,67 +160,26 @@
                                         <h4 class="subtitle">공복 혈당</h4>
                                     </div>
                                     <div class="health-main">
-                                        <div class="health-main__progress">
-                                            <div class="progress-top">
+                                        <div class="skill">
+                                            <div class="outer">
+                                                <div class="inner">
+                                                    <div id="number">
+                                                        <p id="bs_emp">${health.bs_emp }</p>
+                                                        <br><span class="result_1">●</span>
+                                                        <p id="emp_result">${bsEmpResult.resultText}</p>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <!-- .half-circle-progress -->
-                                            <div class="half-circle-progress">
-                                                <!-- //오른쪽 그래프 실행 될 때 .progress-right-on 추가  -->
-
-                                                <!-- 프로그래스바 중앙 텍스트  -->
-                                                <div class="progress-result">
-                                                    <p class="progress-result__spot"><strong>${health.bs_emp}</strong> </p>
-                                                    <br>
-													<c:choose>
-										                <c:when test="${health.bs_emp <= 70}">
-										                    <p class="progress-result__spot"><span class="result_3">●</span> 저혈당 </p>
-										                </c:when>
-										                <c:when test="${health.bs_emp < 100}">
-										                    <p class="progress-result__spot"><span class="result_1">●</span> 정상 </p>
-										                </c:when>
-										                <c:when test="${health.bs_emp < 125}">
-										                    <p class="progress-result__spot"><span class="result_4">●</span> 당뇨 전단계 </p>
-										                </c:when>
-										                <c:otherwise>
-										                    <p class="progress-result__spot"><span class="result_2">●</span> 당뇨병 </p>
-										                </c:otherwise>
-										            </c:choose>
-                                                </div>
-                                                <!-- //프로그래스바 중앙 텍스트  -->
-
-                                                <!-- 왼쪽 프로그래스바 -->
-                                                <div class="progress-left">
-                                                    <div class="progress-left__inner">
-                                                        <div class="progress-bar" style="transform: rotate(-70deg);">
-                                                        </div> <!-- rotate 값: -45deg ~ -135deg : 음수 입니다.-->
-                                                    </div>
-                                                </div>
-                                                <!-- //왼쪽 프로그래스바 -->
-
-                                                <!-- 오른쪽 프로그래스바 -->
-                                                <div class="progress-right">
-                                                    <div class="progress-left__inner">
-                                                        <div class="progress-bar" style="transform: rotate(45deg);">
-                                                        </div> <!-- rotate 값: 45deg ~ 135deg : 양수 입니다.-->
-                                                    </div>
-                                                </div>
-                                                <!-- //오른쪽 프로그래스바 -->
-
-                                                <div class="progress-center-dot"></div> <!-- // 중앙 기준 점 -->
-
-                                                <!-- 프로그래스바  숫자 영역  -->
-                                                <div class="progress-thumb" style="transform: rotate(-73deg);">
-                                                    <div class="progress-thumb__inner">
-                                                        <p class="progress-circle"><span> 정상 </span></p>
-                                                    </div>
-                                                </div>
-                                                <!-- //프로그래스바  숫자 영역  -->
-
-                                            </div>
-                                            <!-- //.half-circle-progress -->
-
-
-
+                                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px"
+                                                height="160px">
+                                                <defs>
+                                                    <linearGradient id="GradientColor">
+                                                        <stop offset="0%" stop-color="#e91e63" />
+                                                        <stop offset="100%" stop-color="#673ab7" />
+                                                    </linearGradient>
+                                                </defs>
+                                                <circle class="${bsEmpResult.cssCircle}" cx="80" cy="80" r="70" stroke-linecap="round" />
+                                            </svg>
                                         </div>
                                     </div>
                                 </div>
@@ -228,75 +187,46 @@
                                     <div>
                                         <h4 class="subtitle">식후 혈당</h4>
                                     </div>
-                                    <div class="half-circle-progress">
-                                        <!-- //오른쪽 그래프 실행 될 때 .progress-right-on 추가  -->
-
-                                        <!-- 프로그래스바 중앙 텍스트  -->
-                                                <div class="progress-result">
-                                                    <p class="progress-result__spot"><strong>${health.bs_ful}</strong> </p>
-                                                    <br>
-													<c:choose>
-										                <c:when test="${health.bs_ful <= 90}">
-										                    <p class="progress-result__spot"><span class="result_3">●</span> 저혈당 </p>
-										                </c:when>
-										                <c:when test="${health.bs_ful < 140}">
-										                    <p class="progress-result__spot"><span class="result_1">●</span> 정상 </p>
-										                </c:when>
-										                <c:when test="${health.bs_ful < 199}">
-										                    <p class="progress-result__spot"><span class="result_4">●</span> 당뇨 전단계 </p>
-										                </c:when>
-										                <c:otherwise>
-										                    <p class="progress-result__spot"><span class="result_2">●</span> 당뇨병 </p>
-										                </c:otherwise>
-										            </c:choose>
+                                    <div class="health-main">
+                                        <div class="skill">
+                                            <div class="outer">
+                                                <div class="inner">
+                                                    <div id="number1">
+                                                        <p id="bs_ful">${health.bs_ful}</p>
+                                                        <br><span class="result_1">●</span>
+                                                        <p id="ful_result">${bsFulResult.resultText}</p>
+                                                    </div>
                                                 </div>
-                                                <!-- //프로그래스바 중앙 텍스트  -->
-
-                                        <!-- 왼쪽 프로그래스바 -->
-                                        <div class="progress-left">
-                                            <div class="progress-left__inner">
-                                                <div class="progress-bar" style="transform: rotate(-70deg);">
-                                                </div> <!-- rotate 값: -45deg ~ -135deg : 음수 입니다.-->
                                             </div>
+                                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px"
+                                                height="160px">
+                                                <defs>
+                                                    <linearGradient id="GradientColor">
+                                                        <stop offset="0%" stop-color="#e91e63" />
+                                                        <stop offset="100%" stop-color="#673ab7" />
+                                                    </linearGradient>
+                                                </defs>
+                                                <circle class="${bsFulResult.cssCircle}" cx="80" cy="80" r="70" stroke-linecap="round" />
+                                            </svg>
                                         </div>
-                                        <!-- //왼쪽 프로그래스바 -->
-
-                                        <!-- 오른쪽 프로그래스바 -->
-                                        <div class="progress-right">
-                                            <div class="progress-left__inner">
-                                                <div class="progress-bar" style="transform: rotate(45deg);">
-                                                </div> <!-- rotate 값: 45deg ~ 135deg : 양수 입니다.-->
-                                            </div>
-                                        </div>
-                                        <!-- //오른쪽 프로그래스바 -->
-
-                                        <div class="progress-center-dot"></div> <!-- // 중앙 기준 점 -->
-
-                                        <!-- 프로그래스바  숫자 영역  -->
-                                        <div class="progress-thumb" style="transform: rotate(-73deg);">
-                                            <div class="progress-thumb__inner">
-                                                <p class="progress-circle"><span> 정상 </span></p>
-                                            </div>
-                                        </div>
-                                        <!-- //프로그래스바  숫자 영역  -->
 
                                     </div>
                                 </div>
                             </div>
                             <div class="Blood_pressure_info">
-                                <span class="pressure_info1"> <span class="result_1">●  </span> 정상 </span>
-                                <span class="pressure_info2"> <span class="result_3">●  </span> 저혈압 </span>
-                                <span class="pressure_info3"> <span class="result_2">●  </span> 고혈압 </span>
+                                <span class="pressure_info1"> <span class="result_1">● </span> 정상 </span>
+                                <span class="pressure_info2"> <span class="result_3">● </span> 저혈당 </span>
+                                <span class="pressure_info3"> <span class="result_4">● </span> 당뇨 전단계 </span>
+                                <span class="pressure_info3"> <span class="result_2">● </span> 당뇨병 </span>
                             </div>
                             <div class="Blood_pressure_result">
                                 <button class="ECG_test1"><i class="fi fi-ss-copy-alt"></i> 결과 복사</button>
                             </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
-        </div>
         </div>
     </section>
 
@@ -399,6 +329,98 @@
             </div>
         </div>
     </footer> <!-- /#footer -->
+    
+    <script>
+
+
+	 // 공복 혈당 결과
+	    let number = document.getElementById("number");
+	    let bs_empElement = document.getElementById("bs_emp");
+	    let bs_emp = parseInt(bs_empElement.innerHTML); 
+	    let emp_result = document.getElementById("emp_result").innerText;
+	    console.log("공복 결과", emp_result);
+	    let counter = 0;
+	    let intervalId = setInterval(() => {
+	    	if (counter == bs_emp) {
+	            clearInterval(intervalId); // 타이머 중지
+	        } else {
+	            counter += 1;
+	            let resultText = emp_result;
+	            if (emp_result === "건강") {
+	                resultText = "정상";
+	                number.innerHTML = counter + "<br>" + "<span>●</span> " + resultText;
+	                let span = number.querySelector("span");
+	                span.classList.add("result_1");
+	            } else if (emp_result === "당뇨 의심") {
+	                resultText = "당뇨전단계"; // "당뇨 의심"을 "당뇨전단계"로 바꿈
+	                number.innerHTML = counter + "<br>" + "<span>●</span> " + resultText;
+	                let span = number.querySelector("span");
+	                span.classList.add("result_4");
+	            } else {
+	                number.innerHTML = counter + "<br>" + "<span>●</span> " + resultText;
+	                let span = number.querySelector("span");
+	                switch (emp_result) { // high_result 값에 따라서 클래스를 추가
+	                    case "저혈당":
+	                        span.classList.add("result_3");
+	                        break;
+	                    case "당뇨병":
+	                        span.classList.add("result_2");
+	                        break;
+	                    default:
+	                        break;
+	                }
+	            }
+	        }
+	    }, 15);
+
+
+
+		// 식후혈당
+	    let number1 = document.getElementById("number1");
+	    let bs_fulElement = document.getElementById("bs_ful");
+	    let bs_ful = parseInt(bs_fulElement.innerHTML);
+	    let ful_result = document.getElementById("ful_result").innerText;
+	    console.log("식후 결과", ful_result);
+
+	    let counter1 = 0;
+	    let intervalId1 = setInterval(() => {
+	        if (counter1 == bs_ful) {
+	            clearInterval(intervalId1); // 타이머 중지
+	        } else {
+	            counter1 += 1;
+	            let resultText = ful_result;
+	            if (ful_result === "건강") {
+	                resultText = "정상";
+	                number1.innerHTML = counter1 + "<br>" + "<span>●</span> " + resultText;
+	                let span = number1.querySelector("span");
+	                span.classList.add("result_1");
+	            } else if (ful_result === "당뇨 의심") {
+	                resultText = "당뇨전단계"; // "당뇨 의심"을 "당뇨전단계"로 바꿈
+	                number1.innerHTML = counter1 + "<br>" + "<span>●</span> " + resultText;
+	                let span = number1.querySelector("span");
+	                span.classList.add("result_4");
+	            } else {
+	                number1.innerHTML = counter1 + "<br>" + "<span>●</span> " + resultText;
+	                let span = number1.querySelector("span");
+	                switch (ful_result) { // high_result 값에 따라서 클래스를 추가
+	                    case "저혈당":
+	                        span.classList.add("result_3");
+	                        break;
+	                    case "당뇨병":
+	                        span.classList.add("result_2");
+	                        break;
+	                    default:
+	                        break;
+	                }
+	            }
+	        }
+	    }, 15);
+
+
+        
+        
+
+    </script>
 
     <!-- Template Javascript Files
 	================================================== -->
