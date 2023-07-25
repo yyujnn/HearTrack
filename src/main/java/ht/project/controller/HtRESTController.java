@@ -6,7 +6,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -58,7 +61,7 @@ public class HtRESTController {
 
 		return community;
 	}
-	
+
 	// 초기 좋아요 띄우기
 	@RequestMapping(value = "/likeStatus", method = { RequestMethod.POST, RequestMethod.GET })
 	public ArrayList<Likes> likeStatus(HttpSession session) {
@@ -97,15 +100,16 @@ public class HtRESTController {
 		return commRes;
 	}
 
-	
 	// 파일 첨부
 	private String uploadFolder = "C:\\Users\\smhrd\\Desktop\\user_ecg";
 
 	@RequestMapping(value = "/upload", method = { RequestMethod.POST, RequestMethod.GET })
-	public String uploadFile(@RequestParam("file") MultipartFile file) {
+	@ResponseBody
+	public Map<String, String> uploadFile(@RequestParam("file") MultipartFile file, HttpSession session) {
+		Map<String, String> response = new HashMap<>();
 
 		if (file.isEmpty()) {
-			return "업로드할 파일이 없습니다.";
+			return null;
 		}
 
 		try {
@@ -120,11 +124,17 @@ public class HtRESTController {
 			System.out.println("1." + fileName);
 			System.out.println("2." + fileExtension);
 			System.out.println("3." + generatedFileName);
+			String user_id = (String) session.getAttribute("user_id");
+			System.out.println("4." + user_id);
 
-			return "SUCCESS!!!";
+			response.put("fileName", fileName);
+			response.put("fileExtension", fileExtension);
+			response.put("user_id", user_id);
+
+			return response;
 		} catch (IOException e) {
 			e.printStackTrace();
-			return "FAIL!!";
+			return null;
 		}
 	}
 
