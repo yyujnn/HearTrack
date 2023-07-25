@@ -159,15 +159,66 @@
     	ORDER BY input_date DESC;
     </select>
     
-    
-    
-	    
-   
-   
-   
+    <!-- 관리자페이지에서 불러올 유저 목록 -->
+	<select id="getUserList" resultType="ht.project.entity.Admin">
+		SELECT
+		  t_user.*,
+		  IFNULL(ecg_count, 0) AS ecg_cnt,
+		  IFNULL(comm_count, 0) AS comm_cnt
+		FROM
+		  t_user
+		LEFT JOIN (
+		  SELECT user_id, COUNT(*) AS ecg_count
+		  FROM t_ecg
+		  GROUP BY user_id
+		) AS ecg ON t_user.user_id = ecg.user_id
+		LEFT JOIN (
+		  SELECT user_id, COUNT(*) AS comm_count
+		  FROM t_community
+		  GROUP BY user_id
+		) AS comm ON t_user.user_id = comm.user_id
+	</select>
 
+	<!-- 관리자페이지에서 Ecg 그래프 데이터 -->
+	<select id="getEcgList" resultType="ht.project.entity.Admin">
+		SELECT
+			e.use_count AS useAll,
+			e.user_count AS useUser,
+			ROUND((e.use_count / u.total_user_count),2) AS useAvg
+		FROM
+		(SELECT COUNT(*) AS use_count, COUNT(DISTINCT user_id) AS user_count 
+		 FROM t_ecg) AS e,
+		(SELECT COUNT(*) AS total_user_count 
+		 FROM t_user) AS u
+	</select>
 
+	<!-- 차트에 넣어줄 데이터 -->
+	<select id="getRes" resultType="ht.project.entity.Admin">
+		SELECT results,count(*) as resCnt
+		FROM t_ecg GROUP BY results
+	</select>
 	
-	
-	
+		<!-- <> 이렇게 넣어주면 오류나서 이스케이프코드 &lt;&gt;로 <> 써줌 -->
+	<select id="getHealth" resultType="ht.project.entity.Admin">
+		SELECT
+		DATE(input_date) AS
+		input_date,
+		COUNT(CASE WHEN bp_high &lt;&gt; 0 THEN 1 END) AS bp_cnt,
+		COUNT(CASE WHEN bs_emp &lt;&gt; 0 THEN 1 END) AS bs_cnt
+		FROM t_health
+		GROUP BY DATE(input_date)
+		ORDER BY DATE(input_date)
+	</select>
+
+	<!-- 분석에 걸린 시간 가져오는 쿼리문 -->
+	<select id="getDeep" resultType="ht.project.entity.Admin">
+		SELECT
+			DATE(input_date) AS input_date,
+			ROUND(MIN(infer_time), 3) AS min_time,
+			ROUND(MAX(infer_time), 3) AS max_time,
+			ROUND(AVG(infer_time), 3) AS avg_time
+		FROM t_ecg
+		GROUP BY DATE(input_date)
+	</select>
+    
 </mapper>

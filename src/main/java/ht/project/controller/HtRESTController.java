@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import ht.project.entity.Admin;
 import ht.project.entity.Comment;
 import ht.project.entity.Community;
 import ht.project.entity.Likes;
@@ -137,5 +138,34 @@ public class HtRESTController {
 			return null;
 		}
 	}
+	
+	@RequestMapping(value = "/getRes", method = {RequestMethod.POST})
+	public ArrayList<Admin> getRes(){
+		
+		ArrayList<Admin> list = mapper.getRes();
+		
+		return list;
+	}
+	
+	
+	@RequestMapping(value = "/getHealth", method = {RequestMethod.POST})
+	public ArrayList<Admin> getHealth(){
+		
+		ArrayList<Admin> list = mapper.getHealth();
+		
+		return list;
+	}
+	
+	@RequestMapping(value = "/getDeep", method = {RequestMethod.POST})
+	public ArrayList<Admin> getDeep(){
+		
+		ArrayList<Admin> list = mapper.getDeep();
+		
+		return list;
+	}
+	
+	
+	
+	
 
 }
