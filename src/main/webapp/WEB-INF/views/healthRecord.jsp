@@ -200,7 +200,7 @@
                     <div class="clash-card__level clash-card__level--barbarian"><fmt:formatDate value="${LatestBp.input_date}" pattern="yy.MM.dd" />(최근 기록)</div>
                     <div class="clash-card__unit-name">혈압</div>
                     <div class="clash-card__unit-description">
-                        <p class="subtitle-des_ef1"><span class="result_2">● </span>고혈압 의심</p>
+                        <p class="subtitle-des_ef1"><span class="${LatestBp.cssClass}">● </span>${LatestBp.resultText}</p>
                     </div>
 
                     <div class="clash-card__unit-stats clash-card__unit-stats--barbarian clearfix">
@@ -230,7 +230,7 @@
                     <div class="clash-card__level clash-card__level--barbarian"><fmt:formatDate value="${LatestEcg.input_date}" pattern="yy.MM.dd" />(최근 기록)</div>
                     <div class="clash-card__unit-name">혈당</div>
                     <div class="clash-card__unit-description">
-                        <p class="subtitle-des_ef1"><span class="result_1">● </span>건강</p>
+                        <p class="subtitle-des_ef1"><span class="${LatestBs.cssClass}">● </span>${LatestBs.resultText}</p>
                     </div>
 
                     <div class="clash-card__unit-stats clash-card__unit-stats--barbarian clearfix">
@@ -267,7 +267,7 @@
             <div class="container_ECG_record">
                 <span class="subtitle">나의 ECG</span>
                 <span>
-                    <a href="" class="button_ECG btnPush_ECG">다시 검사하기</a>
+                    <a href="ecgCheck" class="button_ECG btnPush_ECG">다시 검사하기</a>
                 </span>
             </div>
             <div class="ECG_record">

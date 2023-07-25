@@ -11,6 +11,7 @@
     padding-right: 10px;
     box-shadow: inset 0.1px 0.1px 1px 0.5px rgba(165, 163, 163, 0.315);
     padding-top: 15px;
+    height: 275px;
 }
 
 
@@ -147,20 +148,12 @@
     background-color: transparent;
 }
 
-/* .progress-left -> progressbar 저1 정2 고3 */
-#progress-bar-l1{
-    border-color: #ddd yellow #ddd #ddd;
-    transform: rotate(-45deg);
-}
-#progress-bar-l2{
+/* .progress-left */
+.progress-left .progress-bar {
+    left: 0;
     border-color: #ddd #1875FF #ddd #ddd;
     transform: rotate(-45deg);
 }
-#progress-bar-l3{
-    border-color: #ddd red #ddd #ddd;
-    transform: rotate(-45deg);
-}
-
 .half-circle-progress .progress-bar_r {
     position: absolute;
     top: 0;
@@ -172,21 +165,12 @@
     background-color: transparent;
 }
 
-/* .progress-right -> progressbar 저1 정2 고3 */
-#progress-bar-r1{
-    border-color: #ddd yellow #ddd #ddd;
-    transform: rotate(-45deg);
-}
-#progress-bar-r2{
+/* .progress-left */
+.progress-left .progress-bar_r {
+    left: 0;
     border-color: #ddd #1875FF #ddd #ddd;
     transform: rotate(-45deg);
 }
-#progress-bar-r3{
-    border-color: #ddd red #ddd #ddd;
-    transform: rotate(-45deg);
-}
-
-
 
 /* 위 | 오른쪽 | 아래 | 왼쪽 */
 /* .progress-right */
@@ -222,8 +206,7 @@
     height: 100%;
 }
 
-/* left -> span 위 circle */
-.progress-circle{
+.progress-circle {
     overflow: hidden;
     position: absolute;
     top: -10px;
@@ -236,44 +219,7 @@
     border: 4px solid #1875FF;
 }
 
-#p-circle1 {
-    overflow: hidden;
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 31px;
-    height: 31px;
-    border-radius: 50%;
-    z-index: 999;
-    border: 4px solid yellow;
-}
-#p-circle2 {
-    overflow: hidden;
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 31px;
-    height: 31px;
-    border-radius: 50%;
-    z-index: 999;
-    border: 4px solid #1875FF;
-}
-#p-circle3 {
-    overflow: hidden;
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 31px;
-    height: 31px;
-    border-radius: 50%;
-    z-index: 999;
-    border: 4px solid red;
-}
-
-.progress-circle> span {
+.progress-circle>span {
     display: block;
     width: 100%;
     height: 100%;
@@ -285,46 +231,6 @@
     letter-spacing: -1px;
     z-index: 999 ;
 }
-
-#c-span1 {
-    display: block;
-    width: 100%;
-    height: 100%;
-    padding: 2px 1px 0 0;
-    background: #fff;
-    color: yellow;
-    font-size: 11px;
-    text-align: center;
-    letter-spacing: -1px;
-    z-index: 999 ;
-}
-#c-span2 {
-    display: block;
-    width: 100%;
-    height: 100%;
-    padding: 2px 1px 0 0;
-    background: #fff;
-    color: #1875FF;
-    font-size: 11px;
-    text-align: center;
-    letter-spacing: -1px;
-    z-index: 999 ;
-}
-#c-span3 {
-    display: block;
-    width: 100%;
-    height: 100%;
-    padding: 2px 1px 0 0;
-    background: #fff;
-    color: red;
-    font-size: 11px;
-    text-align: center;
-    letter-spacing: -1px;
-    z-index: 999 ;
-}
-
-
-
 .progress-circle_r {
     overflow: hidden;
     position: absolute;
@@ -337,49 +243,6 @@
     z-index: 999;
     border: 4px solid #1875FF;
 }
-
-#p-circle-r1 {
-    overflow: hidden;
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 31px;
-    height: 31px;
-    border-radius: 50%;
-    z-index: 999;
-    border: 4px solid yellow;
-}
-#p-circle-r2 {
-    overflow: hidden;
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 31px;
-    height: 31px;
-    border-radius: 50%;
-    z-index: 999;
-    border: 4px solid #1875FF;
-}
-#p-circle-r3 {
-    overflow: hidden;
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 31px;
-    height: 31px;
-    border-radius: 50%;
-    z-index: 999;
-    border: 4px solid red;
-}
-
-
-
-
-
-
 
 .progress-circle_r>span {
     display: block;
@@ -394,59 +257,8 @@
     z-index: 999 ;
 }
 
-#c-span-r1 {
-    display: block;
-    width: 100%;
-    height: 100%;
-    padding: 2px 1px 0 0;
-    background: #fff;
-    color: yellow;
-    font-size: 11px;
-    text-align: center;
-    letter-spacing: -1px;
-    z-index: 999 ;
-}
-#c-span-r2 {
-    display: block;
-    width: 100%;
-    height: 100%;
-    padding: 2px 1px 0 0;
-    background: #fff;
-    color: #1875FF;
-    font-size: 11px;
-    text-align: center;
-    letter-spacing: -1px;
-    z-index: 999 ;
-}
-#c-span-r3 {
-    display: block;
-    width: 100%;
-    height: 100%;
-    padding: 2px 1px 0 0;
-    background: #fff;
-    color: red;
-    font-size: 11px;
-    text-align: center;
-    letter-spacing: -1px;
-    z-index: 999 ;
-}
-
-
-
 /*.progress-center-dot */
-.progress-center-dot1 {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    z-index: 12;
-    transform: translateX(-50%);
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    border: 3px solid yellow;
-    background: #fff;
-}
-.progress-center-dot2 {
+.progress-center-dot {
     position: absolute;
     top: 0;
     left: 50%;
@@ -458,7 +270,7 @@
     border: 3px solid #1875FF;
     background: #fff;
 }
-.progress-center-dot3 {
+.progress-center-dot_r {
     position: absolute;
     top: 0;
     left: 50%;
@@ -467,46 +279,10 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    border: 3px solid red;
+    border: 3px solid #1875FF;
     background: #fff;
 }
 
-.progress-center-dot_r1 {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    z-index: 12;
-    transform: translateX(-50%);
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    border: 3px solid yellow;
-    background: #fff;
-}
-.progress-center-dot_r2 {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    z-index: 12;
-    transform: translateX(-50%);
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    border: 3px solid #1875FF;
-    background: #fff;
-}
-.progress-center-dot_r3 {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    z-index: 12;
-    transform: translateX(-50%);
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    border: 3px solid red;
-    background: #fff;
-}
 /*** 프로그래스바 끝 ***/
 
 .bsugar_img{

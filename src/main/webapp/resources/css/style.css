@@ -1646,7 +1646,7 @@ px      68    160    252    344    436    */
   text-align: left;
   display: inline-block;
   width: 1000px;
-  height: 500px;
+  height: 480px;
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 5px 10px 0 rgba(0, 0, 0, 0.3);
@@ -1655,10 +1655,9 @@ px      68    160    252    344    436    */
 .Blood_pressure_result{
   position: absolute;
   right: 8%;
-  bottom: 11%;
+  bottom: 9%;
 }
 .Blood_pressure_result_1{
-  position: absolute;
   right: 3%;
   bottom: 8%;
 }
@@ -1668,10 +1667,11 @@ px      68    160    252    344    436    */
 }
 
 .Blood_pressure_info{
-  position: absolute;
-  right:  10%;
-  top: 50%;
-  z-index: 999;
+  display: inline-block;
+  margin-top: 5px;
+  margin-left: 5px;
+  font-size: 13pt;
+  font-weight: bold;
 }
 
 
