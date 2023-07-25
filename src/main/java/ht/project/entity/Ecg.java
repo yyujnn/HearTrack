@@ -46,7 +46,8 @@ public class Ecg {
     
  // CSS 클래스 이름
     private String cssClass;
-
-
+    
+    // 이미지 이름
+    private String image_name;
 
 }

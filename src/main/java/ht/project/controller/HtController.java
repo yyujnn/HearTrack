@@ -143,6 +143,16 @@ public class HtController {
 			Ecg LatestEcg = mapper.getLatestEcg(user_id);
 			Health LatestBp = mapper.getLatestBp(user_id);
 			Health LatestBs = mapper.getLatestBs(user_id);
+			
+			BpResults LatestBpResult = LatestBp.determineBpResult();
+			LatestBp.setResultText(LatestBpResult.getResultText());
+			LatestBp.setCssClass(LatestBpResult.getCssClass());
+			
+			BsResults LatestBsResult = LatestBs.determineBsResult();
+			LatestBs.setResultText(LatestBsResult.getResultText());
+			LatestBs.setCssClass(LatestBsResult.getCssClass());
+			
+			
 
 			// 결과에 따른 CSS 클래스를 설정하는 Map 생성
 			Map<String, String> cssClassMap = new HashMap<>();
@@ -283,8 +293,24 @@ public class HtController {
 			// select
 			Health health = mapper.getLatestBp(user_id);
 			System.out.println("select임" + health);
+			
+			// 혈압 결과를 판단하여 BpResults 열거형 상수를 얻기
+	        BpResults bpHighResult = health.bpHigh();
+	        BpResults bpLowResult = health.bpLow();
+	        
+	        health.setCssClass(bpHighResult.getCssClass());
+			health.setResultText(bpHighResult.getResultText());
+			health.setCssCircle(bpHighResult.getCssCircle());
+			
+			health.setCssClass(bpLowResult.getCssClass());
+			health.setResultText(bpLowResult.getResultText());
+			health.setCssCircle(bpLowResult.getCssCircle());
+
 			// Model에 HealthInfo 데이터담 기
 			model.addAttribute("health", health);
+			model.addAttribute("bpHighResult", bpHighResult);
+	        model.addAttribute("bpLowResult", bpLowResult);
+
 
 		} else {
 			// 로그인이 되어 있지 않은 경우
@@ -322,15 +348,26 @@ public class HtController {
 
 			// 등록
 			mapper.bsRegister(vo);
-
 			
 			// select
 			Health health = mapper.getLatestBs(user_id);
 			System.out.println("혈당 select임" + health);
 			
+			BsResults bsEmpResult = health.bsEmp();
+	        BsResults bsFulResult = health.bsFul();
+	        
+	        health.setResultText(bsEmpResult.getResultText());
+			health.setCssCircle(bsEmpResult.getCssCircle());
+			
+			health.setResultText(bsFulResult.getResultText());
+			health.setCssCircle(bsFulResult.getCssCircle());
+
+			
 			// Model에 HealthInfo 데이터담 기
 			model.addAttribute("health", health);
-
+			model.addAttribute("bsFulResult", bsFulResult);
+	        model.addAttribute("bsEmpResult", bsEmpResult);
+			
 		} else {
 			// 로그인이 되어 있지 않은 경우
 			System.out.println("혈압 결과: 로그인되어 있지 않음");

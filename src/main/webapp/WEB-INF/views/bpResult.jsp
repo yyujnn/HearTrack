@@ -43,6 +43,7 @@
     <link rel="stylesheet" href="resources/css/style2.css">
     <link rel="stylesheet" href="resources/css/style4.css">
     <link rel="stylesheet" href="resources/css/style5.css">
+    <link rel="stylesheet" href="resources/css/circle.css">
 
 	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-straight/css/uicons-solid-straight.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
@@ -128,7 +129,7 @@
 
                                      <img src="https://cdn.pixabay.com/photo/2021/11/05/11/24/heart-6771075_1280.png" style="border-radius: 8px;" alt=""> 
                                      <video muted autoplay loop>
-                                        <source src="./images/ecgtest.mp4" type="video/mp4">
+                                        <source src="resources/images/ecgtest.mp4" type="video/mp4">
                                     </video>  
                                 </div>
                             </div>
@@ -148,7 +149,7 @@
 
                         <div class="card_result_pre">
                             <div class="ECG-body">
-                                <h2 class="ECG-title"><img src="./images/checkmark.png" alt=""> 혈압 검사 결과 확인하기 </h2>
+                                <h2 class="ECG-title"><img src="resources/images/checkmark.png" alt=""> 혈압 검사 결과 확인하기 </h2>
                                 <p class="subtitle-des">일정 시간에 2~3일 간격으로 아침, 저녁 2회씩 측정을 권장해 드립니다.</p>
                                 <div class="Blood_pressure_input">
                                     <span class="subtitle-des_ef">측정일시 : <fmt:formatDate value="${health.input_date}" pattern="yyyy.MM.dd HH:mm" /></span>
@@ -158,188 +159,66 @@
 
                                 <div class="col-sm-6 ">
                                     <div>
-                                        <h4 class="subtitle">수축기(최고) 혈압</h4>
+                                        <h4 class="subtitle">수축기 혈압</h4>
                                     </div>
                                     <div class="health-main">
-                                        <div class="health-main__progress">
-                                            <div class="progress-top">
-                                            </div>
-                                            <!-- .half-circle-progress -->
-                                            <div class="half-circle-progress">
-                                                <!-- //오른쪽 그래프 실행 될 때 .progress-right-on 추가  -->
-
-                                                <!-- 프로그래스바 중앙 텍스트  -->
-                                                <div class="progress-result">
-                                                    <p class="progress-result__spot"><strong>${health.bp_high}</strong> </p>
-                                                    <br>
-													<c:choose>
-										                <c:when test="${health.bp_high <= 100}">
-										                    <p class="progress-result__spot"><span class="result_3">●</span> 저혈압 </p>
-										                </c:when>
-										                <c:when test="${health.bp_high < 140}">
-										                    <p class="progress-result__spot"><span class="result_1">●</span> 정상 </p>
-										                </c:when>
-										                <c:otherwise>
-										                    <p class="progress-result__spot"><span class="result_2">●</span> 고혈압 </p>
-										                </c:otherwise>
-										            </c:choose>
-                                                </div>
-                                                <!-- //프로그래스바 중앙 텍스트  -->
-
-                                                <!-- 왼쪽 프로그래스바 -->
-                                                
-                                                <!-- //왼쪽 프로그래스바 -->
-                                                <c:choose>
-                                                    	<c:when test="${health.bp_high <= 100}">
-                                                        	<div class="progress-left">
-                                                   				 <div class="progress-left__inner">
-                                                        				<div id="progress-bar-l1" class="progress-bar" style="transform: rotate(-70deg);">
-                                                        				</div> 
-                                                       				</div>
-                                                    			</div>	
-                                                    	</c:when>
-                                                    	<c:when test="${health.bp_high <140}">
-                                                        	<div class="progress-left">
-                                                   				 <div class="progress-left__inner">
-                                                        				<div id="progress-bar-l2" class="progress-bar" style="transform: rotate(-70deg);">
-                                                        				</div> 
-                                                       				</div>
-                                                    			</div>	
-                                                    	</c:when>
-                                                    	<c:otherwise>
-                                                        	<div class="progress-left">
-                                                   				 <div class="progress-left__inner">
-                                                        				<div id="progress-bar-l3" class="progress-bar" style="transform: rotate(-70deg);">
-                                                        				</div> 
-                                                       				</div>
-                                                    			</div>	
-                                                    	</c:otherwise>
-                                                    </c:choose>
-
-
-                                                <!-- 오른쪽 프로그래스바 -->
-                                                <div class="progress-right">
-                                                    <div class="progress-left__inner">
-                                                        <div class="progress-bar" style="transform: rotate(45deg);">
-                                                        </div> <!-- rotate 값: 45deg ~ 135deg : 양수 입니다.-->
+                                        <div class="skill">
+                                            <div class="outer">
+                                                <div class="inner">
+                                                    <div id="number">
+                                                        <p id="bp_high">${health.bp_high }</p>
+                                                        <br><span class="result_1">●</span>
+                                                        <p id="high_result">${bpHighResult.resultText}</p>
                                                     </div>
                                                 </div>
-                                                <!-- //오른쪽 프로그래스바 -->
-
-												
-                                               	<c:choose>
-									                <c:when test="${health.bp_high <= 100}">
-									                	<div class="progress-center-dot1"></div> <!-- // 중앙 기준 점 -->
-									                </c:when>
-									                <c:when test="${health.bp_high < 140}">
-									                	<div class="progress-center-dot2"></div>
-									                </c:when>
-									                <c:otherwise>
-									                	<div class="progress-center-dot3"></div>
-									                </c:otherwise>
-									            </c:choose>
-
-                                                <!-- 프로그래스바  숫자 영역  -->
-                                                
-                                                
-                                                <c:choose>
-									                <c:when test="${health.bp_high <= 100}">
-										                <div class="progress-thumb" style="transform: rotate(-73deg);">
-		                                                    <div class="progress-thumb__inner">
-		                                                        <p id="p-circle1" class="progress-circle"><span id="c-span1"> 저혈압 </span></p>
-		                                                    </div>
-		                                                </div>
-									                </c:when>
-									                <c:when test="${health.bp_high < 140}">
-									                	<div class="progress-thumb" style="transform: rotate(-73deg);">
-		                                                    <div class="progress-thumb__inner">
-		                                                        <p id="p-circle2" class="progress-circle"><span id="c-span2"> 정상 </span></p>
-		                                                    </div>
-		                                                </div>
-									                </c:when>
-									                <c:otherwise>
-									                	<div class="progress-thumb" style="transform: rotate(-73deg);">
-		                                                    <div class="progress-thumb__inner">
-		                                                        <p id="p-circle3" class="progress-circle"><span id="c-span3"> 고혈압 </span></p>
-		                                                    </div>
-		                                                </div>
-									                </c:otherwise>
-									            </c:choose>
-                                                
-                                                
-                                                <!-- //프로그래스바  숫자 영역  -->
-
                                             </div>
-                                            <!-- //.half-circle-progress -->
-
-
-
+                                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px"
+                                                height="160px">
+                                                <defs>
+                                                    <linearGradient id="GradientColor">
+                                                        <stop offset="0%" stop-color="#e91e63" />
+                                                        <stop offset="100%" stop-color="#673ab7" />
+                                                    </linearGradient>
+                                                </defs>
+                                                <circle class="${bpHighResult.cssCircle}" cx="80" cy="80" r="70" stroke-linecap="round" />
+                                            </svg>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 ">
                                     <div>
-                                        <h4 class="subtitle">이완기(최저) 혈압</h4>
+                                        <h4 class="subtitle">이완기 혈압</h4>
                                     </div>
-                                    <div class="half-circle-progress">
-                                        <!-- //오른쪽 그래프 실행 될 때 .progress-right-on 추가  -->
-
-                                        <!-- 프로그래스바 중앙 텍스트  -->
-                                        <div class="progress-result">
-                                            <p class="progress-result__spot"><strong>${health.bp_low }</strong> </p>
-                                            <br>
-                                            <c:choose>
-								                <c:when test="${health.bp_low <= 60}">
-								                    <p class="progress-result__spot"><span class="result_3">●</span> 저혈압 </p>
-								                </c:when>
-								                <c:when test="${health.bp_low < 90}">
-								                    <p class="progress-result__spot"><span class="result_1">●</span> 정상 </p>
-								                </c:when>
-								                <c:otherwise>
-								                    <p class="progress-result__spot"><span class="result_2">●</span> 고혈압 </p>
-								                </c:otherwise>
-								            </c:choose>
-                                        </div>
-                                        <!-- //프로그래스바 중앙 텍스트  -->
-
-
-                                        <!-- 왼쪽 프로그래스바 -->
-                                        <div class="progress-left">
-                                            <div class="progress-left__inner">
-                                                <div id="progress-bar-r3" class="progress-bar_r" style="transform: rotate(-70deg);">
-                                                </div> <!-- rotate 값: -45deg ~ -135deg : 음수 입니다.-->
+                                    <div class="health-main">
+                                        <div class="skill">
+                                            <div class="outer">
+                                                <div class="inner">
+                                                    <div id="number1">
+                                                        <p id="bp_low">${health.bp_low}</p>
+                                                        <br><span class="result_1">●</span>
+                                                        <p id="low_result">${bpLowResult.resultText}</p>
+                                                    </div>
+                                                </div>
                                             </div>
+                                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px"
+                                                height="160px">
+                                                <defs>
+                                                    <linearGradient id="GradientColor">
+                                                        <stop offset="0%" stop-color="#e91e63" />
+                                                        <stop offset="100%" stop-color="#673ab7" />
+                                                    </linearGradient>
+                                                </defs>
+                                                <circle class="${bpLowResult.cssCircle}" cx="80" cy="80" r="70" stroke-linecap="round" />
+                                            </svg>
                                         </div>
-                                        
-                                       
-                                        <!-- //왼쪽 프로그래스바 -->
-
-                                        <!-- 오른쪽 프로그래스바 -->
-                                        <div class="progress-right">
-                                            <div class="progress-left__inner">
-                                                <div class="progress-bar_r" style="transform: rotate(45deg);">
-                                                </div> <!-- rotate 값: 45deg ~ 135deg : 양수 입니다.-->
-                                            </div>
-                                        </div>
-                                        <!-- //오른쪽 프로그래스바 -->
-
-                                        <div class="progress-center-dot_r3"></div> <!-- // 중앙 기준 점 -->
-
-                                        <!-- 프로그래스바  숫자 영역  -->
-                                        <div class="progress-thumb" style="transform: rotate(-73deg);">
-                                            <div class="progress-thumb__inner">
-                                                <p id="p-circle-r3" class="progress-circle_r"><span id="c-span-r3"> 정상 </span></p>
-                                            </div>
-                                        </div>
-                                        <!-- //프로그래스바  숫자 영역  -->
 
                                     </div>
                                 </div>
                             </div>
                             <div class="Blood_pressure_info">
-                                <span class="pressure_info1"> <span class="result_1">●  </span> 정상 </span>
-                                <span class="pressure_info2"> <span class="result_3">●  </span> 저혈압 </span>
-                                <span class="pressure_info3"> <span class="result_2">●  </span> 고혈압 </span>
+                                <span class="pressure_info1"> <span class="result_1">● </span> 정상 </span>
+                                <span class="pressure_info2"> <span class="result_3">● </span> 저혈압 </span>
+                                <span class="pressure_info3"> <span class="result_2">● </span> 고혈압 </span>
                             </div>
                             <div class="Blood_pressure_result">
                                 <button class="ECG_test1"><i class="fi fi-ss-copy-alt"></i> 결과 복사</button>
@@ -351,7 +230,7 @@
             </div>
         </div>
     </section>
-
+    
     <section class="works works-fit">
         <div class="container">
             <h2 class="subtitle">고혈압과 저혈압의 차이점 </h2>
@@ -458,6 +337,93 @@
             </div>
         </div>
     </footer> <!-- /#footer -->
+    <script>
+
+
+        /* 수축기 혈압 숫자 
+        counter == 입력받은 수축기 혈압
+        }, 15 <- 퍼센테이지 딜레이 / 숫자가 낮으면 빠르게 느리면 천천히 숫자 카운트가 오름
+        혹시 결과 분석 분류가 정상이 아니면 else문 span 태크 뒤에 글자를 변경해야한다.
+        */
+        let number = document.getElementById("number");
+        let bp_highElement = document.getElementById("bp_high");
+        let bp_high = parseInt(bp_highElement.innerHTML); // bp_high 값을 숫자로 변환
+        let high_result = document.getElementById("high_result").innerText;
+        console.log("수축기 결과", high_result);
+        let counter = 0;
+        let intervalId = setInterval(() => {
+            if (counter == bp_high) { // bp_high 값을 사용하여 숫자 카운트 중지
+                clearInterval(intervalId); // 타이머 중지
+            } else {
+                counter += 1;
+                let resultText = high_result;
+                if (high_result === "건강") {
+                    resultText = "정상";
+                    number.innerHTML = counter + "<br>" + "<span>●</span> " + resultText;
+                    let span = number.querySelector("span");
+                    span.classList.add("result_1");
+                } else {
+                    number.innerHTML = counter + "<br>" + "<span>●</span> " + resultText;
+                    let span = number.querySelector("span");
+                    switch (high_result) { // high_result 값에 따라서 클래스를 추가
+                        case "저혈압":
+                            span.classList.add("result_3");
+                            break;
+                        case "고혈압":
+                            span.classList.add("result_2");
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }, 15);
+
+
+        /* 이완기 혈압 숫자 
+        counter1 == 입력받은 이완기 혈압
+        }, 15 <- 퍼센테이지 딜레이 / 숫자가 낮으면 빠르게 느리면 천천히 숫자 카운트가 오름
+        */
+
+        let number1 = document.getElementById("number1");
+        let bp_lowElement = document.getElementById("bp_low");
+        let bp_low = parseInt(bp_lowElement.innerHTML); // bp_high 값을 숫자로 변환
+        let low_result = document.getElementById("low_result").innerText;
+        console.log("이완기 결과", low_result);
+
+        let counter1 = 0;
+        let intervalId1 = setInterval(() => {
+            if (counter1 == bp_low) { // bp_low 값을 사용하여 숫자 카운트 중지
+                clearInterval(intervalId1); // 타이머 중지
+            } else {
+                counter1 += 1;
+                let resultText = low_result;
+                if (low_result === "건강") {
+                    resultText = "정상";
+                    number1.innerHTML = counter1 + "<br>" + "<span>●</span> " + resultText;
+                    let span = number1.querySelector("span");
+                    span.classList.add("result_1");
+                } else {
+                    number1.innerHTML = counter1 + "<br>" + "<span>●</span> " + resultText;
+                    let span = number1.querySelector("span");
+                    switch (low_result) { // low_result 값에 따라서 클래스를 추가
+                        case "저혈압":
+                            span.classList.add("result_3");
+                            break;
+                        case "고혈압":
+                            span.classList.add("result_2");
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }, 15);
+
+        
+        
+
+    </script>
 
     <!-- Template Javascript Files
 	================================================== -->
