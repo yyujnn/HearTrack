@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import ht.project.entity.Admin;
 import ht.project.entity.BpResults;
 import ht.project.entity.BsResults;
 import ht.project.entity.Community;
@@ -338,5 +339,28 @@ public class HtController {
 		}
 		return "bsResult";
 	}
+	
+	
+	// admin-User 페이지로 이동
+	@RequestMapping("/adminUser")
+	public String admin_user(Model model) {
+		// 유저 전체 리스트 받아오기
+		ArrayList<Admin> list = mapper.getUserList();
+		model.addAttribute("userList", list);
+
+		return "Admin_User";
+	}
+	
+	// admin-Ecg 페이지로 이동 
+	@RequestMapping("/adminEcg")
+	public String admin(Model model) {
+		ArrayList<Admin> list = mapper.getEcgList();
+		model.addAttribute("ecgList", list);
+		
+		
+		return "Admin_ECG";
+	}
+	
+	
 
 }

@@ -103,7 +103,17 @@
                         <li><a href="community">Service커뮤니티</a></li>
 
                         <li>
-						    <% if (session.getAttribute("user_id") != null) { %>
+                        	<% if (session.getAttribute("user_id") != null && session.getAttribute("user_id").equals("admin1")) { %>
+                        		<li class="dropdown">
+		                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">관리자 메뉴<span class="caret"></span></a>
+		                            <div class="dropdown-menu">
+		                                <ul>
+		                                    <li><a href="adminEcg">관리자페이지 이동</a></li>
+		                                    <li><a href="logout">로그아웃</a></li>
+		                                </ul>
+		                            </div>
+		                        </li>
+						    <% } else if (session.getAttribute("user_id") != null) { %>
 						        <a href="logout">로그아웃</a>
 						    <% } else { %>
 						        <a href="login">Contact로그인</a>

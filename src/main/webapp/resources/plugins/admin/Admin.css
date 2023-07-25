@@ -1,0 +1,638 @@
+@charset "UTF-8";
+
+/* 기본태그 css 묶음 시작*/
+body {
+	font-family: 'Circular Std Book';
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+	color: #71748d;
+	background-color: #efeff6;
+	-webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: #3d405c;
+	margin: 0px 0px 15px 0px;
+	font-family: 'Circular Std Medium';
+}
+
+h1 {
+	font-size: 34px;
+}
+
+h2 {
+	font-size: 28px;
+	line-height: 30px;
+}
+
+h3 {
+	font-size: 20px;
+}
+
+h4 {
+	font-size: 16px;
+	line-height: 26px;
+}
+
+h5 {
+	font-size: 15px;
+	line-height: 26px;
+}
+
+h6 {
+	font-size: 12px;
+}
+
+.dashboard-wrapper {
+	position: relative;
+	left: 0;
+	margin-left: 264px;
+	min-height: 870px !important;
+}
+
+.dashboard-main-wrapper {
+	min-height: 100%;
+	padding-top: 60px;
+	position: relative;
+}
+
+.dashboard-content {
+	padding: 30px 30px 60px 30px;
+}
+
+.card {
+	margin-bottom: 30px;
+	border: none;
+	-webkit-box-shadow: 0px 1px 2px 1px rgba(154, 154, 204, 0.22);
+	-moz-box-shadow: 0px 1px 2px 1px rgba(154, 154, 204, 0.22);
+	box-shadow: 0px 1px 2px 1px rgba(154, 154, 204, 0.22);
+}
+
+.card-header {
+	background-color: #fff;
+	border-bottom: 1px solid #e6e6f2;
+}
+
+.navbtn {
+	padding-right: 10px;
+}
+
+.close-fullscreen {
+	display: none
+}
+
+.pagination {
+	display: -ms-flexbox;
+	display: flex;
+	padding-left: 0;
+	list-style: none;
+	border-radius: .25rem
+}
+
+/* 기본 태그 끝 */
+
+/* 차트 태그 시작 */
+.ct-golden-section {
+	display: block;
+	position: relative;
+	width: 100%;
+}
+
+.ct-golden-section:before {
+	display: block;
+	float: left;
+	content: "";
+	width: 0;
+	height: 0;
+	padding-bottom: 50.804697%;
+}
+
+.ct-golden-section:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.ct-golden-section>svg {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.ct-label {
+	fill: #71748d;
+	color: #71748d;
+	font-size: 13px;
+	font-family: 'Circular Std Book';
+	line-height: 1;
+}
+
+/*  zoom그래프 안에 색 채우는 속성 없애면 시꺼매짐 */
+.c3 path, .c3 line {
+	fill: none;
+	stroke: #71748d;
+}
+
+.c3-legend-item-tile, .c3-xgrid-focus, .c3-ygrid, .c3-event-rect {
+	shape-rendering: crispEdges;
+}
+
+.c3-legend-item {
+	font-size: 14px;
+	font-family: 'Circular Std Book';
+}
+
+.c3-legend-item-hidden {
+	opacity: 0.15;
+}
+
+.c3-legend-background {
+	opacity: 0.75;
+	fill: white;
+	stroke: lightgray;
+	stroke-width: 1;
+}
+
+/* 도넛 위에 글씨 */
+.c3-chart-arc text {
+	fill: #fff;
+	font-size: 13px;
+	font-family: 'Circular Std Book';
+}
+
+.c3-grid line {
+	stroke: #aaa;
+}
+
+.c3-grid text {
+	fill: #6c757d;
+}
+
+.c3-xgrid, .c3-ygrid {
+	stroke-dasharray: 3 3;
+}
+
+.c3-text.c3-empty {
+	fill: #71748d;
+	font-size: 14px;
+}
+
+.c3-line {
+	stroke-width: 3px;
+}
+
+.c3-title {
+	font-size: 14px;
+	font-family: 'Circular Std Book';
+}
+
+.c3-area {
+	stroke-width: 0;
+	opacity: 0.08;
+}
+
+.ct-series-b .ct-slice-pie, .ct-series-d .ct-slice-donut-solid {
+	fill: #64ced3;
+}
+
+.ct-chart-pie .ct-label {
+	dominant-baseline: central;
+}
+
+.ct-series-c .ct-slice-pie, .ct-series-c .ct-slice-donut-solid {
+	fill: #ffe174;
+}
+
+.ct-series-b .ct-slice-pie, .ct-series-b .ct-slice-donut-solid,
+	.ct-series-b .ct-area {
+	fill: #ff407b;
+}
+
+.ct-series-a .ct-slice-pie, .ct-series-a .ct-slice-donut-solid,
+	.ct-series-a .ct-area {
+	fill: #5969ff;
+}
+
+/* 차트 태그 끝 */
+
+/* 네비바 css */
+.dashboard-header .navbar {
+	padding: 0px;
+	border-bottom: 1px solid #e6e6f2;
+	-webkit-box-shadow: 0px 0px 28px 0px rgba(82, 63, 105, 0.13);
+	box-shadow: 0px 0px 28px 0px rgba(82, 63, 105, 0.13);
+	-webkit-transition: all 0.3s ease;
+	min-height: 60px;
+}
+
+.navbar-brand {
+	display: inline-block;
+	margin-right: 1rem;
+	line-height: inherit;
+	white-space: nowrap;
+	padding: 11px 20px;
+	font-size: 30px;
+	text-transform: uppercase;
+	font-weight: 700;
+	color: #007bff;
+}
+
+.navbar-brand:hover {
+	color: #007bff;
+}
+
+.navbar-right-top .nav-item {
+	border-right: 1px solid #e6e6f2;
+}
+
+.navbar-right-top .nav-item:last-child {
+	border: none;
+}
+
+.navbar-right-top .nav-item .nav-link {
+	padding: 13px 20px;
+	font-size: 16px;
+	line-height: 2;
+	color: #82849f;
+}
+
+/* 네비바 css 끝 */
+
+/* 좌측메뉴바 css 시작 */
+.nav-left-sidebar {
+	position: fixed;
+	width: 264px;
+	height: 100%;
+	top: 60px;
+	overflow: auto;
+	background-color: #fff;
+	-webkit-box-shadow: 0px 0px 28px 0px rgba(82, 63, 105, 0.13);
+	box-shadow: 0px 0px 28px 0px rgba(82, 63, 105, 0.13);
+	-webkit-transition: all 0.3s ease;
+}
+
+.nav-left-sidebar .nav-link[data-toggle="collapse"] {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+.nav-left-sidebar .nav-link[data-toggle="collapse"]::after {
+	display: inline-block;
+	width: 0;
+	height: 0;
+	position: absolute;
+	right: 20px;
+	vertical-align: 0.255em;
+	content: "";
+	border-top: 0.3em solid;
+	border-right: 0.3em solid transparent;
+	border-bottom: 0;
+	border-left: 0.3em solid transparent;
+}
+
+.nav-left-sidebar .nav-link[data-toggle="collapse"][aria-expanded="false"]:after
+	{
+	transform: rotate(-90deg);
+}
+
+.nav-left-sidebar .nav-link[data-toggle="collapse"]:after {
+	transition: transform .35s ease, opacity .35s ease;
+	opacity: .5;
+}
+
+.nav-left-sidebar .navbar-nav {
+	width: 100%;
+}
+
+.nav-left-sidebar .navbar {
+	position: relative;
+	padding: 14px;
+}
+
+.nav-left-sidebar .navbar-nav .nav-link {
+	font-size: 14px;
+	padding: 12px;
+	/* margin-bottom: 2px; */
+	color: #71789e;
+	transition: 0.3s;
+}
+
+.nav-left-sidebar .nav-link i {
+	font-size: 14px;
+	margin-right: 9px;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 16px;
+}
+
+.nav-divider {
+	padding: 10px 14px;
+	line-height: 30px;
+	font-weight: 600;
+	text-transform: uppercase;
+	font-size: 12px;
+}
+
+.nav-left-sidebar .submenu {
+	padding-left: 12px;
+	padding-right: 12px;
+	/* margin-top: 5px; */
+	background: #24274a;
+}
+
+.nav-left-sidebar .submenu .nav .nav-item .nav-link {
+	font-size: 14px;
+	padding: 6px 12px;
+	transition: 0.3s;
+}
+
+.nav-left-sidebar .navbar-nav .nav-link:focus, .nav-left-sidebar .navbar-nav .nav-link.active
+	{
+	background-color: #e2e2eb;
+	color: #3d405c;
+	border-radius: 2px;
+}
+
+.nav-left-sidebar .navbar-nav .nav-link:focus, .nav-left-sidebar .navbar-nav .nav-link:hover
+	{
+	background-color: #e2e2eb;
+	color: #3d405c;
+	border-radius: 2px;
+}
+
+.nav-left-sidebar .submenu .nav .nav-item .nav-link:hover {
+	color: #3d405c;
+	border-radius: 2px;
+	background-color: transparent;
+}
+
+.nav-left-sidebar .navbar-toggler {
+	background-color: #fff;
+}
+
+.navbar-toggler {
+	padding: .25rem 0.5rem;
+	font-size: 1.25rem;
+	line-height: 1;
+	background-color: transparent;
+	border: 1px solid transparent;
+	border-radius: .25rem;
+}
+
+/* 아마 배경색? */
+.sidebar-primary {
+	background-color: #414da7;
+}
+
+.sidebar-primary .nav-divider {
+	color: #ddddff;
+}
+
+.sidebar-primary.nav-left-sidebar .nav-link i {
+	color: #8991d4;
+}
+
+.sidebar-primary.nav-left-sidebar .navbar-nav .nav-link {
+	color: #8991d4;
+}
+
+.sidebar-primary.nav-left-sidebar .navbar-nav .nav-link:focus,
+	.sidebar-primary.nav-left-sidebar .navbar-nav .nav-link:hover {
+	color: #fff;
+	background-color: #5761c2;
+	border-radius: 2px;
+}
+
+.sidebar-primary.nav-left-sidebar .navbar-nav .nav-link:focus,
+	.sidebar-primary.nav-left-sidebar .navbar-nav .nav-link.active {
+	background-color: #5761c2;
+	color: #fff;
+	border-radius: 2px;
+}
+
+.sidebar-primary.nav-left-sidebar .submenu .nav .nav-item .nav-link:hover
+	{
+	color: #fff;
+	border-radius: 2px;
+	background-color: transparent;
+}
+
+/* 선택했을 때 검게 변하는 부분? */
+.sidebar-dark {
+	background-color: #0e0c28;
+	-webkit-box-shadow: 0px 0px 28px 0px rgba(82, 63, 105, 0.13);
+	box-shadow: 0px 0px 28px 0px rgba(82, 63, 105, 0.13);
+	-webkit-transition: all 0.3s ease;
+}
+
+.sidebar-dark .nav-divider {
+	color: #a4aadb;
+	font-size: 12px;
+	letter-spacing: 1px;
+}
+
+.sidebar-dark.nav-left-sidebar .nav-link i {
+	color: #7a80b4;
+}
+
+.sidebar-dark.nav-left-sidebar .navbar-nav .nav-link {
+	color: #7a80b4;
+}
+
+.sidebar-dark.nav-left-sidebar .navbar-nav .nav-link:focus,
+	.sidebar-dark.nav-left-sidebar .navbar-nav .nav-link:hover {
+	color: #fff;
+	background-color: #242849;
+	border-radius: 2px;
+}
+
+.sidebar-dark.nav-left-sidebar .navbar-nav .nav-link:focus,
+	.sidebar-dark.nav-left-sidebar .navbar-nav .nav-link.active {
+	background-color: #242849;
+	color: #fff;
+	border-radius: 2px;
+}
+
+.sidebar-dark.nav-left-sidebar .submenu .nav .nav-item .nav-link:hover {
+	color: #fff;
+	border-radius: 2px;
+	background-color: #242849;
+}
+
+.sidebar-dark.nav-left-sidebar .navbar-nav .nav-item .badge {
+	position: absolute;
+	right: 40px;
+	display: none;
+}
+
+/* 색 변화 부여하는 부분 */
+@media only screen and (max-width:768px) {
+	.dashboard-content {
+		padding: 20px 20px 60px 20px;
+	}
+	.nav-left-sidebar .navbar a {
+		color: #fff;
+		font-size: 18px;
+	}
+	.nav-left-sidebar .navbar {
+		padding: 14px;
+	}
+	.nav-left-sidebar {
+		width: 100%;
+		position: relative;
+		top: 0px;
+		right: 0px;
+	}
+	.dashboard-wrapper {
+		margin-left: 0px;
+	}
+	.dashboard-footer {
+		margin-left: 0px;
+	}
+	.nav-left-sidebar .navbar-toggler {
+		background-color: #fff;
+	}
+
+	/* infulencer dahboard */
+	.dashboard-influence .card-footer-item {
+		padding: 11px 54px;
+	}
+	.influencer-profile .tab-regular .nav.nav-tabs .nav-item .nav-link,
+		.influencer-profile .tab-regular .nav.nav-pills .nav-item .nav-link {
+		display: block;
+		padding: 17px 13px;
+	}
+
+	/* Inbox */
+	.page-aside {
+		background: none repeat scroll 0 0 #ffffff;
+		width: 280px;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		border-right: 1px solid #e6e6f2;
+		margin-top: 0;
+		padding-bottom: 0px;
+		color: #404040;
+	}
+
+	/*--------- dashboard-product-single -------- */
+	.product-slider {
+		padding: 131px 30px;
+	}
+	.product-carousel .carousel-indicators {
+		bottom: -30px;
+	}
+
+	/*--------- dashboard-influence -------- */
+	.user-social-media {
+		padding: 16px 45px;
+		text-align: center;
+		width: 100%;
+		border-bottom: 1px solid #dee2e6;
+		border-right: transparent !important;
+	}
+}
+
+/* --- 좌측메뉴바 css 끝 --- */
+
+/* 캡쳐기능 css */
+#screenshot_mask {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	display: block;
+	opacity: 0.3;
+	text-align: center;
+	box-sizing: border-box;
+	z-index: 2147483647;
+	border-color: black;
+	border-style: solid;
+}
+
+#screenshot_focus:before, #screenshot_focus:after {
+	border: none !important;
+	content: "" !important;
+	height: 100% !important;
+	position: absolute !important;
+	width: 100% !important
+}
+
+#screenshot_focus:before {
+	border-right: 1px solid white !important;
+	border-bottom: 1px solid white !important;
+	left: -100% !important;
+	top: -100% !important
+}
+
+#screenshot_focus:after {
+	border-top: 1px solid white !important;
+	border-left: 1px solid white !important;
+	left: 0 !important;
+	top: 0 !important
+}
+
+#screenshot_focus {
+	height: 100% !important;
+	position: fixed !important;
+	width: 100% !important;
+	z-index: 2147483648 !important
+}
+
+/* 폰트 css 묶음 시작*/
+/* #### Generated By: http://www.cufonfonts.com #### */
+@font-face {
+	font-family: 'Circular Std Black';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Circular Std Black'), url('CircularStd-Black.woff')
+		format('woff');
+}
+
+@font-face {
+	font-family: 'Circular Std Black Italic';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Circular Std Black Italic'),
+		url('CircularStd-BlackItalic.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Circular Std Bold';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Circular Std Bold'), url('CircularStd-Bold.woff')
+		format('woff');
+}
+
+@font-face {
+	font-family: 'Circular Std Bold Italic';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Circular Std Bold Italic'),
+		url('CircularStd-BoldItalic.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Circular Std Book Italic';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Circular Std Book Italic'),
+		url('CircularStd-BookItalic.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Circular Std Medium Italic';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Circular Std Medium Italic'),
+		url('CircularStd-MediumItalic.woff') format('woff');
+}
+
+/* 폰트 css 묶음 끝*/

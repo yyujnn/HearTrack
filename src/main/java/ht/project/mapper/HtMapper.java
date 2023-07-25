@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Param;
 
+import ht.project.entity.Admin;
 import ht.project.entity.Comment;
 import ht.project.entity.Community;
 import ht.project.entity.Ecg;
@@ -70,7 +71,15 @@ public interface HtMapper {
 	ArrayList<Health> getMyBsList(String user_id);
 	ArrayList<Ecg> getMyEcgList(String user_id);
 
-
+	//Admin-User 페이지 출력 데이터
+	ArrayList<Admin> getUserList();
+	ArrayList<Admin> getEcgList();
+	// 도넛차트에 넣어줄 데이터 불러오기
+	ArrayList<Admin> getRes();
+	// 건강 정보 불러오는 매퍼
+	ArrayList<Admin> getHealth();
+	// 분석에 걸린 시간 불러오는 매퍼
+	ArrayList<Admin> getDeep();
 	
 	
 	
