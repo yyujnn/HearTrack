@@ -161,19 +161,22 @@
     
     <!-- 관리자페이지에서 불러올 유저 목록 -->
 	<select id="getUserList" resultType="ht.project.entity.Admin">
-		SELECT t_user.*,
-		COUNT(t_ecg.user_id) AS ecg_cnt,
-		COUNT(t_community.user_id) AS comm_cnt
-		FROM t_user
-		LEFT JOIN t_ecg ON t_user.user_id =
-		t_ecg.user_id
-		LEFT JOIN
-		t_community ON t_user.user_id =
-		t_community.user_id
-		WHERE
-		t_user.user_type != 'A'
-		GROUP BY
-		t_user.user_id, t_user.user_type
+		SELECT
+		  t_user.*,
+		  IFNULL(ecg_count, 0) AS ecg_cnt,
+		  IFNULL(comm_count, 0) AS comm_cnt
+		FROM
+		  t_user
+		LEFT JOIN (
+		  SELECT user_id, COUNT(*) AS ecg_count
+		  FROM t_ecg
+		  GROUP BY user_id
+		) AS ecg ON t_user.user_id = ecg.user_id
+		LEFT JOIN (
+		  SELECT user_id, COUNT(*) AS comm_count
+		  FROM t_community
+		  GROUP BY user_id
+		) AS comm ON t_user.user_id = comm.user_id
 	</select>
 
 	<!-- 관리자페이지에서 Ecg 그래프 데이터 -->

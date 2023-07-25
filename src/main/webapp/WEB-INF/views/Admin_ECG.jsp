@@ -37,24 +37,25 @@
 				<div class="collapse navbar-collapse " id="navbarSupportedContent">
 					<ul class="navbar-nav ml-auto navbar-right-top">
 						<!-- 전체화면 보기 버튼 -->
-						<a href="#" class="fullscreen btn-rounded btn-primary btn-sm"
-							onclick="openFullScreenMode()" style="margin-right: 20px;">
+						<a id="fullScreen" href="#" class="fullscreen btn-rounded btn-primary btn-sm"
+							onclick="openFullScreenMode()" 
+							style="margin-right: 20px; display: flex; align-items: center; justify-content: center;">
 							전체화면</a>
 						<a href="#"
 							class="close-fullscreen btn btn-rounded btn-primary btn-sm"
-							onclick="closeFullScreenMode()" style="margin-right: 20px;">
+							onclick="closeFullScreenMode()" 
+							style="margin-right: 20px;">
 							되돌리기</a>
 						<!-- 공유 버튼 -->
-						<a class="navbtn btn-info nav-link nav-user-img " href="#"
+						<a class="navbtn btn-info btn-rounded nav-link nav-user-img " href="#"
 							id="navbarDropdownMenuLink2" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false"
 							style="margin-right: 30px;"> 페이지 공유</a>
-						<div
-							class="bavbtn dropdown-menu dropdown-menu-right nav-user-dropdown"
-							aria-labelledby="navbarDropdownMenuLink2">
-							<a id="capture" class="dropdown-item" href="#">화면 캡쳐</a> <a
-								class="dropdown-item" href="#">XML</a> <a class="dropdown-item"
-								href="#">PDF</a>
+						<div class="bavbtn dropdown-menu dropdown-menu-right nav-user-dropdown"
+						aria-labelledby="navbarDropdownMenuLink2">
+							<a id="capture" class="dropdown-item" href="#">화면 캡쳐</a> 
+							<a class="dropdown-item" href="#">XML</a> 
+							<a class="dropdown-item"href="#">PDF</a>
 						</div>
 					</ul>
 				</div>
@@ -242,8 +243,7 @@
 	</div>
 	<!-- 화면 캡처 기능 구현할려고 불러온 js -->
 	<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>
 	<script src="resources/plugins/admin/capture.js"></script>
 	<!-- 파일 안에 있는 jquery파일로 ajax문 실행에 오류가 발생해서 웹으로 받아옴 -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

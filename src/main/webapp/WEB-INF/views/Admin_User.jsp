@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="cpath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +42,8 @@
 					<ul class="navbar-nav ml-auto navbar-right-top">
 						<!-- 전체화면 보기 버튼 -->
 						<a href="#" class="fullscreen btn-rounded btn-primary btn-sm"
-							onclick="openFullScreenMode()" style="margin-right: 20px;">
+							onclick="openFullScreenMode()" 
+							style="margin-right: 20px; display: flex; align-items: center; justify-content: center;">
 							전체화면</a>
 						<a href="#"
 							class="close-fullscreen btn-rounded btn-primary btn-sm"
@@ -52,11 +54,11 @@
 							id="navbarDropdownMenuLink2" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false"
 							style="margin-right: 30px;"> 페이지 공유</a>
-						<div
-							class="bavbtn dropdown-menu dropdown-menu-right nav-user-dropdown"
+						<div class="bavbtn dropdown-menu dropdown-menu-right nav-user-dropdown"
 							aria-labelledby="navbarDropdownMenuLink2">
-							<a class="dropdown-item" href="#">화면 캡쳐</a> <a
-								class="dropdown-item" href="#">데이터 꺼내기</a>
+							<a id="capture" class="dropdown-item" href="#">화면 캡쳐</a> <a
+								class="dropdown-item" href="#">XML</a> <a class="dropdown-item"
+								href="#">PDF</a>
 						</div>
 					</ul>
 				</div>
@@ -132,8 +134,8 @@
 													<td id="u_age">${list.user_age}</td>
 													<td id="ecg_cnt">${list.ecg_cnt}</td>
 													<td id="comm_cnt">${list.comm_cnt}</td>
-													<td id="u_joindate">${list.user_joindate}</td>
-													<td id="u_accdate">${list.user_accdate}</td>
+													<td id="u_joindate"><fmt:formatDate value="${list.user_joindate}" pattern="yyyy/MM/dd" /></td>
+													<td id="u_accdate"><fmt:formatDate value="${list.user_accdate}" pattern="yyyy/MM/dd a hh : mm" /></td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -155,6 +157,11 @@
 	<script src="resources/plugins/admin/jquery.slimscroll.js"></script>
 	<script src="resources/plugins/admin/main-js.js"></script>
 	<script src="resources/plugins/admin/jquery.multi-select.js"></script>
+	<!-- 화면 캡처 기능 구현할려고 불러온 js -->
+	<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>
+	<script src="resources/plugins/admin/capture.js"></script>
+	<!-- 데이터테이블 관련 js + left바 + 상단바 js도 포함 -->
 	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
