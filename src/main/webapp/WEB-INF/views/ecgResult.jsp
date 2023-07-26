@@ -168,8 +168,7 @@
                                 <div class="col-sm-9">
                                 <!-- <img class="ECG_record_IMG"
                                         src="resources/images/ecgGraph/${LatestEcg.image_name}.png" />  -->
-                                <img class="ECG_record_IMG"
-                                        src="http://localhost:8081/user_ecg/${LatestEcg.image_name}.png" />  
+                                <img class="ECG_record_IMG" src="<c:url value='/image/${LatestEcg.image_name}.png' />" />> 
                                 </div>
                                 <div class="col-sm-3 ECG_Result">
                                     <table class="ecg_result_table">

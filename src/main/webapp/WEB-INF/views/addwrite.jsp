@@ -26,7 +26,11 @@
     <link rel="stylesheet" href="resources/plugins/owl-carousel/owl.theme.css">
     <link rel="stylesheet" href="resources/plugins/facncybox/jquery.fancybox.css">
     <link rel="stylesheet" href="resources/css/community.css">
-    <link rel="stylesheet" href="resources/css/style7_com.css">
+    <link rel="stylesheet" href="resources/css/style.css">
+    <link rel="stylesheet" href="resources/css/style2.css">
+    <link rel="stylesheet" href="resources/css/style3.css">
+    <link rel="stylesheet" href="resources/css/style5.css">
+    <link rel="stylesheet" href="resources/css/style7.css">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script>
@@ -204,13 +208,13 @@
         </div>
     </header>
 
-    <section id="blog-full-width" style="background-color: #ededed; ">
+    <section id="blog-full-width" style="background-color: #dae0e6; ">
         <div class="container">
             <div class="row">
                 <div class="col-md-4" style="width : 20%" !important>
                     <div class="sidebar">
                         
-                        <div class="author widget" style="background-color: #fff; margin-bottom: 10px">
+                        <div class="author widget" style="background-color: #fff;border-radius: 10px; margin-bottom: 10px">
                             <img class="img-responsive" src="resources/images/profile_img.png.webp">
                             <div class="author-body text-center">
                                 <div class="author-img">
@@ -232,125 +236,89 @@
                             </div>
                         </div>
                     </div>
-                    
-                    	<a href="addwrite" class="button_ECG btnPush_ECG">등록하기</a>
                 	
                 </div>
                 
                
-                <div class="col-md-4" style="width : 50%;" !important>
-                
-                
-                <!-- 게시글 반복문 !!!!!!!! -->
-                <c:forEach items="${comlist}" var="com" varStatus="loop" >
-                 <article class="wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms"
-                        style="margin-top: ${loop.first ? '60px' : '0'};" data-category="${com.category}">
-                        <div class="blog-content">
-                            <div style="display: flex; align-items: center;">
-                               
-                            	 <%-- 여성인 경우 --%>
-								<c:if test="${com.user.user_gender eq '여'}">
-									<img class="user-icon"  src="resources/images/woman.png">
-								</c:if>
-									
-								<%-- 남성인 경우 --%>
-								<c:if test="${com.user.user_gender eq '남'}">
-									<img class="user-icon"  src="resources/images/man.png">
-								</c:if>
-                                
-                                <h3 class="blogpost-title">${com.user.user_name}</h3>
-                            </div>
-                            <div class="blog-meta">
-                            
-                                <span><fmt:formatDate pattern="yyyy년 MM월 dd일 a h:mm" value="${com.input_date}" /></span>
-                                
-                            </div>
-                            <p> ${com.content}</p>
-                            <div class="blog-post-image">
-                                
-                                <div class="card-container">
-                                    <div class="card_fr">
-                                        <div class="front">
-                                            <p class="subtitle-des">
-                                            <img src="resources/images/ecg_com_icon.png" alt=""> <strong>ECG</strong> <span class="subtitle-des_ef">
-                                                정상 동리듬
-                                            <br> 2023년 7월 25일 오후 7:39
-                                            </p>
-                                        </div>
-                                        <img class = "test1" src="resources/images/com_ecg.png" alt=""> 
-                                    </div>
-                                </div>
-                                <div class="card-container">
-                                    <div class="card_fr">
-                                        <div class="front">
-                                            <p class="subtitle-des">
-                                                <img src="resources/images/혈당아이콘.png" alt=""> 나의 공복혈당은 <span class="subtitle-des_ef">
-                                                    80mg/dl
-                                                </span>이고, 식후혈당은 <span class="subtitle-des_ef"> 120mg/dl </span> 입니다.
-                                                <br> 2023년 7월 25일 오후 7:39
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-container">
-                                    <div class="card_fr">
-                                        <div class="front">
-                                            <p class="subtitle-des">
-                                                <img src="resources/images/혈압아이콘.png" alt=""> 나의 공복혈당은 <span class="subtitle-des_ef">
-                                                    80mg/dl
-                                                </span>이고, 식후혈당은 <span class="subtitle-des_ef"> 120mg/dl </span> 입니다.
-                                                <br> 2023년 7월 25일 오후 7:39
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            
-                            
-                            <!-- 좋아요 댓글  -->
-
-							<div style="display: flex; align-items: center;">
-						        <span class="like-btn" data-p-num="${com.p_num}"></span>
-						        <button class="spBubble">
-						          <i class="xi-speech-o xi-2x" style="color:  #667887;"></i>
-						        </button>
-						    </div>
-
-                            <div class="like-count"> 
-                                <span id="like-count-${com.p_num}">좋아요 ${com.likes}개</span>
-                            </div>
-
-
-                            <hr style="border: 0.5px solid rgb(213, 213, 213);">
-
-                            <div id="comment-list-${com.p_num}" class="comment-list">
-                            		<!-- 새로 댓글이 생성되는 자리 -->
-                            </div>
-
-                            <div class="comment-section">
-                            <ul>
-                                <li>
-                                <img class="smile" src="resources/images/smile.png" alt="smile">
-                                </li>
-                            </ul>
-                            <input id="comment-input-${com.p_num}" class="input_review" type="text" oninput="inputReview(${com.p_num})" placeholder="댓글 달기..." >
-							<button id="comment-button-${com.p_num}" class="review_upload" >게시</button>
-
-                            </div>
-                           
-
-                        </div>
-                    </article>
- 
-                    <div style="background-color: #ededed; height: 10px;"></div>
-                   
-                 </c:forEach>
-                 
-                  <!-- 게시글 반복문 끝 !! -->
-                 
-                 
-                </div>
+                <div class="col-md-4" style="width: 50% !important;">
+                <!-- ================================================================================== -->
+                	<!--  <iframe src="${pageContext.request.contextPath}/addwrite_frame" width="100%" height="1000" frameborder="0" allowfullscreen></iframe>-->
+                	<section id="feature">
+				        <div class="container">
+				            <div class="container_ECG_record">
+				                <span class="subtitle">게시글 쓰기</span>
+				
+				 
+				                <span>
+				                    <a href="" class="button_ECG btnPush_ECG">등록하기</a>
+				                </span>
+				
+				            </div>
+				            <div>
+				                <div class="Blood_pressure_input add_write_section">
+				                    <form action="">
+				                        <p class="subtitle-des_ef1 pressure_input"><strong>내용 입력</strong></p>
+				                        <textarea class="pressure_input text_ar" name="" id="" cols="30" rows="10"></textarea>
+				                    </form>
+				                </div>
+				            </div>
+				            <div class="container">
+				                <div class="health_Card">
+				                    <div class="card-container">
+				                        <div class="card_fr">
+				                            <div class="front">
+				                                ECG
+				                            </div>
+				                        </div>
+				                    </div>
+				                    <div class="card-container">
+				                        <div class="card_fr">
+				                            <div class="front">
+				                                <p class="subtitle-des">
+				                                    <img src="./images/혈당아이콘.png" alt=""> 나의 공복혈당은 <span class="subtitle-des_ef">
+				                                        80mg/dl
+				                                    </span>이고, 식후혈당은 <span class="subtitle-des_ef"> 120mg/dl </span> 입니다.
+				                                </p>
+				                            </div>
+				                        </div>
+				                    </div>
+				                    <div class="card-container">
+				                        <div class="card_fr">
+				                            <div class="front">
+				                                <p class="subtitle-des">
+				                                    <img src="./images/혈압아이콘.png" alt=""> 나의 공복혈당은 <span class="subtitle-des_ef">
+				                                        80mg/dl
+				                                    </span>이고, 식후혈당은 <span class="subtitle-des_ef"> 120mg/dl </span> 입니다.
+				                                </p>
+				                            </div>
+				                        </div>
+				                    </div>
+				                    <div class="artboard">
+				                        <div class="button_add">
+				                            <div class="links">
+				                                <span>
+				                                    <div class="checks etrans">
+				                                        <input type="radio" id="add_ECG" value="add_ECG" name="add_result">
+				                                        <label for="add_ECG">ECG</label>
+				                                    </div>
+				                                    <div class="checks etrans">
+				                                        <input type="radio" id="add_Pre" value="add_ECG" name="add_result">
+				                                        <label for="add_Pre">혈압</label>
+				                                    </div>
+				                                    <div class="checks etrans">
+				                                        <input type="radio" id="add_Sug" value="add_ECG" name="add_result">
+				                                        <label for="add_Sug">혈당</label>
+				                                    </div>
+				                                </span>
+				                                <div class="overlay"><a>나의 건강정보 공유하기</a></div>
+				                            </div>
+				                        </div>
+				                    </div>
+				                </div>
+				            </div>
+				    </section>
+				<!-- ================================================================================== -->
+				</div>
                 <!-- Sidebar -->
                 <div class="col-md-4" style="width : 30%;" !important>
                     <div class="sidebar">

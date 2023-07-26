@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ht.project.entity.Admin;
@@ -415,6 +416,16 @@ public class HtController {
 		return "Admin_ECG";
 	}
 	
+	// admin-Ecg 페이지로 이동 
+	@RequestMapping("/addwrite")
+	public String addwrite() {
+		
+		return "addwrite";
+	}
 	
-
+	@RequestMapping(value = "/addwrite_frame", method = RequestMethod.GET)
+	public String addWriteFrame() {
+	    return "addwrite_frame";
+	}
+	
 }

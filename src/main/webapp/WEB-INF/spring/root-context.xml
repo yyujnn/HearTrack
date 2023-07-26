@@ -54,6 +54,5 @@
     <bean id="uploadPath" class="java.lang.String">
         <constructor-arg value="C:\\Users\\smhrd\\Desktop\\user_ecg" />
     </bean>
-	
-		
+    
 </beans>
