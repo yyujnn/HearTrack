@@ -12,13 +12,14 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="resources/plugins/admin/Admin.css">
 <link rel="stylesheet" href="resources/plugins/admin/bootstrap.min.css">
-<link rel="stylesheet" type="resources/plugins/admin/Admin_css/buttons.bootstrap4.css">
+<link rel="stylesheet" href="resources/plugins/admin/fontawesome-all.css">
+<link rel="stylesheet" href="resources/plugins/admin/Admin.css">
+
 <link rel="stylesheet" type="text/css" href="resources/plugins/admin/dataTables.bootstrap4.css">
 <link rel="stylesheet" type="text/css" href="resources/plugins/admin/select.bootstrap4.css">
-<link rel="stylesheet" type="text/css" href="resources/plugins/admin/fixedHeader.bootstrap4.css">
-<link rel="stylesheet" href="resources/plugins/admin/fontawesome-all.css">
+<!-- <link rel="stylesheet" type="text/css" href="resources/plugins/admin/fixedHeader.bootstrap4.css"> -->
+<link rel="icon" href="resources/images/ht_favicon.png">
 <title>회원 관리</title>
 </head>
 
@@ -27,10 +28,13 @@
 	<div class="dashboard-main-wrapper">
 		<!-- navbar -->
 		<div class="dashboard-header">
-			<!-- 상단바 로고 -->
+			<!-- 로고 들어가는 부분-->
 			<nav class="navbar navbar-expand-lg bg-white fixed-top">
-				<a class="navbar-brand" href="#">HearTrack</a>
-				<!-- 메인화면 링크 걸어주기 -->
+				<div class="navbar-brand">
+                    <a href="index">
+                        <img src="resources/images/logo.png" style="margin-left: 10px;">
+                    </a>
+                </div>
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#navbarSupportedContent"
 					aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -41,25 +45,17 @@
 				<div class="collapse navbar-collapse " id="navbarSupportedContent">
 					<ul class="navbar-nav ml-auto navbar-right-top">
 						<!-- 전체화면 보기 버튼 -->
-						<a href="#" class="fullscreen btn-rounded btn-primary btn-sm"
+						<a id="fullScreen" href="#" class="fullscreen btn-rounded btn-primary btn-sm"
 							onclick="openFullScreenMode()" 
 							style="margin-right: 20px; display: flex; align-items: center; justify-content: center;">
 							전체화면</a>
 						<a href="#"
-							class="close-fullscreen btn-rounded btn-primary btn-sm"
-							onclick="closeFullScreenMode()" style="margin-right: 20px;">
+							class="close-fullscreen btn btn-rounded btn-primary btn-sm"
+							onclick="closeFullScreenMode()" 
+							style="margin-right: 20px;">
 							되돌리기</a>
 						<!-- 공유 버튼 -->
-						<a class="navbtn btn-info nav-link nav-user-img " href="#"
-							id="navbarDropdownMenuLink2" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false"
-							style="margin-right: 30px;"> 페이지 공유</a>
-						<div class="bavbtn dropdown-menu dropdown-menu-right nav-user-dropdown"
-							aria-labelledby="navbarDropdownMenuLink2">
-							<a id="capture" class="dropdown-item" href="#">화면 캡쳐</a> <a
-								class="dropdown-item" href="#">XML</a> <a class="dropdown-item"
-								href="#">PDF</a>
-						</div>
+						<a id="capture" class="navbtn btn btn-success" style="margin-right: 30px; color: #fff;">화면 캡쳐</a>
 					</ul>
 				</div>
 			</nav>
