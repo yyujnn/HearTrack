@@ -44,6 +44,8 @@
     <link rel="stylesheet" href="resources/css/style4.css">
     <link rel="stylesheet" href="resources/css/style5.css">
     <link rel="stylesheet" href="resources/css/circle.css">
+    <link rel="stylesheet" href="resources/css/copybtn.css">
+	
 
 	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-straight/css/uicons-solid-straight.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
@@ -215,14 +217,28 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="Blood_pressure_info">
-                                <span class="pressure_info1"> <span class="result_1">● </span> 정상 </span>
-                                <span class="pressure_info2"> <span class="result_3">● </span> 저혈압 </span>
-                                <span class="pressure_info3"> <span class="result_2">● </span> 고혈압 </span>
+                            
+                            <div class="container_ECG_record">
+                                <div class="Blood_pressure_info">
+                                    <span class="pressure_info1"> <span class="result_1">● </span> 정상 </span>
+                                    <span class="pressure_info2"> <span class="result_3">● </span> 저혈압 </span>
+                                    <span class="pressure_info3"> <span class="result_2">● </span> 고혈압 </span>
+                                </div>
+                                <span>
+                                    <a href="" class="button">
+                                        <ul>
+                                            <li><i class="fi fi-ss-copy-alt"></i> <strong> 결과 복사</strong></li>
+                                            <li> <strong> 이미지 복사 중</strong></li>
+                                            <li> <strong> 복사 완료</strong></li>
+                                        </ul>
+                                        <div>
+                                            <svg viewBox="0 0 24 24"></svg>
+                                        </div>
+                                    </a>
+                                </span>
                             </div>
-                            <div class="Blood_pressure_result">
-                                <button class="ECG_test1"><i class="fi fi-ss-copy-alt"></i> 결과 복사</button>
-                            </div>
+                            
+                            
                         </div>
                     </div>
 
@@ -279,7 +295,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="block">
-                        <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">나를 위한 만족도 조사
+                        <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">나를 위한  <strong> 만족도 조사</strong>
                             </h1>
                             <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">당신이 경험한 이야기를 우리에게
                                 나누어 주세요.<br>우리는 당신의 이야기로 더욱 만족스러운 서비스를 제공 드릴 것을 약속드립니다</p>
@@ -445,6 +461,7 @@
     <!-- template main js -->
     <script src="resources/js/main.js"></script>
     <script src="resources/js/ecgCheck.js"></script>
+    <script src="resources/js/copybtn.js"></script>
 </body>
 
 </html>

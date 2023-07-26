@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="resources/plugins/owl-carousel/owl.theme.css">
     <link rel="stylesheet" href="resources/plugins/facncybox/jquery.fancybox.css">
     <link rel="stylesheet" href="resources/css/community.css">
+    <link rel="stylesheet" href="resources/css/style7_com.css">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script>
@@ -203,13 +204,13 @@
         </div>
     </header>
 
-    <section id="blog-full-width" style="background-color: #dae0e6; ">
+    <section id="blog-full-width" style="background-color: #ededed; ">
         <div class="container">
             <div class="row">
                 <div class="col-md-4" style="width : 20%" !important>
                     <div class="sidebar">
                         
-                        <div class="author widget" style="background-color: #fff;border-radius: 10px; margin-bottom: 10px">
+                        <div class="author widget" style="background-color: #fff; margin-bottom: 10px">
                             <img class="img-responsive" src="resources/images/profile_img.png.webp">
                             <div class="author-body text-center">
                                 <div class="author-img">
@@ -261,13 +262,51 @@
                             </div>
                             <div class="blog-meta">
                             
-                                <span><fmt:formatDate pattern="yyyy년 MM월 dd일 a h시 mm분" value="${com.input_date}" /></span>
+                                <span><fmt:formatDate pattern="yyyy년 MM월 dd일 a h:mm" value="${com.input_date}" /></span>
                                 
                             </div>
                             <p> ${com.content}</p>
                             <div class="blog-post-image">
-                                <img class="img-responsive" src="resources/images/ecg_graph.png" />
+                                
+                                <div class="card-container">
+                                    <div class="card_fr">
+                                        <div class="front">
+                                            <p class="subtitle-des">
+                                            <img src="resources/images/ecg_com_icon.png" alt=""> <strong>ECG</strong> <span class="subtitle-des_ef">
+                                                정상 동리듬
+                                            <br> 2023년 7월 25일 오후 7:39
+                                            </p>
+                                        </div>
+                                        <img class = "test1" src="resources/images/com_ecg.png" alt=""> 
+                                    </div>
+                                </div>
+                                <div class="card-container">
+                                    <div class="card_fr">
+                                        <div class="front">
+                                            <p class="subtitle-des">
+                                                <img src="resources/images/혈당아이콘.png" alt=""> 나의 공복혈당은 <span class="subtitle-des_ef">
+                                                    80mg/dl
+                                                </span>이고, 식후혈당은 <span class="subtitle-des_ef"> 120mg/dl </span> 입니다.
+                                                <br> 2023년 7월 25일 오후 7:39
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-container">
+                                    <div class="card_fr">
+                                        <div class="front">
+                                            <p class="subtitle-des">
+                                                <img src="resources/images/혈압아이콘.png" alt=""> 나의 공복혈당은 <span class="subtitle-des_ef">
+                                                    80mg/dl
+                                                </span>이고, 식후혈당은 <span class="subtitle-des_ef"> 120mg/dl </span> 입니다.
+                                                <br> 2023년 7월 25일 오후 7:39
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                            
+                            
                             
                             <!-- 좋아요 댓글  -->
 
@@ -304,7 +343,7 @@
                         </div>
                     </article>
  
-                    <div style="background-color: #dae0e6; height: 10px;"></div>
+                    <div style="background-color: #ededed; height: 10px;"></div>
                    
                  </c:forEach>
                  

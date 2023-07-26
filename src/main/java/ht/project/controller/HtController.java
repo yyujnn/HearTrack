@@ -80,6 +80,12 @@ public class HtController {
 		return "redirect:/login";
 	}
 
+	@RequestMapping("/wait")
+	public String waitPage() {
+		
+		return "waitPage";
+	}
+	
 	// 메인 페이지
 	@RequestMapping("/index")
 	public String hearTrack(HttpSession session) {
@@ -128,7 +134,18 @@ public class HtController {
 		return "community";
 	}
 	@RequestMapping("/register")
-	public String register() {
+	public String register(HttpSession session, Model model) {
+		String user_id = (String) session.getAttribute("user_id");
+	
+		if (user_id != null) {
+			
+			User userInfo = mapper.getUserInfo(user_id);
+			model.addAttribute("userInfo", userInfo);
+		} else {
+			// 로그인이 되어 있지 않은 경우
+			System.out.println("커뮤니티: 로그인되어 있지 않음");
+			return "redirect:/login?returnUrl=/community";
+		}
 		return "register";
 	}
 

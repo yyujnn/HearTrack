@@ -80,7 +80,6 @@ a:hover {
 .subtitle-des {
   color: #727272;
   font-size: 14px;
-  margin-bottom: 35px;
   font-weight: 300;
 }
 
@@ -1490,14 +1489,12 @@ px      68    160    252    */
 .wow.fadeInDown {
     background-color: #fff;
     padding-top: 2%;
-    border-radius: 3%;
 }
 
 .categories.widget,
 .recent-post.widget
 {
     background-color: #fff;
-    border-radius: 3%;
 }
 
 

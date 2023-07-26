@@ -198,7 +198,7 @@
                             alt="barbarian" />
                     </div>
                     <div class="clash-card__level clash-card__level--barbarian"><fmt:formatDate value="${LatestBp.input_date}" pattern="yy.MM.dd" />(최근 기록)</div>
-                    <div class="clash-card__unit-name">혈압</div>
+                    <div class="clash-card__unit-name">혈 압</div>
                     <div class="clash-card__unit-description">
                         <p class="subtitle-des_ef1"><span class="${LatestBp.cssClass}">● </span>${LatestBp.resultText}</p>
                     </div>
@@ -228,7 +228,7 @@
                         <img class="ecgmain_Card4" src="resources/images/char5.png" alt="barbarian" />
                     </div>
                     <div class="clash-card__level clash-card__level--barbarian"><fmt:formatDate value="${LatestEcg.input_date}" pattern="yy.MM.dd" />(최근 기록)</div>
-                    <div class="clash-card__unit-name">혈당</div>
+                    <div class="clash-card__unit-name">혈 당</div>
                     <div class="clash-card__unit-description">
                         <p class="subtitle-des_ef1"><span class="${LatestBs.cssClass}">● </span>${LatestBs.resultText}</p>
                     </div>
@@ -277,8 +277,11 @@
                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkWXPK2vuqd2o3vqZBCRRmmNHrch6FKST7SA&usqp=CAU" />
                 </div>
                 <div class="col-sm-3 ECG_Result">
-                    <pre
-                        class="subtitle-des_ef1 pre_desi">${userInfo.user_name}님          <span style="color: rgb(255, 118, 140);">♥</span> ${LatestEcg.hr }bpm</pre>
+                    <table class="ecg_result_table">
+                            <th>${userInfo.user_name}님 </th>
+                            <th><span style="color: rgb(255, 118, 140);">♥ </span> ${LatestEcg.hr}bpm</th>
+                        </table>
+                        <br>
                     <table class="ecg_result_table">
                         <thead>
                             <tr>
@@ -459,7 +462,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="block">
-                        <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">나를 위한 만족도 조사
+                        <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">나를 위한  <strong> 만족도 조사</strong>
                             </h1>
                             <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">당신이 경험한 이야기를 우리에게
                                 나누어 주세요.<br>우리는 당신의 이야기로 더욱 만족스러운 서비스를 제공 드릴 것을 약속드립니다</p>

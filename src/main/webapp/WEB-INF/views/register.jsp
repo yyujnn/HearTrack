@@ -30,9 +30,23 @@
     <link rel="stylesheet" href="resources/css/style3.css">
 	<link rel="stylesheet" href="resources/css/style5.css">
 	<link rel="stylesheet" href="resources/css/style7.css">
+	
+	
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	
+	<style>
+		.sidebar .widget {
+		  margin-bottom: 40px;
+		  padding: 15px;
+		  border: 1px solid #dedede;
+		}
+		
+		
+		.pressure_input{
+			box-shadow: none;
+		}
+				
+	</style>
 
 </head>
 
@@ -100,115 +114,84 @@
         </div>
     </header>
  
-    <br>
-
-    <section id="feature">
-        <div class="container">
-            <div class="container_ECG_record">
-                <span class="subtitle">게시글 쓰기</span>
-
-                <!--
-    게시글 작성 버튼
--->
-                <span>
-                    <a href="" class="button_ECG btnPush_ECG">등록하기</a>
-                </span>
-
-            </div>
-            <div>
-                <div class="Blood_pressure_input add_write_section">
-                    <form action="">
-                        <div class="pressure_input-block">
-                            <input class="pressure_input title_write_header" type="text" id="게시글 제목" required="">
-                            <label for="수축기 혈압">게시글 제목 입력</label>
-                        </div>
-                        <textarea class="pressure_input writextarea" name="" id="">
-                        </textarea>
-                        <!-- <div class="add_his">
-                            <p class="subtitle-des_ef1">* 나의 건강기록 공유하기 -다시 바꾸기</p>
-                            <div class="col-sm-4 ">
-                                <div class="checks etrans">
-                                    <input type="checkbox" id="add_ECG">
-                                    <label for="add_ECG">ECG</label>
-                                </div>
-                            </div>
-                            <div class="col-sm-4 ">
-                                <div class="checks etrans">
-                                    <input type="checkbox" id="add_Pre">
-                                    <label for="add_Pre">혈압</label>
-                                </div>
-                            </div>
-                            <div class="col-sm-4 ">
-                                <div class="checks etrans">
-                                    <input type="checkbox" id="add_Sug">
-                                    <label for="add_Sug">혈당</label>
-                                </div>
-                            </div>
-                        </div> -->
-                        <div class="artboard">
-                            <div class="button">
-                                <div class="links">
-                                    <span>
-                                        <div class="checks etrans">
-                                            <input type="checkbox" id="add_ECG">
-                                            <label for="add_ECG">ECG</label>
-                                        </div>
-                                        <div class="checks etrans">
-                                            <input type="checkbox" id="add_Pre">
-                                            <label for="add_Pre">혈압</label>
-                                        </div>
-                                        <div class="checks etrans">
-                                            <input type="checkbox" id="add_Sug">
-                                            <label for="add_Sug">혈당</label>
-                                        </div>
-                                    </span>
-                                    <div class="overlay"><a>나의 건강정보 공유하기</a></div>
-                                </div>
-                            </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section> <!-- /#feature -->
-    <br><br><br>
-    <section class="works works-fit">
-        <div class="container">
-            <p class="subtitle">건강정보 공유 예시</p>
-            <br><br>
-            <div class="health_Card">
-                <div class="card-container">
-                    <div class="card">
-                        <div class="front">
-                            ECG
-                        </div>
-                    </div>
-                </div>
-                <div class="card-container">
-                    <div class="card">
-                        <div class="front">
-                            <p class="subtitle-des">
-                               <img src="resources/images/혈당아이콘.png" alt=""> 나의 공복혈당은 <span class="subtitle-des_ef"> 80mg/dl </span>이고,  식후혈당은 <span class="subtitle-des_ef"> 120mg/dl </span> 입니다.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-container">
-                    <div class="card">
-                        <div class="front">
-                            <p class="subtitle-des">
-                               <img src="resources/images/혈압아이콘.png" alt=""> 나의 공복혈당은 <span class="subtitle-des_ef"> 80mg/dl </span>이고,  식후혈당은 <span class="subtitle-des_ef"> 120mg/dl </span> 입니다.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-
-
-
-    </section>
+ 	 <section id="blog-full-width" style="background-color: #ededed; ">
+	    
+	    
+	    <section id="feature">
+	        <div class="container">
+	            <div class="container_ECG_record">
+	                <span class="subtitle">게시글 쓰기</span>
+	
+	 
+	                <span>
+	                    <a href="" class="button_ECG btnPush_ECG">등록하기</a>
+	                </span>
+	
+	            </div>
+	            <div>
+	                <div class="Blood_pressure_input add_write_section">
+	                    <form action="">
+	                        <p class="subtitle-des_ef1 pressure_input" style="background-color: #fff;"><strong>내용 입력</strong></p>
+	                        <textarea class="pressure_input text_ar" name="" id="" cols="30" rows="10"></textarea>
+	                    </form>
+	                </div>
+	            </div>
+	            <div class="container">
+	                <div class="health_Card">
+	                    <div class="card-container">
+	                        <div class="card_fr">
+	                            <div class="front">
+	                                ECG
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="card-container">
+	                        <div class="card_fr">
+	                            <div class="front">
+	                                <p class="subtitle-des">
+	                                    <img src="resources/images/혈당아이콘.png" alt=""> 나의 공복혈당은 <span class="subtitle-des_ef">
+	                                        80mg/dl
+	                                    </span>이고, 식후혈당은 <span class="subtitle-des_ef"> 120mg/dl </span> 입니다.
+	                                </p>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="card-container">
+	                        <div class="card_fr">
+	                            <div class="front">
+	                                <p class="subtitle-des">
+	                                    <img src="resources/images/혈압아이콘.png" alt=""> 나의 공복혈당은 <span class="subtitle-des_ef">
+	                                        80mg/dl
+	                                    </span>이고, 식후혈당은 <span class="subtitle-des_ef"> 120mg/dl </span> 입니다.
+	                                </p>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="artboard">
+	                        <div class="button_add">
+	                            <div class="links">
+	                                <span>
+	                                    <div class="checks etrans">
+	                                        <input type="radio" id="add_ECG" value="add_ECG" name="add_result">
+	                                        <label for="add_ECG">ECG</label>
+	                                    </div>
+	                                    <div class="checks etrans">
+	                                        <input type="radio" id="add_Pre" value="add_ECG" name="add_result">
+	                                        <label for="add_Pre">혈압</label>
+	                                    </div>
+	                                    <div class="checks etrans">
+	                                        <input type="radio" id="add_Sug" value="add_ECG" name="add_result">
+	                                        <label for="add_Sug">혈당</label>
+	                                    </div>
+	                                </span>
+	                                <div class="overlay"><a>나의 건강정보 공유하기</a></div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	    </section>
+	  </section>
 
 
 
@@ -224,7 +207,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="block">
-                        <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">나를 위한 만족도 조사
+                        <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">나를 위한  <strong> 만족도 조사</strong>
                             </h1>
                             <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">당신이 경험한 이야기를 우리에게
                                 나누어 주세요.<br>우리는 당신의 이야기로 더욱 만족스러운 서비스를 제공 드릴 것을 약속드립니다</p>

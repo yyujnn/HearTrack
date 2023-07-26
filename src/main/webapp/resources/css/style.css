@@ -9,6 +9,14 @@
   font-style: normal;
 }
 
+@font-face{
+  font-family: 'Ye';
+  src: url('../font/Yeongdeok\ Blueroad.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 body {
   font-family: 'NEXON Lv2 Gothic', "Roboto", sans-serif;
 }
@@ -1605,6 +1613,7 @@ px      68    160    252    344    436    */
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.3);
   font-weight: bold;
 }
+
 .ECG_test1 {
   border-radius: 30px;
   color: whitesmoke;
@@ -1619,7 +1628,7 @@ px      68    160    252    344    436    */
 }
 
 
-.ECG_test:hover{
+.ECG_test:hover {
   background-color: #075ad6;
   transform: translateY(-1px);
 }
@@ -1642,7 +1651,7 @@ px      68    160    252    344    436    */
 }
 
 .card_result_pre {
-  background-color: #fffefe ;
+  background-color: #fffefe;
   text-align: left;
   display: inline-block;
   width: 1000px;
@@ -1652,21 +1661,23 @@ px      68    160    252    344    436    */
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 5px 10px 0 rgba(0, 0, 0, 0.3);
 }
 
-.Blood_pressure_result{
+.Blood_pressure_result {
   position: absolute;
   right: 8%;
   bottom: 9%;
 }
-.Blood_pressure_result_1{
+
+.Blood_pressure_result_1 {
+  position: absolute;
   right: 3%;
   bottom: 8%;
 }
 
-.pressure_info1{
+.pressure_info1 {
   color: black;
 }
 
-.Blood_pressure_info{
+.Blood_pressure_info {
   display: inline-block;
   margin-top: 5px;
   margin-left: 5px;
@@ -1714,6 +1725,7 @@ px      68    160    252    344    436    */
   color: rgb(85, 85, 85);
   font-weight: bold;
 }
+
 .subtitle-des_ef1_che {
   color: rgb(85, 85, 85);
   font-weight: bold;
@@ -1725,7 +1737,7 @@ px      68    160    252    344    436    */
   text-shadow: 0.5px 0.1px 0.1px gray;
 }
 
-.pre_desi{
+.pre_desi {
   background-color: transparent;
   padding: 15px;
   font-size: .9em;
@@ -1733,56 +1745,64 @@ px      68    160    252    344    436    */
 }
 
 
-.pre_check{
+.pre_check {
   height: 500px;
   text-align: center;
   padding-top: 20px;
-  background-color: rgb(255, 249, 249);
-  border-radius: 15px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
 }
 
-input#check_btn_pre{
-  display:none;
-  }
+input#check_btn_pre {
+  display: none;
+}
 
-input#check_btn_pre + label{
-  cursor:pointer;
+input#check_btn_pre+label {
+  cursor: pointer;
   margin-top: 3px;
- }
+}
 
-input#check_btn_pre + label > span{
+input#check_btn_pre+label>span {
   vertical-align: middle;
   padding-left: 10px;
- }
+}
 
 /* label:before에 체크하기 전 상태 CSS */
-input#check_btn_pre + label:before{
-  content:"";
-  display:inline-block;
-  width:17px;
-  height:17px;
-  border:2px solid #1875FF;
+input#check_btn_pre+label:before {
+  content: "";
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+  border: 2px solid #1875FF;
   border-radius: 4px;
-  vertical-align:middle;
-  }
-  
-/* label:before에 체크 된 상태 CSS */  
-input#check_btn_pre:checked + label:before{
-  content:"";
-  background-color:#1875FF;
-  border-color:#1875FF;
+  vertical-align: middle;
+}
+
+/* label:before에 체크 된 상태 CSS */
+input#check_btn_pre:checked+label:before {
+  content: "";
+  background-color: #1875FF;
+  border-color: #1875FF;
   background-image: url('check_btn.png');
   background-repeat: no-repeat;
   background-position: 50%;
-  }
+}
 
-  .high_check{
-    text-align: left;
-    padding-left: 150px;
-    padding-right: 150px;
-  }
+.high_check {
+  text-align: left;
+  padding-left: 150px;
+  padding-right: 150px;
+}
 
 
-  .check_wrap_pre{
-    margin-top: 30px;
-  }
+.check_wrap_pre {
+  margin-top: 30px;
+}
+
+
+.button_satis:hover {
+  background-color: #f2f0ff !important;
+  box-shadow: 0 4px 17px rgba(0, 0, 0, 0.2);
+  transform: translate3d(0, -2px, 0);
+}

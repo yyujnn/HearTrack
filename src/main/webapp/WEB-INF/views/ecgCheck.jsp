@@ -187,21 +187,17 @@
     <section class="works works-fit">
         <div class="container ECG_background_img">
             <h2 class="subtitle">부정맥이란? </h2>
+            <br><br>
             <p class="subtitle-des"><span class="subtitle-des_ef1">부정맥</span>은 비정상적인 심장의 리듬으로 <span
                     class="subtitle-des_ef">심장박동이 불규칙이거나, 너무 빠르거나, 너무 느린 경우</span>를 말합니다</p>
 
-
             <p class="subtitle-des">
                 일반적으로 부정맥 진단을 위해 맥박수를 측정하는데, 정상인의 경우 <br> 몸 상태에 따라서 수면 혹은 안정된 상태에서는 박동수가 분당 60회 아래로 내려가기도 하고, <br> 흥분 혹은
-                운동
-                상태에서는
-                분당 100회 위로 올라가기도 합니다. <br><br><br> 동방결절에서 발생하는 정상 전기자극으로 뛰지 않으면서, 맥박수가 분당 60회 미만이면 <br> 느린
-                부정맥(bradyarrhythmia)이라
-                하며, 분당
-                100회 이상으로 빠르게 뛰면 빠른 부정맥(tachyarrhythmia)이라 합니다.
+                운동 상태에서는 분당 100회 위로 올라가기도 합니다.
             </p>
-            <br>
-            <h3 class="subtitle">부정맥 초기증상</h3>
+            <br><br>
+            <br><br>
+            <h2 class="subtitle">부정맥 초기증상</h2>
             <p class="subtitle-des"><br>- 이유 없는 <span class="subtitle-des_ef">가슴의 두근거림</span> <br> - 이유 없는 <span
                     class="subtitle-des_ef">호흡곤란</span> <br> - <span class="subtitle-des_ef">현기증</span>이나 <span
                     class="subtitle-des_ef">실신</span></p>
@@ -297,7 +293,6 @@
         </div>
     </section>
 
-    
 
 
     <!--
@@ -309,11 +304,14 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="block">
-                        <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">나를 위한 만족도 조사
+                        <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">나를 위한 <strong>
+                                만족도 조사</strong>
                             </h1>
                             <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">당신이 경험한 이야기를 우리에게
                                 나누어 주세요.<br>우리는 당신의 이야기로 더욱 만족스러운 서비스를 제공 드릴 것을 약속드립니다</p>
-                            <a href="https://forms.gle/JH1Ya6SnKUn6boTA6" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">참여하기</a>
+                            <a href="https://forms.gle/JH1Ya6SnKUn6boTA6"
+                                class="btn btn-default btn-contact wow fadeInDown button_satis" data-wow-delay=".7s"
+                                data-wow-duration="500ms"><strong> 참여하기</strong></a>
                     </div>
                 </div>
 
@@ -331,9 +329,7 @@
         <div class="container">
             <div class="col-md-8">
                 <p class="copyright">Copyright &copy; <span>
-                        <script>
-                            document.write(new Date().getFullYear())
-                        </script>
+                        <script>document.write(new Date().getFullYear())</script>
                     </span> HearTrack All Rights Reserved.
                 </p>
                 <p><a href="">개인정보 처리방침</a> | <a href="">이용약관</a></p>
@@ -365,6 +361,11 @@
             </div>
         </div>
     </footer> <!-- /#footer -->
+
+    
+
+
+  
 
     <!-- Template Javascript Files
 	================================================== -->

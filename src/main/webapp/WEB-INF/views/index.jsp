@@ -150,7 +150,6 @@ Slider Section Start
                                 <span class="cd-words-wrapper">
                                     <b class="is-visible">부정맥</b>
                                     <b>혈압</b>
-                                    <b>BMI</b>
                                     <b>혈당</b>
                                 </span>
                             </h1>
@@ -211,7 +210,7 @@ Portfolio Section Start
             <div class="section-heading">
                 <h1 class="title wow fadeInDown" data-wow-delay=".3s" style="font-weight: bold !important;">건강 체크하기</h1>
                 <p class="wow fadeInDown" data-wow-delay=".5s">
-                    AI로 건강 관리의 시작과 끝을 편안하게 <br> 특별한 당신을 위한 AI로 심장 등 다양한 건강 상태를 온라인으로 바로 확인해보세요.
+                   <strong> AI로 건강 관리의 시작과 끝을 편하게 </strong> 
                 </p>
             </div>
             <div class="row">
@@ -231,7 +230,7 @@ Portfolio Section Start
                         <figcaption>
                             <h4>
                                 <a href="bpCheck">
-                                    혈압
+                                    <strong>혈압</strong>
                                 </a>
                             </h4>
                             <p>
@@ -254,7 +253,7 @@ Portfolio Section Start
                         <figcaption>
                             <h4>
                                 <a href="ecgCheck">
-                                    ECG
+                                     <strong> ECG</strong>
                                 </a>
                             </h4>
                             <p>
@@ -277,7 +276,7 @@ Portfolio Section Start
                         <figcaption>
                             <h4>
                                 <a href="bsCheck">
-                                    혈당
+                                    <strong> 혈당</strong>
                                 </a>
                             </h4>
                             <p>
@@ -300,7 +299,7 @@ Portfolio Section Start
                         <figcaption>
                             <h4>
                                 <a href="community">
-                                    커뮤니티
+                                    <strong> 커뮤니티</strong>
                                 </a>
                             </h4>
                             <p>
@@ -323,7 +322,7 @@ Portfolio Section Start
                         <figcaption>
                             <h4>
                                 <a href="https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=bmi&oquery=bmi%EA%B2%80%EC%82%AC%ED%95%98%EA%B8%B0&tqi=i7BqHsp0J1sssPf0lUossssstE4-119845">
-                                    BMI
+                                    <strong> BMI</strong>
                                 </a>
                             </h4>
                             <p>
@@ -348,7 +347,7 @@ Portfolio Section Start
                             <h4>
                                 <a href="#contact-section">
                                 
-                                    나에게 가장 가까운 병원은?
+                                    <strong> 나에게 가장 가까운 병원은?</strong>
                                 </a>
                             </h4>
                             <p>
@@ -392,12 +391,12 @@ Portfolio Section Start
 ==================================================
 Portfolio Section Start
 ================================================== -->
-    <section id="feature">
+     <section id="feature">
         <div class="container">
             <div class="section-heading">
-                <h1 class="title wow fadeInDown" data-wow-delay=".3s">자주 묻는 질문 TOP6</h1>
+                <h1 class="title wow fadeInDown" data-wow-delay=".3s">자주 묻는 질문 <span class="top6">TOP6</span></h1>
                 <p class="wow fadeInDown" data-wow-delay=".5s">
-                    이용하시는데 고민인 부분이 있으신가요? <br> 궁금한 부분을 해결해드리기 위해 자주 묻는 질문을 준비하였습니다
+                   <strong> 이용하시는데 고민인 부분이 있으신가여? </strong> <br> 궁금한 부분을 해결해드리기 위해 자주 묻는 질문을 준비하였습니다
                 </p>
             </div>
             <div class="row">
@@ -409,8 +408,8 @@ Portfolio Section Start
                             </div>
                         </div>
                         <div class="media-body">
-                            <h4 class="media-heading">내 건강기록은 어디에?</h4>
-                            <p>로그인 기준 화면 상단 건강기록에서 <br> 입력하셨던 기록을 확인할 수 있습니다</p>
+                            <h4 class="media-heading"> <strong> 내 건강기록은 어디에?</strong></h4>
+                            <p>화면 우측 상단 <a href="gallery.html">건강기록</a>에서 <br> 입력하셨던 기록을 확인할 수 있습니다</p>
                         </div>
                     </div>
                 </div>
@@ -422,8 +421,8 @@ Portfolio Section Start
                             </div>
                         </div>
                         <div class="media-body">
-                            <h4 class="media-heading">사이트 이용 부담 금액은?</h4>
-                            <p>해당 사이트는 로그인/비로그인 <br> 모두 무료로 서비스를 이용할 수 있습니다</p>
+                            <h4 class="media-heading"><strong> 서비스 이용 부담 금액은?</strong></h4>
+                            <p><span class="subtitle-des_ef">모든 서비스</span>는 로그인 이용자 <br> <span class="subtitle-des_ef"> 모두 무료</span>로 서비스를 이용할 수 있습니다</p>
                         </div>
                     </div>
                 </div>
@@ -435,7 +434,7 @@ Portfolio Section Start
                             </div>
                         </div>
                         <div class="media-body">
-                            <h4 class="media-heading">개인정보와 건강정보 처리는?</h4>
+                            <h4 class="media-heading"><strong> 개인정보와 건강정보 처리는?</strong></h4>
                             <p><a href="">개인정보</a>와 <a href="">건강정보</a>는 이용약관에 <br> 의거하여 처리 및 보호하고 있습니다 </p>
                         </div>
                     </div>
@@ -448,8 +447,8 @@ Portfolio Section Start
                             </div>
                         </div>
                         <div class="media-body">
-                            <h4 class="media-heading">측정기기가 없을때는?</h4>
-                            <p><a href="">하티브 몰+</a>에서 합리적인 가격으로 <br> 여러분들에게 제품을 제공하고 있습니다</p>
+                            <h4 class="media-heading"><strong>측정기기가 없을때는?</strong></h4>
+                            <p><a href="">하티브 몰+</a>에서 합리적인 가격으로 <br> 여러분들은 제품을 만나볼 수 있습니다</p>
                         </div>
                     </div>
                 </div>
@@ -461,7 +460,7 @@ Portfolio Section Start
                             </div>
                         </div>
                         <div class="media-body">
-                            <h4 class="media-heading">제휴 문의</h4>
+                            <h4 class="media-heading"><strong> 제휴 문의</strong></h4>
                             <p>담당자 <a href="">메일</a>을 통해 연락 주시면 <br> 확인 후 곧 연락 드리겠습니다.</p>
                         </div>
                     </div>
@@ -474,7 +473,7 @@ Portfolio Section Start
                             </div>
                         </div>
                         <div class="media-body">
-                            <h4 class="media-heading">고객센터</h4>
+                            <h4 class="media-heading"> <strong>고객센터</strong></h4>
                             <p>추가적인 다른 질문들은 <br> <a href="">고객센터</a>를 통해 해결해 드리겠습니다</p>
                         </div>
                     </div>
@@ -495,7 +494,7 @@ Portfolio Section Start
             <div class="row">
                 <div class="col-md-12">
                     <div class="block">
-                        <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">나를 위한 만족도 조사
+                        <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">나를 위한  <strong> 만족도 조사</strong>
                             </h1>
                             <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">당신이 경험한 이야기를 우리에게
                                 나누어 주세요.<br>우리는 당신의 이야기로 더욱 만족스러운 서비스를 제공 드릴 것을 약속드립니다</p>

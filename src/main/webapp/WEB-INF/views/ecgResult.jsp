@@ -42,6 +42,8 @@
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/style2.css">
 	<link rel="stylesheet" href="resources/css/style5.css">
+	<link rel="stylesheet" href="resources/css/copybtn.css">
+	
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-straight/css/uicons-solid-straight.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
@@ -128,7 +130,7 @@
 
                                      <img src="https://cdn.pixabay.com/photo/2021/11/05/11/24/heart-6771075_1280.png" style="border-radius: 8px;" alt=""> 
                                      <video muted autoplay loop>
-                                        <source src="resources/images/ecgtest.mp4" type="video/mp4">
+                                        <source src="./images/ecgtest.mp4" type="video/mp4">
                                     </video>  
                                 </div>
                             </div>
@@ -146,17 +148,33 @@
                         </div>
 
                         <div class="container_result">
-                            <span class="subtitle">ECG 검사 결과</span>
+                            <div class="container_ECG_record">
+                                <span class="subtitle">ECG 검사 결과</span>
+                                <span>
+                                    <a href="" class="button">
+                                        <ul>
+                                            <li><i class="fi fi-ss-copy-alt"></i> <strong> 결과 복사</strong></li>
+                                            <li> <strong> 이미지 복사 중</strong></li>
+                                            <li> <strong> 복사 완료</strong></li>
+                                        </ul>
+                                        <div>
+                                            <svg viewBox="0 0 24 24"></svg>
+                                        </div>
+                                    </a>
+                                </span>
+                            </div>
+                            <br>
                             <div class="ECG_record">
                                 <div class="col-sm-9">
-                                <!-- <img class="ECG_record_IMG"
-                                        src="resources/images/ecgGraph/${LatestEcg.image_name}.png" />  -->
-                                <img class="ECG_record_IMG"
-                                        src="http://localhost:8081/user_ecg/${LatestEcg.image_name}.png" />  
+                                    <img class="ECG_record_IMG"
+                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkWXPK2vuqd2o3vqZBCRRmmNHrch6FKST7SA&usqp=CAU" />
                                 </div>
                                 <div class="col-sm-3 ECG_Result">
-                                    <pre
-                                        class="subtitle-des_ef1 pre_desi">${userInfo.user_name}님          <span style="color: rgb(255, 118, 140);">♥</span> ${LatestEcg.hr}bpm</pre>
+                                    <table class="ecg_result_table">
+                                        <th>${userInfo.user_name}님 </th>
+                                        <th><span style="color: rgb(255, 118, 140);">♥ </span> ${LatestEcg.hr}bpm</th>
+                                    </table>
+                                    <br>
                                     <table class="ecg_result_table">
                                         <thead>
                                             <tr>
@@ -200,9 +218,6 @@
                                     </table>
                                 </div>
                             </div>
-                        </div>
-                        <div class="Blood_pressure_result_1">
-                            <button class="ECG_test1"><i class="fi fi-ss-copy-alt"></i> 결과 복사</button>
                         </div>
                     </div>
                 </div>
@@ -330,11 +345,13 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="block">
-                        <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">나를 위한 만족도 조사
+                        <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">나를 위한  <strong> 만족도 조사</strong>
                             </h1>
                             <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">당신이 경험한 이야기를 우리에게
                                 나누어 주세요.<br>우리는 당신의 이야기로 더욱 만족스러운 서비스를 제공 드릴 것을 약속드립니다</p>
-                            <a href="https://forms.gle/JH1Ya6SnKUn6boTA6" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">참여하기</a>
+                            <a href="https://forms.gle/JH1Ya6SnKUn6boTA6"
+                                class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s"
+                                data-wow-duration="500ms">참여하기</a>
                     </div>
                 </div>
 
@@ -407,6 +424,7 @@
     <!-- template main js -->
     <script src="resources/js/main.js"></script>
     <script src="resources/js/ecgCheck.js"></script>
+    <script src="resources/js/copybtn.js"></script>
 </body>
 
 </html>
