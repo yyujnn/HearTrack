@@ -22,6 +22,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,9 +35,14 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import ht.project.entity.Admin;
+import ht.project.entity.BpResults;
+import ht.project.entity.BsResults;
 import ht.project.entity.Comment;
 import ht.project.entity.Community;
+import ht.project.entity.Ecg;
+import ht.project.entity.Health;
 import ht.project.entity.Likes;
+import ht.project.entity.User;
 import ht.project.mapper.HtMapper;
 
 @RestController
@@ -178,5 +184,32 @@ public class HtRESTController {
 		
 		return list;
 	}
+	
+	@GetMapping("/getEcgDetails")
+	public ArrayList<Ecg> getEcgData(@RequestParam("ecg_id") int ecgNum, Model model) {
+	    System.out.println("과연 아이디가 찍힐까요? " + ecgNum);
+
+	    ArrayList<Ecg> detailEcg = mapper.getEcgDetails(ecgNum);
+
+	    Map<String, String> cssClassMap = new HashMap<>();
+	    cssClassMap.put("sr", "result_1");
+	    cssClassMap.put("af", "result_2");
+	    cssClassMap.put("sb", "result_2");
+	    cssClassMap.put("gsvt", "result_3");
+
+	    // MyEcgList 객체 리스트에 대해 조건에 따라 클래스를 동적으로 설정
+	    for (Ecg ecg : detailEcg) {
+	        String result = ecg.getResults();
+	        String cssClass = cssClassMap.getOrDefault(result, "result_3");
+	        ecg.setCssClass(cssClass);
+	    }
+
+	    // Model에 ECG 정보를 저장하여 뷰로 전달합니다.
+	    model.addAttribute("ecgData", detailEcg);
+	    
+	    // 뷰 이름을 반환합니다. 뷰 이름은 화면에 표시할 HTML 템플릿 파일명입니다.
+	    return detailEcg;
+	}
+
 	
 }

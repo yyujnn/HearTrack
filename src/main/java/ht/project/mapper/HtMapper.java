@@ -80,6 +80,8 @@ public interface HtMapper {
 	ArrayList<Admin> getHealth();
 	// 분석에 걸린 시간 불러오는 매퍼
 	ArrayList<Admin> getDeep();
+
+	ArrayList<Ecg> getEcgDetails(int ecgNum);
 	
 	
 	

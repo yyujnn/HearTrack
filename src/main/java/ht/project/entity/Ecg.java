@@ -50,4 +50,5 @@ public class Ecg {
     // 이미지 이름
     private String image_name;
 
+
 }

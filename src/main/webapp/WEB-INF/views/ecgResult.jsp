@@ -48,15 +48,8 @@
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-straight/css/uicons-solid-straight.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
 </head>
-</head>
 
 <body>
-
-
-    <!--
-        ==================================================
-        Header Section Start
-        ================================================== -->
     <header id="top-bar" class="navbar-fixed-top animated-header">
         <div class="container">
             <div class="navbar-header">
@@ -123,19 +116,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="portfolio-content" style="text-align: center;">
-                        <h1 style="text-align: left; font-weight: bold;">심전도 검사</h1>
-                        <!-- <div class="test_card" style="display: inline-block; width: 50%; border-radius: 8px;">
-                            <div class="test_list">
-                                <div class="test_btn_group" style="display: flex; flex-direction: column; ">
-
-                                     <img src="https://cdn.pixabay.com/photo/2021/11/05/11/24/heart-6771075_1280.png" style="border-radius: 8px;" alt=""> 
-                                     <video muted autoplay loop>
-                                        <source src="./images/ecgtest.mp4" type="video/mp4">
-                                    </video>  
-                                </div>
-                            </div>
-                        </div> -->
-
+                        <h2 style="text-align: left; font-weight: bold;">심전도 검사</h2>
                         <!-- multistep form -->
                         <div id="msform">
                             <!-- progressbar -->
@@ -150,7 +131,7 @@
                         <div class="container_result">
                             <div class="container_ECG_record">
                                 <span class="subtitle">ECG 검사 결과</span>
-                                <span>
+                                <span id = "ECG_test">
                                     <a href="" class="button">
                                         <ul>
                                             <li><i class="fi fi-ss-copy-alt"></i> <strong> 결과 복사</strong></li>
@@ -168,7 +149,7 @@
                                 <div class="col-sm-9">
                                 <!-- <img class="ECG_record_IMG"
                                         src="resources/images/ecgGraph/${LatestEcg.image_name}.png" />  -->
-                                <img class="ECG_record_IMG" src="<c:url value='/image/${LatestEcg.image_name}.png' />" />> 
+                                <img class="ECG_record_IMG" src="<c:url value='/image/${LatestEcg.image_name}.png' />" /> 
                                 </div>
                                 <div class="col-sm-3 ECG_Result">
                                     <table class="ecg_result_table">
@@ -404,6 +385,49 @@
             </div>
         </div>
     </footer> <!-- /#footer -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    
+    <script type="text/javascript">
+ // 화면 캡쳐 기능
+    $(function(){
+        $("#ECG_test").on("click", function(){ // 버튼을 누르면 페이지로드 - captureArea(div)영역 캡쳐 - var image에 이미지 url을 담음 - <a>, id=downloadLink 인 href속성에 링크 담음 - <a>텍스트 눌렀을때 다운로드
+            
+            
+            // 캡쳐 전에 scale을 2로 설정한다.
+            html2canvas(document.querySelector(".ECG_record"), { scale: 2 }).then(canvas => {
+                saveAs(canvas.toDataURL('image/png'),"capture-test1.png");
+                
+
+                // 캡쳐가 끝난 후에 다시 scale을 원래대로 돌려놓는다.
+                resetScale();
+            });
+        });
+
+        function saveAs(uri, filename) {    
+            // 캡쳐된 파일을 이미지 파일로 내보낸다.
+            var link = document.createElement('a');
+            if (typeof link.download === 'string') { 
+                link.href = uri;
+                link.download = filename;
+                document.body.appendChild(link);
+                link.click(); 
+                document.body.removeChild(link);
+            } else {
+                window.open(uri);
+            }
+        }
+
+        function resetScale() {
+            // 캡쳐 전으로 scale을 원래대로 돌려놓는다.
+            document.body.style.webkitTransform = "";
+            document.body.style.mozTransform = "";
+            document.body.style.msTransform = "";
+            document.body.style.oTransform = "";
+            document.body.style.transform = "";
+        }
+        });
+    </script>
 
     <!-- Template Javascript Files
 	================================================== -->
@@ -424,8 +448,7 @@
     <script src="resources/plugins/facncybox/jquery.fancybox.js"></script>
     <!-- template main js -->
     <script src="resources/js/main.js"></script>
-    <script src="resources/js/ecgCheck.js"></script>
-    <script src="resources/js/copybtn.js"></script>
+    <script src="resources/js/copybtn.js"></script> 
 </body>
 
 </html>

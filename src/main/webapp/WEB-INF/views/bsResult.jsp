@@ -147,6 +147,7 @@
 
 
                         <div class="card_result_pre">
+                        <div class="capture">
                             <div class="ECG-body">
                                 <h2 class="ECG-title"><img src="resources/images/checkmark.png" alt=""> 혈당 검사 결과 확인하기 </h2>
                                 <p class="subtitle-des">보름에 한번 식전, 매 식후 2시간 측정을 하여 확인하는 것을 권장해 드립니다.</p>
@@ -162,7 +163,7 @@
                                     </div>
                                     <div class="health-main">
                                         <div class="skill">
-                                            <div class="outer">
+                                            <div class="outer" id="outerL">
                                                 <div class="inner">
                                                     <div id="number">
                                                         <p id="bs_emp">${health.bs_emp }</p>
@@ -190,7 +191,7 @@
                                     </div>
                                     <div class="health-main">
                                         <div class="skill">
-                                            <div class="outer">
+                                            <div class="outer" id="outerR">
                                                 <div class="inner">
                                                     <div id="number1">
                                                         <p id="bs_ful">${health.bs_ful}</p>
@@ -214,6 +215,9 @@
                                     </div>
                                 </div>
                             </div>
+                            </div>
+                            
+                            
                             <div class="container_ECG_record">
                                 <div class="Blood_pressure_info">
                                     <span class="pressure_info1"> <span class="result_1">● </span> 정상 </span>
@@ -221,7 +225,7 @@
                                     <span class="pressure_info3"> <span class="result_4">● </span> 당뇨 전단계 </span>
                                     <span class="pressure_info3"> <span class="result_2">● </span> 고혈당 </span>
                                 </div>
-                                <span>
+                                <span id="ECG_test">
                                     <a href="" class="button">
                                         <ul>
                                             <li><i class="fi fi-ss-copy-alt"></i> <strong> 결과 복사</strong></li>
@@ -344,6 +348,9 @@
         </div>
     </footer> <!-- /#footer -->
     
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    
     <script>
 
 
@@ -430,6 +437,57 @@
 	        }
 	    }, 15);
 
+	    
+	 // 화면 캡쳐 기능
+        $(function(){
+            $("#ECG_test").on("click", function(){ // 버튼을 누르면 페이지로드 - captureArea(div)영역 캡쳐 - var image에 이미지 url을 담음 - <a>, id=downloadLink 인 href속성에 링크 담음 - <a>텍스트 눌렀을때 다운로드
+                
+                // 효과를 추가할 요소
+                const outerL = document.querySelector("#outerL");
+                const outerR = document.querySelector("#outerR");
+
+                // 캡쳐되는 요소에 border 효과를 추가
+                outerL.style.border = "6px solid rgba(0, 0, 70, 0.1)";
+                outerR.style.border = "6px solid rgba(0, 0, 70, 0.1)";
+                
+                
+                // 캡쳐 전에 scale을 2로 설정한다.
+                html2canvas(document.querySelector(".capture"), { scale: 2 }).then(canvas => {
+                    saveAs(canvas.toDataURL('image/png'),"capture-test1.png");
+                    
+                     // 캡쳐가 끝난 후에 다시 그림자 스타일 제거
+                     outerL.style.border  = "";
+                     outerR.style.border  = "";
+
+                    // 캡쳐가 끝난 후에 다시 scale을 원래대로 돌려놓는다.
+                    resetScale();
+                });
+            });
+
+            function saveAs(uri, filename) {    
+                // 캡쳐된 파일을 이미지 파일로 내보낸다.
+                var link = document.createElement('a');
+                if (typeof link.download === 'string') { 
+                    link.href = uri;
+                    link.download = filename;
+                    document.body.appendChild(link);
+                    link.click(); 
+                    document.body.removeChild(link);
+                } else {
+                    window.open(uri);
+                }
+            }
+
+            function resetScale() {
+                // 캡쳐 전으로 scale을 원래대로 돌려놓는다.
+                document.body.style.webkitTransform = "";
+                document.body.style.mozTransform = "";
+                document.body.style.msTransform = "";
+                document.body.style.oTransform = "";
+                document.body.style.transform = "";
+            }
+            });
+        
 
         
         
@@ -455,7 +513,6 @@
     <script src="resources/plugins/facncybox/jquery.fancybox.js"></script>
     <!-- template main js -->
     <script src="resources/js/main.js"></script>
-    <script src="resources/js/ecgCheck.js"></script>
     <script src="resources/js/copybtn.js"></script>
 </body>
 

@@ -48,12 +48,41 @@
     <link rel="stylesheet" href="resources/css/style4.css">
     <link rel="stylesheet" href="resources/css/style5.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    
 </head>
 
 <body>
 
+<script>
+    
+$(document).ready(function () {
+    // 처음에는 5개만 보이도록 설정
+    const itemsToShow = 5;
+    $(".ECG_record_table tbody tr:gt(" + (itemsToShow - 1) + ")").hide();
+    $(".bp_record tbody tr:gt(" + (itemsToShow - 1) + ")").hide();
+    $(".blood_sugar_table tbody tr:gt(" + (itemsToShow - 1) + ")").hide();
 
+    // "더 보기" 버튼 클릭 시 추가 항목 보이기 (ECG 섹션)
+    $("#loadMoreEcg").on("click", function (e) {
+        e.preventDefault();
+        $(".ECG_record_table tbody tr:gt(" + (itemsToShow - 1) + ")").toggle();
+    });
+
+    // "더 보기" 버튼 클릭 시 추가 항목 보이기 (혈압 섹션)
+    $("#loadMoreBp").on("click", function (e) {
+        e.preventDefault();
+        $(".bp_record tbody tr:gt(" + (itemsToShow - 1) + ")").toggle();
+    });
+
+    // "더 보기" 버튼 클릭 시 추가 항목 보이기 (혈당 섹션)
+    $("#loadMoreBs").on("click", function (e) {
+        e.preventDefault();
+        $(".blood_sugar_table tbody tr:gt(" + (itemsToShow - 1) + ")").toggle();
+    });
+});
+
+
+</script>
     <!--
         ==================================================
         Header Section Start
@@ -121,7 +150,6 @@
 
 
     <section class="works works-fit">
-
         <div class="container">
             <h4 class="subtitle subtitle_start">나의 건강기록</h4>
             <div class="wrapper">
@@ -254,10 +282,6 @@
                 </div> <!-- end clash-card barbarian-->
             </div> <!-- end wrapper -->
 
-
-
-
-
         </div>
 
     </section>
@@ -273,8 +297,7 @@
             <div class="ECG_record">
                 <h4 class="subtitle2">최근 ECG 그래프 </h4>
                 <div class="col-sm-9">
-                    <img class="ECG_record_IMG"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkWXPK2vuqd2o3vqZBCRRmmNHrch6FKST7SA&usqp=CAU" />
+                    <img class="ECG_record_IMG" src="<c:url value='/image/${LatestEcg.image_name}.png' />" /> 
                 </div>
                 <div class="col-sm-3 ECG_Result">
                     <table class="ecg_result_table">
@@ -324,133 +347,134 @@
                     </table>
                 </div>
             </div>
-            <div class="ECG_record_List">
-                <div class="container_ECG_record">
-                    <h4 class="subtitle2">최근 검사 기록</h4>
-                    <div class="btn_Test">
-                        <h4 class="subtitle2"><a href="">+ 더 보기</a></h4>
-                    </div>
-                </div>
-                <div class="ECG_record_table_box">
-                    <table class="ECG_record_table">
-                        <thead>
-                            <tr>
-                                <th>검사 날짜</th>
-                                <th>검사 결과</th>
-                                <th>확인 하기</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach items="${MyEcgList}" var= "ecgList" >
-                        	<tr>
-                                <td><fmt:formatDate value="${ecgList.input_date}" pattern="yy-mm-dd" /></td>
-                                <td><span class="${ecgList.cssClass}">● </span>  ${ecgList.resultsText}</td>
-                                <td><a href="">다시 보기</a></td>
-                            </tr>	
-                        	</c:forEach>
-                           
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section> <!-- /#feature -->
+            <!-- 최근 검사 기록 테이블 -->
+			<div class="container">
+	            <div class="container_ECG_record">
+	                <h4 class="subtitle2">최근 검사 기록</h4>
+	                <div class="btn_Test">
+	                    <h4 class="subtitle2"><a href="#" id="loadMoreEcg">+ 더 보기</a></h4>
+	                </div>
+	            </div>
+	            <div class="ECG_record_table_box">
+	                <table class="ECG_record_table">
+	                    <thead>
+	                        <tr>
+	                            <th>검사 날짜</th>
+	                            <th>검사 결과</th>
+	                            <th>확인 하기</th>
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+	                        <c:forEach items="${MyEcgList}" var="ecgList">
+	                            <tr>
+	                                <td>
+	                                    <fmt:formatDate value="${ecgList.input_date}" pattern="yy-MM-dd" />
+	                                </td>
+	                                <td><span class="${ecgList.cssClass}">● </span> ${ecgList.resultsText}</td>
+	                                <td>
+				                        <a href="#" class="viewAgainLink" data-ecg-id="${ecgList.ecg_num}">다시 보기</a>
+				                    </td>
+	                            </tr>
+	                        </c:forEach>
+	                    </tbody>
+	                </table>
+	            </div>
+	            </div>
+	        </div>
+	    </section> <!-- /#feature -->
     
-    
-    
-    <section id="feature" class="bp_record">
-        <div class="container">
-            <div class="container_ECG_record">
-                <span class="subtitle">나의 혈압</span>
-                <span>
-                    <a href="bpCheck" class="button_ECG btnPush_ECG">다시 검사하기</a>
-                </span>
-            </div>
-            <br>
-            <div class="container_ECG_record">
-                <h4 class="subtitle2">최근 검사 기록</h4>
-                <div class="btn_Test">
-                    <h4 class="subtitle2"><a href="">+ 더 보기</a></h4>
-                </div>
-            </div>
-            <div class="table-responsive">
-                <table class="blood_pre_table">
-                    <thead>
-                        <tr>
-                            <th scope="col" class="col_th">검사 날짜</th>
-                            <th scope="col" class="col_th">최고혈압</th>
-                            <th scope="col" class="col_th">최저혈압</th>
-                            <th scope="col" class="col_th">검사 결과</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+	<div class="section-container">
+	    <section id="feature" class="bp_record">
+		    <div class="container">
+		        <div class="container_ECG_record">
+		            <span class="subtitle">나의 혈압</span>
+		            <span>
+		                <a href="bpCheck" class="button_ECG btnPush_ECG">다시 검사하기</a>
+		            </span>
+		        </div>
+		        <br>
+		        <div class="container_ECG_record">
+		            <h4 class="subtitle2">최근 검사 기록</h4>
+		            <div class="btn_Test">
+		                <h4 class="subtitle2"><a href="#" id="loadMoreBp">+ 더 보기</a></h4>
+		            </div>
+		        </div>
+		        <div class="table-responsive">
+		            <table class="blood_pre_table">
+		                <thead>
+		                    <tr>
+		                        <th scope="col" class="col_th">검사 날짜</th>
+		                        <th scope="col" class="col_th">최고혈압</th>
+		                        <th scope="col" class="col_th">최저혈압</th>
+		                        <th scope="col" class="col_th">검사 결과</th>
+		                    </tr>
+		                </thead>
+		                <tbody>
+		
+		                    <c:forEach items="${MyBpList}" var="item" varStatus="loop">
+		                        <tr class="hidden-row-bp">
+		                            <td class="noBorder noBorder_td"><fmt:formatDate value="${item.input_date}" pattern="MM.dd  HH:mm" /></td>
+		                            <td class="noBorder noBorder_td">${item.bp_high}</td>
+		                            <td class="noBorder noBorder_td">${item.bp_low}</td>
+		                            <td class="noBorder noBorder_td">
+		                                <c:set var="bpResult" value="${item.determineBpResult()}" />
+		                                <span class="${bpResult.cssClass}">●</span> ${bpResult.resultText}
+		                            </td>
+		                        </tr>
+		                    </c:forEach>
+		
+		                </tbody>
+		            </table>
+		        </div>
+		    </div>
+	 </section>
+	</div> <!-- /#feature -->
 
-						<c:forEach items="${MyBpList}" var="item">
-						    <tr>
-						        <td class="noBorder noBorder_td"><fmt:formatDate value="${item.input_date}" pattern="MM.dd  HH:mm" /></td>
-						        <td class="noBorder noBorder_td">${item.bp_high}</td>
-						        <td class="noBorder noBorder_td">${item.bp_low}</td>
-						        <td class="noBorder noBorder_td">
-						            <c:set var="bpResult" value="${item.determineBpResult()}" />
-						            <span class="${bpResult.cssClass}">●</span> ${bpResult.resultText}
-						        </td>
-						    </tr>
-						</c:forEach>
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section> <!-- /#feature -->
     
     <section class="works" id="bs_record">
-        <div class="container blood_sugar_container">
-            <div class="container_ECG_record">
-                <span class="subtitle">나의 혈당</span>
-                <span>
-                    <a href="bsCheck" class="button_ECG btnPush_ECG">다시 검사하기</a>
-                </span>
-            </div>
-            <br>
-            <div class="container_ECG_record">
-                <h4 class="subtitle2">최근 검사 기록</h4>
-                <div class="btn_Test">
-                    <h4 class="subtitle2"><a href="">+ 더 보기</a></h4>
-                </div>
-            </div>
-            <div class="table-responsive">
-                <table class="blood_sugar_table">
-                    <thead>
-                        <tr>
-                            <th scope="col" class="col_th">검사 날짜</th>
-                            <th scope="col" class="col_th">공복 혈당</th>
-                            <th scope="col" class="col_th">식후 혈당</th>
-                            <th scope="col" class="col_th">검사 결과</th>
-                        </tr>
-                    </thead>
-                    
-                    <tbody>
-          
-						
-						<c:forEach items="${MyBsList}" var="item">
-						    
-						    <tr>
-						        <td class="noBorder noBorder_td"><fmt:formatDate value="${item.input_date}" pattern="MM.dd  HH:mm" /></td>
-						        <td class="noBorder noBorder_td">${item.bs_emp}</td>
-						        <td class="noBorder noBorder_td">${item.bs_ful}</td>
-						         <td class="noBorder noBorder_td">
-						            <c:set var="bsResult" value="${item.determineBsResult()}" />
-						            <span class="${bsResult.cssClass}">●</span> ${bsResult.resultText}
-						        </td>
-						    </tr>
-						
-						</c:forEach>
-					
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
+	    <div class="container blood_sugar_container">
+	        <div class="container_ECG_record">
+	            <span class="subtitle">나의 혈당</span>
+	            <span>
+	                <a href="bsCheck" class="button_ECG btnPush_ECG">다시 검사하기</a>
+	            </span>
+	        </div>
+	        <br>
+	        <div class="container_ECG_record">
+	            <h4 class="subtitle2">최근 검사 기록</h4>
+	            <div class="btn_Test">
+	                <h4 class="subtitle2"><a href="#" id="loadMoreBs">+ 더 보기</a></h4>
+	            </div>
+	        </div>
+	        <div class="table-responsive">
+	            <table class="blood_sugar_table">
+	                <thead>
+	                    <tr>
+	                        <th scope="col" class="col_th">검사 날짜</th>
+	                        <th scope="col" class="col_th">공복 혈당</th>
+	                        <th scope="col" class="col_th">식후 혈당</th>
+	                        <th scope="col" class="col_th">검사 결과</th>
+	                    </tr>
+	                </thead>
+	                
+	                <tbody>
+	                    <c:forEach items="${MyBsList}" var="item" varStatus="loop">
+	                        <tr class="hidden-row-bs">
+	                            <td class="noBorder noBorder_td"><fmt:formatDate value="${item.input_date}" pattern="MM.dd  HH:mm" /></td>
+	                            <td class="noBorder noBorder_td">${item.bs_emp}</td>
+	                            <td class="noBorder noBorder_td">${item.bs_ful}</td>
+	                            <td class="noBorder noBorder_td">
+	                                <c:set var="bsResult" value="${item.determineBsResult()}" />
+	                                <span class="${bsResult.cssClass}">●</span> ${bsResult.resultText}
+	                            </td>
+	                        </tr>
+	                    </c:forEach>
+	                </tbody>
+	            </table>
+	        </div>
+	    </div>
+	</section>
+
 
 
     <!--
@@ -517,56 +541,23 @@
         </div>
     </footer> <!-- /#footer -->
 
-
-
-    <!-- The Modal -->
-    <!-- The Modal -->
-    <!-- The Modal -->
-    <!-- The Modal -->
-    <!--
-    <div class="modal fade" id="Modi_info_Modal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <div class="Modi_info_Modal-header">-->
-    <!-- Modal Header 
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
--->
-    <!-- Modal body 
-                <div class="Modi_info_Modal-body">
-                    <div class="container_login">
-                        <h2 class="Modi_info_Modal-title">HearTrack</h2>
-                        <h4 class="Modi_info_Modal-subtitle ">회원정보수정</h4>-->
-    <!-- Form
-                        <form action="" method="post" class="Modi_info_id">
-                            <p>Password 변경</p>
-                            <div class="input__block">
-                                <input type="password" placeholder="변경할 비밀번호 입력" class="input" id="password" />
-                            </div>
-                            <p>신장 변경</p>
-                            <div class="input__block">
-                                <input type="password" placeholder="변경할 비밀번호 입력" class="input" id="password" />
-                            </div>
-                            <p>몸무게 변경</p>
-                            <div class="input__block">
-                                <input type="password" placeholder="변경할 비밀번호 입력" class="input" id="password" />
-                            </div>
-                            <div>
-                                <p>또는</p>
-                            </div>
- -->
-    <!-- Modi in button 
-                            <button class="Modi_info__btn">
-                                변경
-                            </button>
-                        </form>
-                    </div>
-                </div>
+<!-- 모달 -->
+<div class="modal" id="ecgModal" style = "margin-top : 5%;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- 모달 본문 -->
+            <div class="modal-body">
+            </div>
+            <!-- 모달 푸터 -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
             </div>
         </div>
     </div>
--->
+</div>
 
 
     <!-- Template Javascript Files
@@ -588,6 +579,7 @@
     <script src="resources/plugins/facncybox/jquery.fancybox.js"></script>
     <!-- template main js -->
     <script src="resources/js/main.js"></script>
+    <script src="resources/js/healthRecord.js"></script>
 </body>
 
 </html>
