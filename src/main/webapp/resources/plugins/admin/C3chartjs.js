@@ -410,7 +410,6 @@
 		}
 
 
-		// JavaScript
 		$(document).ready(function() {
 			$.ajax({
 				url: 'getHealth',
