@@ -128,8 +128,8 @@ $(document).ready(function () {
                         </li>
                         
                         
-                        <li><a href="healthRecord">Pages건강기록</a></li>
-                        <li><a href="community">Service커뮤니티</a></li>
+                        <li><a href="healthRecord">건강기록</a></li>
+                        <li><a href="community">커뮤니티</a></li>
 
                         <li>
 						    <% if (session.getAttribute("user_id") != null) { %>

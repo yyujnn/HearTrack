@@ -83,6 +83,14 @@ public interface HtMapper {
 
 	ArrayList<Ecg> getEcgDetails(int ecgNum);
 	
+	// 커뮤니티 등록하기
+	void insertCommunity(Community com);
+
+	// 커뮤니티 카드
+	Ecg getEcgInfo(Integer ecg_num);
+
+	Health getHealthInfo(Integer h_num);
+	
 	
 	
 	

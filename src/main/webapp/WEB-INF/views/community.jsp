@@ -30,15 +30,41 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script>
-	// 카테고리
-    function filterByCategory(category) {
-        console.log(category); // 카테고리 값 출력
-        
-        $("article").hide(); // 모든 게시물 숨기기
-        $("article[data-category='" + category + "']").show(); // 선택한 카테고리 게시물만 보이기
+	function filterPosts(category) {
+        const articles = document.querySelectorAll('article');
+        articles.forEach(article => {
+            const dataCategory = article.getAttribute('data-category');
+            if (category === 'all' || category === dataCategory) {
+                article.style.display = 'block';
+            } else {
+                article.style.display = 'none';
+            }
+        });
     }
-    
-    
+	
+	
+	// 페이지 로딩이 완료된 후 실행
+	  $(document).ready(function() {
+	    // 카테고리 선택 시 동작할 함수
+	    function filterCategory(category) {
+	      // 모든 게시글을 숨김 처리
+	      $(".blog-content").hide();
+	      // 선택한 카테고리에 해당하는 게시글만 보여줌
+	      $(".blog-content[data-category='" + category + "']").show();
+	    }
+
+	    // 카테고리 선택 링크 클릭 이벤트 처리
+	    $(".category-link").click(function() {
+	      var selectedCategory = $(this).data("category");
+	      filterCategory(selectedCategory);
+	    });
+
+	    // '모두 보기' 클릭 시 모든 게시글 보여주기
+	    $(".show-all").click(function() {
+	      $(".blog-content").show();
+	    });
+	  });
+	
     // 댓글
     var user_id = '${userInfo.user_id}'; // 로그인 되어있는 user_id
 
@@ -140,6 +166,12 @@
 	 });
 </script>
 
+<style type="text/css">
+	.subtitle-des{
+		text-align: center;
+	}
+</style>
+
 </head>
 
 <body>
@@ -186,14 +218,14 @@
                         </li>
                         
                         
-                        <li><a href="healthRecord">Pages건강기록</a></li>
-                        <li><a href="community">Service커뮤니티</a></li>
+                        <li><a href="healthRecord">건강기록</a></li>
+                        <li><a href="community">커뮤니티</a></li>
 
                         <li>
 						    <% if (session.getAttribute("user_id") != null) { %>
 						        <a href="logout">로그아웃</a>
 						    <% } else { %>
-						        <a href="login">Contact로그인</a>
+						        <a href="login">로그인</a>
 						    <% } %>
 						</li>
 
@@ -204,7 +236,7 @@
         </div>
     </header>
 
-    <section id="blog-full-width" style="background-color: #ededed; ">
+    <section id="blog-full-width" style="background-color: #fcfcfc; ">
         <div class="container">
             <div class="row">
                 <div class="col-md-4" style="width : 20%" !important>
@@ -233,7 +265,7 @@
                         </div>
                     </div>
                     
-                    	<a href="addwrite" class="button_ECG btnPush_ECG">등록하기</a>
+                    	<a href="register" class="button_ECG btnPush_ECG">등록하기</a>
                 	
                 </div>
                 
@@ -243,7 +275,8 @@
                 
                 <!-- 게시글 반복문 !!!!!!!! -->
                 <c:forEach items="${comlist}" var="com" varStatus="loop" >
-                 <article class="wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms"
+                 
+                 <article id="post-${com.p_num}"class="wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms"
                         style="margin-top: ${loop.first ? '60px' : '0'};" data-category="${com.category}">
                         <div class="blog-content">
                             <div style="display: flex; align-items: center;">
@@ -261,49 +294,79 @@
                                 <h3 class="blogpost-title">${com.user.user_name}</h3>
                             </div>
                             <div class="blog-meta">
-                            
                                 <span><fmt:formatDate pattern="yyyy년 MM월 dd일 a h:mm" value="${com.input_date}" /></span>
-                                
                             </div>
                             <p> ${com.content}</p>
                             <div class="blog-post-image">
+                                <c:choose>
+							    <c:when test="${com.ecg_num != null}">
+							        <div class="card-container">
+							            <div class="card_fr">
+							                <div class="front">
+							                    <div class="subtitle-des_healthcard">
+							                        <img src="resources/images/ecg_com_icon.png" alt=""> <strong>ECG</strong> <span class="subtitle-des_ef">
+							                            ${com.ecg.resultsText}
+							                        <br> <div class="wr_card_date">
+		                                              <span class="wr_card_date_1"><fmt:formatDate value="${com.ecg.input_date}" pattern="yyyy년 MM월 dd일 a h:mm" />
+							                   		 </span>
+                               					 </div>
+							                   
+							                    </div>
+							                </div>
+							            </div>
+							        </div>
+							    </c:when>
+							    <c:when test="${com.h_num != null}">
+							    	<c:set var="bp_high" value="${com.health.bp_high}" />
+        							<c:set var="bs_emp" value="${com.health.bs_emp}" />
+        
+							    
+							       <c:if test="${bp_high == 0}">
+							            <!-- 출력할 혈당 카드 -->
+							            <div class="card-container">
+							                <div class="card_fr">
+							                    <div class="front">
+							                        <div class="subtitle-des_healthcard">
+							                            <img src="resources/images/혈당아이콘.png" alt=""> 나의 공복혈당은 <span class="subtitle-des_ef">
+							                                ${com.health.bs_emp}mg/dL
+							                            </span>이고, 식후혈당은 <span class="subtitle-des_ef">${com.health.bs_ful}mg/dL</span> 입니다.
+							                            <br><div class="wr_card_date">
+		                                                <span class="wr_card_date_1"> <fmt:formatDate value="${com.health.input_date}" pattern="yyyy년 MM월 dd일 a h:mm" />
+							                         	</span>
+                               						 </div>
+		                                                
+							                        </div>
+							                    </div>
+							                </div>
+							            </div>
+							        </c:if>
+							        <c:if test="${bs_emp == 0}">
+							            <!-- 출력할 혈압 카드 -->
+							            <div class="card-container">
+							                <div class="card_fr">
+							                    <div class="front">
+							                        <div class="subtitle-des_healthcard">
+							                            <img src="resources/images/혈압아이콘.png" alt=""> 나의 최고혈압은 <span class="subtitle-des_ef">
+							                                ${com.health.bp_high}mmHg
+							                            </span>이고, 최저혈압은 <span class="subtitle-des_ef">${com.health.bp_low}mmHg</span> 입니다.
+							                            <br> <div class="wr_card_date">
+		                                              <span class="wr_card_date_1"><fmt:formatDate value="${com.health.input_date}" pattern="yyyy년 MM월 dd일 a h:mm" />
+							                        	</span>
+                               						 </div>
+							                        </div>
+							                    </div>
+							                </div>
+							            </div>
+							        </c:if>
+							        
+							        
+							    </c:when>
+							    <c:otherwise>
+							    
+							    </c:otherwise>
+							</c:choose>
+
                                 
-                                <div class="card-container">
-                                    <div class="card_fr">
-                                        <div class="front">
-                                            <p class="subtitle-des">
-                                            <img src="resources/images/ecg_com_icon.png" alt=""> <strong>ECG</strong> <span class="subtitle-des_ef">
-                                                정상 동리듬
-                                            <br> 2023년 7월 25일 오후 7:39
-                                            </p>
-                                        </div>
-                                        <img class = "test1" src="resources/images/com_ecg.png" alt=""> 
-                                    </div>
-                                </div>
-                                <div class="card-container">
-                                    <div class="card_fr">
-                                        <div class="front">
-                                            <p class="subtitle-des">
-                                                <img src="resources/images/혈당아이콘.png" alt=""> 나의 공복혈당은 <span class="subtitle-des_ef">
-                                                    80mg/dl
-                                                </span>이고, 식후혈당은 <span class="subtitle-des_ef"> 120mg/dl </span> 입니다.
-                                                <br> 2023년 7월 25일 오후 7:39
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-container">
-                                    <div class="card_fr">
-                                        <div class="front">
-                                            <p class="subtitle-des">
-                                                <img src="resources/images/혈압아이콘.png" alt=""> 나의 공복혈당은 <span class="subtitle-des_ef">
-                                                    80mg/dl
-                                                </span>이고, 식후혈당은 <span class="subtitle-des_ef"> 120mg/dl </span> 입니다.
-                                                <br> 2023년 7월 25일 오후 7:39
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                             
                             
@@ -343,7 +406,7 @@
                         </div>
                     </article>
  
-                    <div style="background-color: #ededed; height: 10px;"></div>
+                    <div style="background-color: #fcfcfc; height: 10px;"></div>
                    
                  </c:forEach>
                  
@@ -358,14 +421,18 @@
                             <h3 class="widget-head">Categories</h3>
                             <ul>
                                 <li>
-                                    <a href="#" onclick="filterByCategory('공지')">◼ 공지사항</a> <span class="badge">1</span>
-                                    	
-                                </li>
-                                <li>
-                                    <a href="">◼ 일반</a> <span class="badge">2</span>
-                                </li>
-                                
-                                
+								    <a href="#" onclick="filterPosts('공지')">◼ 공지사항</a>
+								    <span class="badge">1</span>
+								</li>
+								<li>
+								    <a href="#" onclick="filterPosts('일반')">◼ 일반</a>
+								    <span class="badge">2</span>
+								</li>
+								<li>
+								    <a href="#"  onclick="filterPosts('all')">◼ 모두 보기</a>
+								    <!-- 'all' 값을 전달하여 모든 게시글을 보여주도록 처리 -->
+								</li>
+
                             </ul>
                         </div>
 
@@ -373,15 +440,15 @@
                             <h2>최근 게시물</h2>
                             <ul>
                                 <li>
-                                    <a href="#">${comlist[0].content}</a><br>
+                                    <span class="recent">${comlist[0].content}</span><br>
                                     <time><fmt:formatDate pattern="yyyy년 MM월 dd일 a h시 mm분" value="${comlist[0].input_date}" /></time>
                                 </li>
                                 <li>
-                                    <a href="#">${comlist[1].content}</a><br>
+                                    <span class="recent">${comlist[1].content}</span><br>
                                     <time><fmt:formatDate pattern="yyyy년 MM월 dd일 a h시 mm분" value="${comlist[1].input_date}" /></time>
                                 </li>
                                 <li>
-                                    <a href="#">${comlist[2].content}</a><br>
+                                    <span class="recent">${comlist[2].content}</span><br>
                                     <time><fmt:formatDate pattern="yyyy년 MM월 dd일 a h시 mm분" value="${comlist[2].input_date}" /></time>
                                    
                                 </li>
@@ -394,7 +461,7 @@
                     </div>
                     
                     
-          
+          		</div>
             </div>
         </div>
     </section>

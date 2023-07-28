@@ -25,36 +25,15 @@
     <link rel="stylesheet" href="resources/plugins/owl-carousel/owl.carousel.css">
     <link rel="stylesheet" href="resources/plugins/owl-carousel/owl.theme.css">
     <link rel="stylesheet" href="resources/plugins/facncybox/jquery.fancybox.css">
-	<link rel="stylesheet" href="resources/css/style.css">
-    <link rel="stylesheet" href="resources/css/style2.css">
-    <link rel="stylesheet" href="resources/css/style3.css">
-	<link rel="stylesheet" href="resources/css/style5.css">
-	<link rel="stylesheet" href="resources/css/style7.css">
-	
-	
+    <link rel="stylesheet" href="resources/css/community.css">
+    <link rel="stylesheet" href="resources/css/style7.css">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<style>
-		.sidebar .widget {
-		  margin-bottom: 40px;
-		  padding: 15px;
-		  border: 1px solid #dedede;
-		}
-		
-		
-		.pressure_input{
-			box-shadow: none;
-		}
-				
-	</style>
 
 </head>
 
 <body>
-    <!--
-        ==================================================
-        Header Section Start
-        ================================================== -->
+   
+
     <header id="top-bar" class="navbar-fixed-top animated-header">
         <div class="container">
             <div class="navbar-header">
@@ -70,7 +49,7 @@
                 <!-- logo -->
                 <div class="navbar-brand">
                     <a href="index">
-                        <img src="resources/images/logo.png" alt="">
+                        <img src="resources/images/logo.png" alt="" stlye="width : 130px" !important>
                     </a>
                 </div>
                 <!-- /logo -->
@@ -96,14 +75,14 @@
                         </li>
                         
                         
-                        <li><a href="healthRecord">Pages건강기록</a></li>
-                        <li><a href="community">Service커뮤니티</a></li>
+                        <li><a href="healthRecord">건강기록</a></li>
+                        <li><a href="community">커뮤니티</a></li>
 
                         <li>
 						    <% if (session.getAttribute("user_id") != null) { %>
 						        <a href="logout">로그아웃</a>
 						    <% } else { %>
-						        <a href="login">Contact로그인</a>
+						        <a href="login">로그인</a>
 						    <% } %>
 						</li>
 
@@ -113,115 +92,202 @@
             <!-- /main nav -->
         </div>
     </header>
- 
- 	 <section id="blog-full-width" style="background-color: #ededed; ">
-	    
-	    
-	    <section id="feature">
-	        <div class="container">
-	            <div class="container_ECG_record">
-	                <span class="subtitle">게시글 쓰기</span>
-	
-	 
-	                <span>
-	                    <a href="" class="button_ECG btnPush_ECG">등록하기</a>
-	                </span>
-	
-	            </div>
-	            <div>
-	                <div class="Blood_pressure_input add_write_section">
-	                    <form action="">
-	                        <p class="subtitle-des_ef1 pressure_input" style="background-color: #fff;"><strong>내용 입력</strong></p>
-	                        <textarea class="pressure_input text_ar" name="" id="" cols="30" rows="10"></textarea>
-	                    </form>
-	                </div>
-	            </div>
-	            <div class="container">
-	                <div class="health_Card">
-	                    <div class="card-container">
-	                        <div class="card_fr">
-	                            <div class="front">
-	                                ECG
-	                            </div>
-	                        </div>
-	                    </div>
-	                    <div class="card-container">
-	                        <div class="card_fr">
-	                            <div class="front">
-	                                <p class="subtitle-des">
-	                                    <img src="resources/images/혈당아이콘.png" alt=""> 나의 공복혈당은 <span class="subtitle-des_ef">
-	                                        80mg/dl
-	                                    </span>이고, 식후혈당은 <span class="subtitle-des_ef"> 120mg/dl </span> 입니다.
-	                                </p>
-	                            </div>
-	                        </div>
-	                    </div>
-	                    <div class="card-container">
-	                        <div class="card_fr">
-	                            <div class="front">
-	                                <p class="subtitle-des">
-	                                    <img src="resources/images/혈압아이콘.png" alt=""> 나의 공복혈당은 <span class="subtitle-des_ef">
-	                                        80mg/dl
-	                                    </span>이고, 식후혈당은 <span class="subtitle-des_ef"> 120mg/dl </span> 입니다.
-	                                </p>
-	                            </div>
-	                        </div>
-	                    </div>
-	                    <div class="artboard">
-	                        <div class="button_add">
-	                            <div class="links">
-	                                <span>
-	                                    <div class="checks etrans">
-	                                        <input type="radio" id="add_ECG" value="add_ECG" name="add_result">
-	                                        <label for="add_ECG">ECG</label>
-	                                    </div>
-	                                    <div class="checks etrans">
-	                                        <input type="radio" id="add_Pre" value="add_ECG" name="add_result">
-	                                        <label for="add_Pre">혈압</label>
-	                                    </div>
-	                                    <div class="checks etrans">
-	                                        <input type="radio" id="add_Sug" value="add_ECG" name="add_result">
-	                                        <label for="add_Sug">혈당</label>
-	                                    </div>
-	                                </span>
-	                                <div class="overlay"><a>나의 건강정보 공유하기</a></div>
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>
-	            </div>
-	    </section>
-	  </section>
 
-
-
-
-
-
-    <!--
-            ==================================================
-            Call To Action Section Start
-            ================================================== -->
-    <section id="call-to-action">
+    <section id="blog-full-width" style="background-color: #fcfcfc; ">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
-                    <div class="block">
-                        <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">나를 위한  <strong> 만족도 조사</strong>
-                            </h1>
-                            <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">당신이 경험한 이야기를 우리에게
-                                나누어 주세요.<br>우리는 당신의 이야기로 더욱 만족스러운 서비스를 제공 드릴 것을 약속드립니다</p>
-                            <a href="https://forms.gle/JH1Ya6SnKUn6boTA6"
-                                class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s"
-                                data-wow-duration="500ms">참여하기</a>
+                <div class="col-md-4" style="width : 20%" !important>
+                    <div class="sidebar">
+                        
+                        <div class="author widget" style="background-color: #fff; margin-bottom: 10px">
+                            <img class="img-responsive" src="resources/images/profile_img.png.webp">
+                            <div class="author-body text-center">
+                                <div class="author-img">
+                                   
+                                    <%-- 여성인 경우 --%>
+									<c:if test="${userInfo.user_gender eq '여'}">
+									  <img src="resources/images/woman.png">
+									</c:if>
+									
+									<%-- 남성인 경우 --%>
+									<c:if test="${userInfo.user_gender eq '남'}">
+									  <img src="resources/images/man.png">
+									</c:if>
+                                </div>
+                                <div class="author-bio">
+                                    <h4>${userInfo.user_name}</h4>
+                                    <p>Discover the joy of a healthy, happy life!</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    
+                    				
+						                	
+                	
                 </div>
+                
+               
+                <div class="col-md-4" style="width : 50%;" !important>
+                
+                <article class="wow fadeInDown" style="margin-top:60px; padding-bottom: 80px;">
+	                <section id="feature" style="padding-top : 20px">
+	                <form action="${cpath}/registerForm" methon="post">
+	                        <div class="container">
+	                            <div class="container_ECG_record" style="width : 50%;">
+	                                <span class="subtitle">게시글 쓰기</span>
+	                				
+					                  
+	                
+	                            </div>
+	                            
+	                            <div>
+	                                <div class="Blood_pressure_input add_write_section">
+	                                   
+	                                        <p class="subtitle-des_ef1 pressure_input"><strong>내용 입력</strong></p>
+	                                        <textarea class="pressure_input text_ar" name="content" id="" cols="30" rows="10"></textarea>
+	                                   
+	                                </div>
+	                            </div>
+	                            <div class="container">
+	                            
+	                          
+	                                        <div class="artboard" >
+                                        <div class="button_add">
+                                            <div class="links">
+                                                <span>
+                                                    <div class="checks etrans">
+                                                        <input type="radio" id="add_ECG" value="ecg" name="check">
+                                                        <label for="add_ECG">ECG</label>
+                                                    </div>
+                                                  
+                                                    <div class="checks etrans">
+                                                        <input type="radio" id="add_Sug" value="bs" name="check" >
+                                                        <label for="add_Sug">혈당</label>
+                                                    </div>
+                                                    
+                                                     <div class="checks etrans">
+                                                       <input type="radio" id="add_Pre" value="bp" name="check" >
+                                                       <label for="add_Pre">혈압</label>
+                                                   </div>
+                                                </span>
+                                                <div class="overlay"><a>나의 건강정보 공유하기</a></div>
+                                            </div>
+                                            
+                                            
+                                        </div>
+                                        
+                                    </div>
+	                                 
+	                            	
+	                                <div class="health_Card">
+	                                    <div class="card-container">
+	                                    
+		                                    <div class="card_fr">
+		                                        <div class="front">
+		                                            <div class="subtitle-des_healthcard">
+		                                            <img src="resources/images/ecg_com_icon.png" alt=""> <strong>ECG</strong> <span class="subtitle-des_ef">
+		                                                ${empty LatestEcg.resultsText ? '결과없음' : LatestEcg.resultsText}
+		                                            <br> <div class="wr_card_date">
+		                                              <span class="wr_card_date_1"><fmt:formatDate value="${LatestEcg.input_date}" pattern="yyyy년 MM월 dd일 a h:mm" />
+		                                             </span>
+                               						 </div>
+		                                            </div>
+		                                        </div>
+		                                        <img class = "test1" src="resources/images/com_ecg.png" alt=""> 
+		                                    </div>
+		                                </div>
+		                                <div class="card-container">
+		                                    <div class="card_fr">
+		                                        <div class="front">
+		                                            <div class="subtitle-des_healthcard">
+		                                                <img src="resources/images/혈당아이콘.png" alt=""> 나의 공복혈당은 <span class="subtitle-des_ef">
+		                                                    ${empty LatestBs.bs_emp ? '-' : LatestBs.bs_emp}mg/dL
+		                                                </span>이고, 식후혈당은 <span class="subtitle-des_ef"> ${empty LatestBs.bs_ful ? '-' : LatestBs.bs_ful}mg/dL </span> 입니다.
+		                                                <br> <div class="wr_card_date">
+		                                                <span class="wr_card_date_1">
+		                                                	<fmt:formatDate value="${LatestBs.input_date}" pattern="yyyy년 MM월 dd일 a h:mm" />
+		                                                </span>
+                               						 </div>
+		                                                
+		                                            </div>
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                                <div class="card-container">
+		                                    <div class="card_fr">
+		                                        <div class="front">
+		                                            <div class="subtitle-des_healthcard">
+		                                                <img src="resources/images/혈압아이콘.png" alt=""> 나의 최고혈압은 <span class="subtitle-des_ef">
+		                                                   ${empty LatestBp.bp_high ? '-' : LatestBp.bp_high}mmHg
+		                                                </span>이고, 최저혈압은 <span class="subtitle-des_ef"> ${empty LatestBp.bp_low ? '-' : LatestBp.bp_low}mmHg </span> 입니다.
+		                                                <br> <div class="wr_card_date">
+		                                                <span class="wr_card_date_1"><fmt:formatDate value="${LatestBp.input_date}" pattern="yyyy년 MM월 dd일 a h:mm" />
+		                                            	</span>
+                               						 </div>
+		                                            </div>
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                                
+	                                    
+	                                </div>
+					                <button type="submit" style="position: absolute; right: 5%; background-color: #1875FF; opacity: 0.9; color: white; background-size: cover; padding: 15px 35px; font-size: 16px; line-height: 1em; text-transform: uppercase; letter-spacing: normal; border-radius: 8px; box-shadow:  0 2px 5px 0 rgba(0, 0, 0, 0.04), 0 2px 10px 0 rgba(0, 0, 0, 0.06); border: 0px; font-weight: bold;">등 록</button> 
+					               
+	                            </div>
+	                            </form>
+	                    </section>
+                      </article>
+                 
+                </div>
+                <!-- Sidebar -->
+                <div class="col-md-4" style="width : 30%;" !important>
+                    <div class="sidebar">
+                        <div class="categories widget">
+                            <h3 class="widget-head">Categories</h3>
+                            <ul>
+                                <li>
+                                    <a href="#" onclick="filterByCategory('공지')">◼ 공지사항</a> <span class="badge">1</span>
+                                    	
+                                </li>
+                                <li>
+                                    <a href="">◼ 일반</a> <span class="badge">2</span>
+                                </li>
+                                
+                                
+                            </ul>
+                        </div>
 
+                        <div class="recent-post widget">
+                            <h2>최근 게시물</h2>
+                            <ul>
+                                <li>
+                                    <a href="community">${comlist[0].content}</a><br>
+                                    <time><fmt:formatDate pattern="yyyy년 MM월 dd일 a h시 mm분" value="${comlist[0].input_date}" /></time>
+                                </li>
+                                <li>
+                                    <a href="community">${comlist[1].content}</a><br>
+                                    <time><fmt:formatDate pattern="yyyy년 MM월 dd일 a h시 mm분" value="${comlist[1].input_date}" /></time>
+                                </li>
+                                <li>
+                                    <a href="community">${comlist[2].content}</a><br>
+                                    <time><fmt:formatDate pattern="yyyy년 MM월 dd일 a h시 mm분" value="${comlist[2].input_date}" /></time>
+                                   
+                                </li>
+
+                            </ul>
+
+                        </div>
+                        
+                        
+
+                    </div>
+                    
+                    
+          		</div>
             </div>
         </div>
     </section>
-
-    
 
     <!--
                     ==================================================

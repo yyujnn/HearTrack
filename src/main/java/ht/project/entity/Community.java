@@ -34,5 +34,11 @@ public class Community {
     
     // 사용자 정보
     private User user;
+    
+    // 사용자 카드 정보
+    private Integer ecg_num;
+    private Integer h_num;
+    private Ecg ecg;
+    private Health health; 
 
 }

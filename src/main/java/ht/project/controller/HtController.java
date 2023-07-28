@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -84,10 +85,10 @@ public class HtController {
 
 	@RequestMapping("/wait")
 	public String waitPage() {
-		
+
 		return "waitPage";
 	}
-	
+
 	// 메인 페이지
 	@RequestMapping("/index")
 	public String hearTrack(HttpSession session) {
@@ -126,29 +127,87 @@ public class HtController {
 			community.setUser(user);
 		}
 
+		// 카드 출력 ecg , health
+		for (Community community : list) {
+            if (community.getEcg_num() != null) {
+                Ecg ecg = mapper.getEcgInfo(community.getEcg_num());
+                community.setEcg(ecg);
+            }
+            if (community.getH_num() != null) {
+                Health health = mapper.getHealthInfo(community.getH_num());
+                community.setHealth(health);
+            }
+        }
 		// p_num 컬럼을 내림차순으로 정렬
 		list.sort(Comparator.comparingInt(Community::getP_num).reversed());
 
 		model.addAttribute("comlist", list);
 
-		System.out.println("comlist : " + list);
-
 		return "community";
 	}
+
 	@RequestMapping("/register")
 	public String register(HttpSession session, Model model) {
 		String user_id = (String) session.getAttribute("user_id");
-	
+
 		if (user_id != null) {
-			
+
 			User userInfo = mapper.getUserInfo(user_id);
 			model.addAttribute("userInfo", userInfo);
+
+			Ecg LatestEcg = mapper.getLatestEcg(user_id);
+			Health LatestBp = mapper.getLatestBp(user_id);
+			Health LatestBs = mapper.getLatestBs(user_id);
+
+			model.addAttribute("LatestEcg", LatestEcg);
+			model.addAttribute("LatestBp", LatestBp);
+			model.addAttribute("LatestBs", LatestBs);
+			
+			// 커뮤니티 페이지 로직 처리 (리스트 출력)
+			ArrayList<Community> list = mapper.getCommunityList();
+			// p_num 컬럼을 내림차순으로 정렬
+			list.sort(Comparator.comparingInt(Community::getP_num).reversed());
+
+			model.addAttribute("comlist", list);
+
+
 		} else {
 			// 로그인이 되어 있지 않은 경우
 			System.out.println("커뮤니티: 로그인되어 있지 않음");
 			return "redirect:/login?returnUrl=/community";
 		}
 		return "register";
+	}
+
+	@RequestMapping(value = "/registerForm", method = { RequestMethod.POST, RequestMethod.GET })
+	public String Register(Community com, HttpSession session,@RequestParam("check") String check) {
+		String user_id = (String) session.getAttribute("user_id");
+		com.setUser_id(user_id);
+		System.out.println("registerForm" + com);
+		System.out.println("check"+check);
+		
+		 if ("ecg".equals(check)) {
+		        // ECG 버튼이 선택되었습니다.
+		        // 이곳에서 ECG 값에 대한 처리를 하세요.
+			 Ecg latestEcg = mapper.getLatestEcg(user_id);
+			 com.setEcg_num(latestEcg.getEcg_num());
+		    } else if ("bs".equals(check)) {
+		        // 혈당 버튼이 선택되었습니다.
+		        // 이곳에서 혈당 값에 대한 처리를 하세요.
+		    	Health latestBs = mapper.getLatestBs(user_id);
+		    	com.setH_num(latestBs.getH_num());
+		    } else if ("bp".equals(check)) {
+		        // 혈압 버튼이 선택되었습니다.
+		        // 이곳에서 혈압 값에 대한 처리를 하세요.
+		    	Health latestBp = mapper.getLatestBp(user_id);
+		    	com.setH_num(latestBp.getH_num());
+		    }
+
+		mapper.insertCommunity(com);
+
+		System.out.println("insert함 Form" + com);
+
+		return "redirect:/community";
 	}
 
 	@RequestMapping("/healthRecord")
@@ -163,16 +222,14 @@ public class HtController {
 			Ecg LatestEcg = mapper.getLatestEcg(user_id);
 			Health LatestBp = mapper.getLatestBp(user_id);
 			Health LatestBs = mapper.getLatestBs(user_id);
-			
+
 			BpResults LatestBpResult = LatestBp.determineBpResult();
 			LatestBp.setResultText(LatestBpResult.getResultText());
 			LatestBp.setCssClass(LatestBpResult.getCssClass());
-			
+
 			BsResults LatestBsResult = LatestBs.determineBsResult();
 			LatestBs.setResultText(LatestBsResult.getResultText());
 			LatestBs.setCssClass(LatestBsResult.getCssClass());
-			
-			
 
 			// 결과에 따른 CSS 클래스를 설정하는 Map 생성
 			Map<String, String> cssClassMap = new HashMap<>();
@@ -313,15 +370,15 @@ public class HtController {
 			// select
 			Health health = mapper.getLatestBp(user_id);
 			System.out.println("select임" + health);
-			
+
 			// 혈압 결과를 판단하여 BpResults 열거형 상수를 얻기
-	        BpResults bpHighResult = health.bpHigh();
-	        BpResults bpLowResult = health.bpLow();
-	        
-	        health.setCssClass(bpHighResult.getCssClass());
+			BpResults bpHighResult = health.bpHigh();
+			BpResults bpLowResult = health.bpLow();
+
+			health.setCssClass(bpHighResult.getCssClass());
 			health.setResultText(bpHighResult.getResultText());
 			health.setCssCircle(bpHighResult.getCssCircle());
-			
+
 			health.setCssClass(bpLowResult.getCssClass());
 			health.setResultText(bpLowResult.getResultText());
 			health.setCssCircle(bpLowResult.getCssCircle());
@@ -329,8 +386,7 @@ public class HtController {
 			// Model에 HealthInfo 데이터담 기
 			model.addAttribute("health", health);
 			model.addAttribute("bpHighResult", bpHighResult);
-	        model.addAttribute("bpLowResult", bpLowResult);
-
+			model.addAttribute("bpLowResult", bpLowResult);
 
 		} else {
 			// 로그인이 되어 있지 않은 경우
@@ -368,26 +424,25 @@ public class HtController {
 
 			// 등록
 			mapper.bsRegister(vo);
-			
+
 			// select
 			Health health = mapper.getLatestBs(user_id);
 			System.out.println("혈당 select임" + health);
-			
+
 			BsResults bsEmpResult = health.bsEmp();
-	        BsResults bsFulResult = health.bsFul();
-	        
-	        health.setResultText(bsEmpResult.getResultText());
+			BsResults bsFulResult = health.bsFul();
+
+			health.setResultText(bsEmpResult.getResultText());
 			health.setCssCircle(bsEmpResult.getCssCircle());
-			
+
 			health.setResultText(bsFulResult.getResultText());
 			health.setCssCircle(bsFulResult.getCssCircle());
 
-			
 			// Model에 HealthInfo 데이터담 기
 			model.addAttribute("health", health);
 			model.addAttribute("bsFulResult", bsFulResult);
-	        model.addAttribute("bsEmpResult", bsEmpResult);
-			
+			model.addAttribute("bsEmpResult", bsEmpResult);
+
 		} else {
 			// 로그인이 되어 있지 않은 경우
 			System.out.println("혈압 결과: 로그인되어 있지 않음");
@@ -395,8 +450,7 @@ public class HtController {
 		}
 		return "bsResult";
 	}
-	
-	
+
 	// admin-User 페이지로 이동
 	@RequestMapping("/adminUser")
 	public String admin_user(Model model) {
@@ -406,17 +460,16 @@ public class HtController {
 
 		return "Admin_User";
 	}
-	
-	// admin-Ecg 페이지로 이동 
+
+	// admin-Ecg 페이지로 이동
 	@RequestMapping("/adminEcg")
 	public String admin(Model model) {
 		ArrayList<Admin> list = mapper.getEcgList();
 		model.addAttribute("ecgList", list);
-		
-		
+
 		return "Admin_ECG";
 	}
-	
+
 	// admin-Ecg 페이지로 이동 
 	@RequestMapping("/addwrite")
 	public String addwrite() {
@@ -428,5 +481,4 @@ public class HtController {
 	public String addWriteFrame() {
 	    return "addwrite_frame";
 	}
-	
 }

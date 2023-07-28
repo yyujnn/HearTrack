@@ -95,14 +95,14 @@
                         </li>
                         
                         
-                        <li><a href="healthRecord">Pages건강기록</a></li>
-                        <li><a href="community">Service커뮤니티</a></li>
+                        <li><a href="healthRecord">건강기록</a></li>
+                        <li><a href="community">커뮤니티</a></li>
 
                         <li>
 						    <% if (session.getAttribute("user_id") != null) { %>
 						        <a href="logout">로그아웃</a>
 						    <% } else { %>
-						        <a href="login">Contact로그인</a>
+						        <a href="login">로그인</a>
 						    <% } %>
 						</li>
 
@@ -143,6 +143,7 @@
                             </ul>
                             <!-- fieldsets -->
                         </div>
+                      
 
                         <div class="card_input">
                             <div class="ECG-body">
@@ -166,8 +167,18 @@
 								  </div>
 								</form>
                         </div>
+                        
+                        
+						                        
                     </div>
+                    
                 </div>
+                
+                <div class="Blood_pressure_input_add">
+						    <span class="subtitle-des_ef1">※ 10~21년, 30대 이상 성인의 경우  <span style="color: #1875FF;">수축기혈압은 110-119mmHg</span>이 약 30%를 기록하였고, <br> <span style="color: #1875FF;">이완기혈압은 70-79mmHg</span>이 약 40%를 기록하였습니다.</span>
+					</div>
+                
+                
             </div>
         </div>
         </div>

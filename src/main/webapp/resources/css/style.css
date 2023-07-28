@@ -281,11 +281,12 @@ a:hover {
 
 #top-bar .main-menu li a {
   color: #444;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 700;
   border-bottom: 2px solid transparent;
   transition: .3s all;
   text-transform: uppercase;
+  letter-spacing: 3px;
 }
 
 #top-bar .main-menu li a:hover {
@@ -1805,4 +1806,8 @@ input#check_btn_pre:checked+label:before {
   background-color: #f2f0ff !important;
   box-shadow: 0 4px 17px rgba(0, 0, 0, 0.2);
   transform: translate3d(0, -2px, 0);
+}
+
+.Blood_pressure_input_add{
+  margin-top: 40px;
 }

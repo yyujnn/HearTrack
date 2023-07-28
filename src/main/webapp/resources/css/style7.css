@@ -14,9 +14,9 @@
     justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
-    margin-top: 75px;
+    margin-top: 60px;
     position: relative;
-    left: 50%;
+    left: 22%;
     transform: translate(-50%, -50%);
     justify-content: space-evenly;
     background: #2b80ff;
@@ -248,19 +248,17 @@
 .card-container {
     font-weight: bold;
     height: 75px;
-    margin-top: 30px;
     margin-bottom: 30px;
     border-radius: 10px;
-    margin-left: 200px;
-    margin-right: 200px;
+    margin-right: 30px;
     perspective: 1400px;
 }
 
 .card_fr {
     position: relative;
-    height: 100%;
+    height: 80px;
     border-radius: 10px;
-    width: 100%;
+    width: 45%;
 }
 
 .front {
@@ -281,6 +279,7 @@
 }
 
 
+
 .text_ar:focus {
     outline: none;
 }
@@ -288,4 +287,32 @@
 .text_ar{
     resize: none;
     background-color: #fff;
+    box-shadow: inset -1px -1px 6px 0px rgba(165, 163, 163, 0.2);
+    outline : none;
+    border : none;
+    width : 45%;
+    margin-left :8px;
+    padding : 15px;
+    
 }
+
+.subtitle-des_healthcard {
+  color: rgb(55, 55, 55);
+  font-weight: bold;
+  font-size: 15px;
+  margin: 0;
+  word-spacing: 1px;
+}
+
+.wr_card_date {
+  position: absolute;
+  right: 1%;
+  bottom: 5%;
+
+}
+
+.wr_card_date_1 {
+  color: rgb(150, 150, 150);
+  font-size: 10pt;
+}
+

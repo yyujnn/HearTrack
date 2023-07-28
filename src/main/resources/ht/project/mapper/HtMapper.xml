@@ -221,6 +221,45 @@
 		GROUP BY DATE(input_date)
 	</select>
 	
+	<!-- community 등록하기 -->
+	<insert id="insertCommunity" parameterType="ht.project.entity.Community">
+	  INSERT INTO t_community (user_id, content, ecg_num, h_num)
+	  VALUES (
+	    #{user_id},
+	    #{content},
+	    <if test="ecg_num != null and ecg_num != 0">
+	      #{ecg_num}
+	    </if>
+	    <if test="ecg_num == null or ecg_num == 0">
+	      NULL
+	    </if>,
+	    <if test="h_num != null and h_num != 0">
+	      #{h_num}
+	    </if>
+	    <if test="h_num == null or h_num == 0">
+	      NULL
+	    </if>
+	  )
+	</insert>
+	
+	<select id="getEcgInfo" parameterType="int" resultType="ht.project.entity.Ecg">
+		SELECT *,
+			CASE results
+	                WHEN 'sr' THEN '정상 동리듬'
+	                WHEN 'af' THEN '심방세동'
+	                WHEN 'sb' THEN '동성서맥'
+	                WHEN 'gsvt' THEN '판독불가'
+	                ELSE '결과없음'
+	           END AS resultsText
+		FROM t_ecg WHERE ecg_num = #{ecg_num}
+		
+		
+	</select>
+	
+	<select id="getHealthInfo"  parameterType="int" resultType="ht.project.entity.Health">
+		SELECT * FROM t_health WHERE h_num = #{h_num}
+	</select>
+
 	<select id="getEcgDetails" parameterType="ht.project.entity.Ecg" 
     resultType="ht.project.entity.Ecg">
     	select * ,
@@ -233,5 +272,6 @@
 	           END AS resultsText
     	from t_ecg where ecg_num = #{ecgNum}
     </select>
+
     
 </mapper>

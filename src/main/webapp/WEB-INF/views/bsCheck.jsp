@@ -95,14 +95,14 @@
                         </li>
                         
                         
-                        <li><a href="healthRecord">Pages건강기록</a></li>
-                        <li><a href="community">Service커뮤니티</a></li>
+                        <li><a href="healthRecord">건강기록</a></li>
+                        <li><a href="community">커뮤니티</a></li>
 
                         <li>
 						    <% if (session.getAttribute("user_id") != null) { %>
 						        <a href="logout">로그아웃</a>
 						    <% } else { %>
-						        <a href="login">Contact로그인</a>
+						        <a href="login">로그인</a>
 						    <% } %>
 						</li>
 
@@ -158,9 +158,17 @@
                                             <button type="submit" class="ECG_test">검사하기</button>
                                         </div>
                                     </form>
+                                    
                                 </div>
+                                
+                                                   
+                                
                             </div>
                         </div>
+                         <div class="Blood_pressure_input_add">
+						    <span class="subtitle-des_ef1">※ 20~21년, 30대 이상 성인의 경우 <span style="color: #1875FF;">공복혈당은 100mg/dL미만</span> 이 약 60%를 기록하였습니다.</span>
+						</div>
+						            
                         
                     </div>
                 </div>
