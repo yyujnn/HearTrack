@@ -293,7 +293,8 @@
 							                <div class="front">
 							                    <div class="subtitle-des_healthcard">
 							                        <img src="resources/images/ecg_com_icon.png" alt=""> <strong>ECG</strong> <span class="subtitle-des_ef">
-							                            ${com.ecg.resultsText}
+							                            ${com.ecg.resultsText}이고
+							                             <span style="color: rgb(255, 118, 140);">♥ </span>  ${com.ecg.hr} bpm입니다.
 							                        <br> <div class="wr_card_date">
 		                                              <span class="wr_card_date_1"><fmt:formatDate value="${com.ecg.input_date}" pattern="yyyy년 MM월 dd일 a h:mm" />
 							                   		 </span>
@@ -412,10 +413,10 @@
 								    <a href="#" onclick = "location.href='${cpath}/choose'">◼ 공지사항</a>
 								</li>
 								<li>
-								    <a href="#" onclick="filterPosts('일반')">◼ 일반</a>
+								    <a href="#" onclick="location.href='${cpath}/base'">◼ 일반</a>
 								</li>
 								<li>
-								    <a href="#"  onclick="filterPosts('all')">◼ 모두 보기</a>
+								    <a href="#"  onclick="location.href='${cpath}/community'">◼ 모두 보기</a>
 								    <!-- 'all' 값을 전달하여 모든 게시글을 보여주도록 처리 -->
 								</li>
    

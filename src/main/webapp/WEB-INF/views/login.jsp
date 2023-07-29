@@ -7,8 +7,6 @@
 
 <html class="no-js">
 
-
-
 <head>
     <!-- Basic Page Needs
         ================================================== -->
@@ -105,14 +103,14 @@
                         </li>
                         
                         
-                        <li><a href="healthRecord">Pages건강기록</a></li>
-                        <li><a href="community">Service커뮤니티</a></li>
+                        <li><a href="healthRecord">건강기록</a></li>
+                        <li><a href="community">커뮤니티</a></li>
 
                         <li>
 						    <% if (session.getAttribute("user_id") != null) { %>
 						        <a href="logout">로그아웃</a>
 						    <% } else { %>
-						        <a href="login">Contact로그인</a>
+						        <a href="login">로그인</a>
 						    <% } %>
 						</li>
 
@@ -202,7 +200,6 @@
 									
 									    <div class="form-group">
 										        <label for="name">아이디 입력</label>
-										
 										        <input type="text" name="user_id" id="id" class="id" style="margin-right:5px;" check_result="fail" required>
 										        <span class="error"></span>
 								 			<div class="form-group_check">
@@ -380,15 +377,6 @@
 	      }
 			                
     </script>
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 
     <!-- Template Javascript Files

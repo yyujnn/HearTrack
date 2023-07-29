@@ -547,4 +547,45 @@ public class HtController {
 
 		return "community";
 	}
+	// 커뮤니티 페이지
+	@RequestMapping("/base")
+	public String base(HttpSession session, Model model, Community vo) {
+		String user_id = (String) session.getAttribute("user_id");
+		if (user_id != null) {
+			// 로그인이 되어 있는 경우
+			System.out.println("커뮤니티 userid : " + user_id);
+			User userInfo = mapper.getUserInfo(user_id);
+			model.addAttribute("userInfo", userInfo);
+		} else {
+			// 로그인이 되어 있지 않은 경우
+			System.out.println("커뮤니티: 로그인되어 있지 않음");
+			return "redirect:/login?returnUrl=/community";
+		}
+
+		// 커뮤니티 페이지 로직 처리 (리스트 출력)
+		ArrayList<Community> list = mapper.getbase();
+
+		for (Community community : list) {
+			User user = mapper.getUserInfo(community.getUser_id());
+			community.setUser(user);
+		}
+
+		// 카드 출력 ecg , health
+		for (Community community : list) {
+            if (community.getEcg_num() != null) {
+                Ecg ecg = mapper.getEcgInfo(community.getEcg_num());
+                community.setEcg(ecg);
+            }
+            if (community.getH_num() != null) {
+                Health health = mapper.getHealthInfo(community.getH_num());
+                community.setHealth(health);
+            }
+        }
+		// p_num 컬럼을 내림차순으로 정렬
+		list.sort(Comparator.comparingInt(Community::getP_num).reversed());
+
+		model.addAttribute("comlist", list);
+
+		return "community";
+	}
 }

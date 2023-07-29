@@ -151,7 +151,7 @@ $(document).ready(function () {
 
     <section class="works works-fit">
         <div class="container">
-            <h4 class="subtitle subtitle_start">나의 건강기록</h4>
+            <h1 class="subtitle subtitle_start" style = "font-size : 36px !important;">나의 건강기록</h1>
             <div class="wrapper">
 
                 <div class="clash-card barbarian">
