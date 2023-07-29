@@ -273,4 +273,9 @@
     	from t_ecg where ecg_num = #{ecgNum}
     </select>
     
+    <!-- getCommunityList 매퍼 -->
+	<select id="getchoose" resultType="ht.project.entity.Community">
+	    SELECT * FROM t_community WHERE category = '공지'
+	</select>
+    
 </mapper>

@@ -30,18 +30,6 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script>
-	function filterPosts(category) {
-        const articles = document.querySelectorAll('article');
-        articles.forEach(article => {
-            const dataCategory = article.getAttribute('data-category');
-            if (category === 'all' || category === dataCategory) {
-                article.style.display = 'block';
-            } else {
-                article.style.display = 'none';
-            }
-        });
-    }
-	
 	
 	// 페이지 로딩이 완료된 후 실행
 	  $(document).ready(function() {
@@ -421,12 +409,10 @@
                             <h3 class="widget-head">카테고리</h3>
                             <ul>
                                 <li>
-								    <a href="#" onclick="filterPosts('공지')">◼ 공지사항</a>
-								    <span class="badge">1</span>
+								    <a href="#" onclick = "location.href='${cpath}/choose'">◼ 공지사항</a>
 								</li>
 								<li>
 								    <a href="#" onclick="filterPosts('일반')">◼ 일반</a>
-								    <span class="badge">2</span>
 								</li>
 								<li>
 								    <a href="#"  onclick="filterPosts('all')">◼ 모두 보기</a>

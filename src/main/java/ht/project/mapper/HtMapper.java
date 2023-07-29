@@ -90,6 +90,8 @@ public interface HtMapper {
 	Ecg getEcgInfo(Integer ecg_num);
 
 	Health getHealthInfo(Integer h_num);
+
+	ArrayList<Community> getchoose();
 	
 	
 	
