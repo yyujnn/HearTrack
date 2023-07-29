@@ -8,6 +8,7 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 from resnet1d import SimpleResNet1D
 from dataset import ECGDataset
+from matplotlib import pyplot as plt
 
 
 class Trainer:
@@ -34,6 +35,9 @@ class Trainer:
         val_loader = DataLoader(self.val_dataset, batch_size=batch_size)
 
         prev_val_loss = float('inf')  # at first, set previous val loss to infinity
+
+        train_loss_list = []
+        val_loss_list = []
 
         for epoch in range(num_epochs):
             # Training
@@ -65,6 +69,7 @@ class Trainer:
                 self.optimizer.step()
 
             avg_train_loss = train_loss / len(train_loader)
+            train_loss_list.append(avg_train_loss)
 
             # Evaluation
             self.model.eval()
@@ -95,6 +100,7 @@ class Trainer:
                     num_samples += val_label_batch.size(0)
 
             avg_val_loss = val_loss / len(val_loader)
+            val_loss_list.append(avg_val_loss)
             accuracy = num_correct / num_samples
 
             # save best model
@@ -108,6 +114,7 @@ class Trainer:
         print("Training finished.")
         # save last model
         torch.save(self.model.state_dict(), os.path.join(self.model_save_dir,f"last_model_epoch{epoch}.pt"))
+        return train_loss_list, val_loss_list
 
 
 
@@ -132,4 +139,8 @@ if __name__ == "__main__":
 
     # train
     trainer = Trainer(model, train_dataset, val_dataset, loss_fn, optimizer, device, model_save_dir)
-    trainer.train(num_epochs=50, batch_size=512)
+    train_loss_list, val_loss_list = trainer.train(num_epochs=100, batch_size=512)
+    plt.plot(train_loss_list, label="train loss(Cross Entropy)")
+    plt.plot(val_loss_list, label="val loss(Cross Entropy)")
+    plt.legend()
+    plt.savefig(os.path.join(model_save_dir, "loss.png"))
