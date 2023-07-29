@@ -22,7 +22,9 @@ def filtering(signal):
         Filtered ECG data, shape = (N. of leads,  ECG signal length)
     """
     filters = []
+    ### hihg pass filter for fix the baseline wandering
     filters.append(butter(5, 0.67, btype='highpass', fs=500, output='sos'))
+    ### low pass filter for fix the muscle noise(Gaussain noise)
     filters.append(butter(5, 40, btype='lowpass', fs=500, output='sos'))
 
     filtered_signal = signal
@@ -37,7 +39,9 @@ def standardization(signal: np.ndarray):
     Returns:
         Standardized ECG data, shape = (N. of leads,  ECG signal length)
     """
+    # standardization to zero mean and unit variance
     mean = np.mean(signal)
     std = np.std(signal)+1e-07
+
 
     return (signal-mean)/std

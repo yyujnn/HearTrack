@@ -58,15 +58,17 @@ class Trainer:
                 self.optimizer.zero_grad()
 
                 # Forward pass
+                # get model outputs
                 outputs = self.model(input_batch)
 
                 # Compute loss
+                # Compare with model outputs(우리 모델의 값) with ground truth(정답지) labels
                 loss = self.loss_fn(outputs, label_batch)
                 train_loss += loss.item()
 
                 # Backward pass and optimization
                 loss.backward()
-                self.optimizer.step()
+                self.optimizer.step()  # update model parameters
 
             avg_train_loss = train_loss / len(train_loader)
             train_loss_list.append(avg_train_loss)
@@ -76,7 +78,7 @@ class Trainer:
             val_loss = 0.0
             num_correct = 0
             num_samples = 0
-
+            # validation process
             with torch.no_grad():
 
                 for j, batch in enumerate(val_loader):
@@ -101,7 +103,7 @@ class Trainer:
 
             avg_val_loss = val_loss / len(val_loader)
             val_loss_list.append(avg_val_loss)
-            accuracy = num_correct / num_samples
+            accuracy = num_correct / num_samples  # accuracy for this epoch
 
             # save best model
             if avg_val_loss < prev_val_loss:
@@ -129,10 +131,14 @@ if __name__ == "__main__":
     task_list = ["MERGED_RHYTHM"]
     model_save_dir = "../saved_models"
     # set model, dataset, loss function, optimizer, device
-    model = SimpleResNet1D(12, 4)
+    model = SimpleResNet1D(12, 4)  # our model
+    # chapman shaoxing dataset for train
     train_dataset = ECGDataset(waveform_dir=waveform_dir, index_df_path=train_index_path, task_list=task_list)
+    # chapman shaoxing dataset for validation
     val_dataset = ECGDataset(waveform_dir=waveform_dir, index_df_path=val_index_path, task_list=task_list)
+    # chapman shaoxing dataset for test
     test_dataset = ECGDataset(waveform_dir=waveform_dir, index_df_path=test_index_path, task_list=task_list)
+    # loss function: lower is better
     loss_fn = nn.CrossEntropyLoss()  # for multi-class classification
     optimizer = optim.Adam(model.parameters(), lr=0.001)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

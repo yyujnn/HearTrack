@@ -132,9 +132,11 @@ class ECG_Infer_Module():
         """
         # from ecg np.ndarray
         # ecg = self.preprocess_ecg(ecg)
+        ###  XXX 현재로서는 ecg preprocessing이 안 들어가 있습니다.
         ecg = torch.Tensor(ecg).unsqueeze(0)  # to torch.Tensor with shape (1, 12, 5000)
-        resnet_output = self.resnet(ecg)
-        # unet_output = self.unet(ecg)
+        resnet_output = self.resnet(ecg)  # resnet outout with shape (1, num_classes)
+        # unet_output = self.unet(ecg)  # unet output
+        # resnet post processing, get the class name
         resnet_output = self.post_process_resnet(resnet_output)
         unet_output = self.post_process_unet(None)
         out_dict = {**resnet_output, **unet_output}
