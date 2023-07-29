@@ -421,7 +421,7 @@
 
                             </ul>
                         </div>
-
+ 
                         <div class="recent-post widget">
                             <h3>최근 게시물</h3>
                             <ul>
