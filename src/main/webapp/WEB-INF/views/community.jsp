@@ -400,7 +400,7 @@
                  
                   <!-- 게시글 반복문 끝 !! -->
                  
-                 
+                  
                 </div>
                 <!-- Sidebar -->
                 <div class="col-md-4" style="width : 30%;" !important>
@@ -418,7 +418,7 @@
 								    <a href="#"  onclick="filterPosts('all')">◼ 모두 보기</a>
 								    <!-- 'all' 값을 전달하여 모든 게시글을 보여주도록 처리 -->
 								</li>
-
+   
                             </ul>
                         </div>
  
