@@ -93,6 +93,8 @@ public interface HtMapper {
 
 	ArrayList<Community> getchoose();
 	
+	User findByUsername(String user_id);
+	
 	
 	
 	
