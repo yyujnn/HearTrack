@@ -175,52 +175,35 @@ numerical feature(hr, pr, qrs, qt, qtc) 를 추출
 
 ## 👨‍👩‍👧‍👦 **팀원 소개 및 역할**
 
-<table>
-  <tr>
-    <td align="center"><img width="100" alt="image" src="https://github.com/ahgjatleo0/Final_Project/assets/129912074/6489ae47-6946-4c9f-9094-250cbe36f50e"></td>
-    <td align="center"><img width="100" alt="image" src="https://github.com/ahgjatleo0/Final_Project/assets/129912074/2ef730ab-5da5-4383-ab75-651e17abbd04"></td>
-    <td align="center"><img width="100" alt="image" src="https://github.com/ahgjatleo0/Final_Project/assets/129912074/994b97db-a023-4177-b3c7-abcda0f960e8"></td>
-    <td align="center"><img width="100" alt="image" src="https://github.com/ahgjatleo0/Final_Project/assets/129912074/cad96736-181a-4e77-b921-7475e6a91131"></td>
-    <td align="center"><img width="100" alt="image" src="https://github.com/ahgjatleo0/Final_Project/assets/129912074/6ae6f3af-4d46-40fc-8d08-b04a0fadbd68"></td>
-  </tr>
-  <tr>
-    <td align="center"><strong>정유진</strong></td>
-    <td align="center"><strong>김성록</strong></td>
-    <td align="center"><strong>김동현</strong></td>
-    <td align="center"><strong>문동현</strong></td>
-    <td align="center"><strong>이경진</strong></td>
-  </tr>
-  <tr>
-    <td align="center">Back, Front</td>
-    <td align="center">Model, Back</td>
-    <td align="center">Front</td>
-    <td align="center">Model, Back</td>
-    <td align="center">Back</td>
-  </tr>
-  <tr>
-    <td>
-    ▪ Back-End 총괄<br>
-    ▪ Community 페이지<br>
-    ▪ 검사 및 결과 & 기록 페이지<br>
-    ▪ 파일 첨부 로직 설계</td>
-    <td>
-    ▪ 데이터 수집 및 전처리<br>
-    ▪ 모델 학습 및 평가<br>
-    ▪ Flask 및 로직 설계<br>
-    ▪ Community 페이지</td>
-    <td>
-    ▪ Front-End 총괄<br>
-    ▪ HTML, CSS, JS<br>
-    ▪ 웹사이트의 화면 디자인<br>
-    ▪ 기획/설계/구현 담당</td>
-    <td>
-    ▪ DB 설계 및 구축<br>
-    ▪ 관리자 페이지<br>
-    ▪ Flask, DB 데이터 전달</td>
-    <td>
-    ▪ 댓글 기능 비동기 구현<br>
-    ▪ 결과 페이지 화면 캡처<br>
-    ▪ 회원가입 기능 구현</td>
-  </tr>
-</table>
-<br><br>
+- **김성록(팀장): `Model`, `Back`**
+  - 데이터 수집 및 전처리
+  - 모델 학습 및 평가 진행 
+  - Flask 및 로직 설계
+  - Community 페이지 Back 로직 설계
+
+- **정유진(부팀장): `Back`, `Front`**
+  - Back-End 총괄
+  - Community 페이지 Front 구성 및 Back 로직 설계
+  - 혈압, 혈당 검사 및 검사 결과 페이지 구현
+  - 검사 기록 페이지 구현
+  - 파일 첨부 로직 설계
+
+- **김동현: `Front`**
+  - Front-End 총괄
+  - Search 기능 API 연동
+  - HomeFragment 인기 동영상 API 연동
+  - HomeFragment Category 별 영상/채널 출력 API 연동
+  - 무한 스크롤 기능 구현
+  - VideoDetailActivity 채널 API 연동
+
+- **문동현: `Model`, `Back`**
+  - DB 설계 및 구축
+  - 관리자 페이지 설계 및 구현
+  - Flask와 DB 데이터 전달
+
+- **이경진: `Back`**
+  - 댓글 기능 비동기 구현
+  - 결과 페이지 화면 캡처 기능 구현
+  - 회원가입 기능 구현 (아이디 중복 제한)
+
+
