@@ -3,7 +3,7 @@
 </div>
 
 # 💎 HearTrack - 부정맥 검출을 위한 CNN 기반 ECG 데이터 분석 헬스케어 웹서비스
-<img width="600" src="https://github.com/yyujnn/Final_Project/assets/129912074/98095df1-a641-4adb-a770-a736973f2480">
+<img width="600" alt="image" src="https://github.com/yyujnn/HearTrack/assets/129912074/78a3be12-ce24-48b2-851f-c929db37f1be">
 
 
 <br><br>
