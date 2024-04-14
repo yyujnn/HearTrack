@@ -190,11 +190,8 @@ numerical feature(hr, pr, qrs, qt, qtc) 를 추출
 
 - **김동현: `Front`**
   - Front-End 총괄
-  - Search 기능 API 연동
-  - HomeFragment 인기 동영상 API 연동
-  - HomeFragment Category 별 영상/채널 출력 API 연동
-  - 무한 스크롤 기능 구현
-  - VideoDetailActivity 채널 API 연동
+  - 화면 디자인 기획/설계
+  - HTML, CSS, JS 전체적인 화면 구현
 
 - **문동현: `Model`, `Back`**
   - DB 설계 및 구축
