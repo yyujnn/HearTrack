@@ -11,11 +11,12 @@
 ## == Contents ==
 1. [프로젝트 소개](#-프로젝트-소개)
 2. [기간 및 기여도](#기간-및-기여도)
-3. [기술 스택](#stacks)
-4. [개발 설계](#개발-설계)
-5. [데이터 모델링](#데이터-모델링)
+3. [기술 스택](#-stacks)
+4. [개발 설계](#-개발-설계)
+5. [데이터 모델링](#-데이터-모델링)
 6. [주요 기능](#-주요-기능)
 7. [팀원 소개 및 역할](#-팀원-소개-및-역할)
+
 
 
 <br>
@@ -135,9 +136,9 @@ numerical feature(hr, pr, qrs, qt, qtc) 를 추출
 
 
 ### 2) ECG 검사
-- `step1` : ECG 파일(pkl) 첨부
-- `step2` : 검사 결과 확인 & 이미지 저장
-- `step3` : 검사 기록 확인
+- **`step1`** : ECG 파일(pkl) 첨부
+- **`step2`** : 검사 결과 확인 & 이미지 저장
+- **`step3`** : 검사 기록 확인
 <img width="700" alt="image" src="https://github.com/ahgjatleo0/Final_Project/assets/129912074/6df4cbab-aa8b-4c0c-93ae-6876965d8edd">
 <br><br>
 <img width="700" src="https://github.com/ahgjatleo0/Final_Project/assets/129912074/4bb58a44-b6c7-4138-a5d0-743b554566d1">
@@ -190,11 +191,11 @@ numerical feature(hr, pr, qrs, qt, qtc) 를 추출
     <td align="center"><strong>이경진</strong></td>
   </tr>
   <tr>
-    <td align="center"><b>Back, Front</b></td>
-    <td align="center"><b>Model, Back</b></td>
-    <td align="center"><b>Front</b></td>
-    <td align="center"><b>Model, Back</b></td>
-    <td align="center"><b>Back</b></td>
+    <td align="center">Back, Front</td>
+    <td align="center">Model, Back</td>
+    <td align="center">Front</td>
+    <td align="center">Model, Back</td>
+    <td align="center">Back</td>
   </tr>
   <tr>
     <td>
