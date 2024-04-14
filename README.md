@@ -10,8 +10,8 @@
 
 ## == Contents ==
 1. [프로젝트 소개](#-프로젝트-소개)
-2. [기간 및 기여도](#-기간)
-3. [기술 스택](#-Stacks)
+2. [기간 및 기여도](#-기간-및-기여도)
+3. [기술 스택](#-stacks)
 4. [개발 설계](#-개발-설계)
 5. [데이터 모델링](#-데이터-모델링)
 6. [주요 기능](#-주요-기능)
@@ -170,7 +170,7 @@ numerical feature(hr, pr, qrs, qt, qtc) 를 추출
 - 회원 관리
 <img width="700" alt="image" src="https://github.com/ahgjatleo0/Final_Project/assets/129912074/8f2a72ec-2118-4ceb-af25-47c83010a143">
 
-<br>
+<br><br>
 
 ## 👨‍👩‍👧‍👦 팀원 소개 및 역할
 
@@ -222,3 +222,4 @@ numerical feature(hr, pr, qrs, qt, qtc) 를 추출
     ▪ 회원가입 기능 구현</td>
   </tr>
 </table>
+<br><br>
