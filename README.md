@@ -10,12 +10,12 @@
 
 ## == Contents ==
 1. [프로젝트 소개](#-프로젝트-소개)
-2. [기간 및 기여도](#-기간-및-기여도)
-3. [기술 스택](#-stacks)
-4. [개발 설계](#-개발-설계)
-5. [데이터 모델링](#-데이터-모델링)
+2. [기간 및 기여도](#기간-및-기여도)
+3. [기술 스택](#⚒️-stacks)
+4. [개발 설계](#⌨️-개발-설계)
+5. [데이터 모델링](#⚓️-데이터-모델링)
 6. [주요 기능](#-주요-기능)
-7. [팀원 소개 및 역할](#-팀원-소개)
+7. [팀원 소개 및 역할](#-팀원-소개-및-역할)
 
 
 <br>
@@ -64,7 +64,7 @@
 
 <br>
 
-## ⚒️ Stacks
+## ⚒️ **Stacks**
 
 #### Front-End
 <img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white"> <img src="https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white"> <img src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E">
@@ -80,7 +80,7 @@
 
 <br>
 
-## ⌨️ 개발 설계
+## ⌨️ **개발 설계**
 
 ### 서비스 흐름도
 <img width="700" alt="image" src="https://github.com/ahgjatleo0/Final_Project/assets/129912074/a704ccce-611e-429e-8635-53d5a6c85865">
@@ -92,7 +92,7 @@
 <br>
 
 
-## ⚓️ 데이터 모델링 
+## ⚓️ **데이터 모델링**
 
 ### 데이터 수집
 - **Chapman-Shaoxing 12-lead ECG data** (약 10,000 set) : Kaggle의 대표적 ECG 데이터셋
@@ -122,7 +122,7 @@ numerical feature(hr, pr, qrs, qt, qtc) 를 추출
 <br>
 
 
-## 💎 주요 기능
+## 💎 **주요 기능**
 
 ### 1) 메인 화면
 - 사이트에서 **제공 되는 서비스 안내** 바로가기 버튼을 통해 건강 체크하기로 이동
@@ -172,7 +172,7 @@ numerical feature(hr, pr, qrs, qt, qtc) 를 추출
 
 <br><br>
 
-## 👨‍👩‍👧‍👦 팀원 소개 및 역할
+## 👨‍👩‍👧‍👦 **팀원 소개 및 역할**
 
 <table>
   <tr>
